@@ -1,22 +1,30 @@
 
 -> main
 === main ===
-Hey, What's Up?
-    + [Hello There!]
-        Nice to see you!
+Hey, What's Up do you want candies?
+    + [What candies?!]
         -> secondChoicesHello
-    + [Sup, Dawgh]
+    + [Ignore]
         Eyo
         -> END
-    + [Kneega]
-        damn
-        -> END
+    + [Yes]
+        ->kneega
 
 === secondChoicesHello ===
-What do you want to do next?
-    + [Ask about the weather]
-        It's sunny today!
+Chocobar
+    + [Ask about t]
+        No, Thanks
         -> END
     + [Say goodbye]
-        Goodbye!
+        
         -> END
+        
+=== kneega ===
+GAME_OVER
+    +[Okay]
+        GAME_OVER
+        ->END
+    +[Where we going?]
+        GAME_OVER
+-> END
+    

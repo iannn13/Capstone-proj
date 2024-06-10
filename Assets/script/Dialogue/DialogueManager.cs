@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,9 +13,15 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Button continueButton;
+
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
+
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button mainMenuButton;
 
     private Story currentStory;
 
@@ -52,6 +59,10 @@ public class DialogueManager : MonoBehaviour
             choice.GetComponent<Button>().onClick.AddListener(() => MakeChoice(choiceIndex));
             index++;
         }
+
+        gameOverPanel.SetActive(false);
+        restartButton.onClick.AddListener(RestartGame);
+        mainMenuButton.onClick.AddListener(GoToMainMenu);
     }
 
     private void Update()
@@ -123,6 +134,36 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Choice made: " + choiceIndex);
         currentStory.ChooseChoiceIndex(choiceIndex);
-        ContinueStory();
+
+
+        Debug.Log("Current Story Text after choice: " + currentStory.currentText);
+        //GAME_OVER
+        if (currentStory.currentText.Contains("GAME_OVER"))
+        {
+            Debug.Log("Game over detected");
+            ShowGameOver();
+        }
+        else
+        {
+            ContinueStory();
+        }
+    }
+
+
+    private void ShowGameOver()
+    {
+        Debug.Log("Restarting game");
+        dialoguePanel.SetActive(false);
+        gameOverPanel.SetActive(true);
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
