@@ -12,12 +12,14 @@ Hey, What's Up do you want candies?
 
 === secondChoicesHello ===
 Chocobar
-    + [Ask about t]
-        No, Thanks
-        -> END
-    + [Say goodbye]
-        
-        -> END
+    + [Ask about it]
+        It's yummy
+        sdsdasd
+        -Done
+    +[can i have one?]
+       yes
+       -> END
+
         
 === kneega ===
 GAME_OVER

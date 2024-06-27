@@ -1,0 +1,266 @@
+using UnityEngine;
+
+public class DialTrigger : MonoBehaviour
+{
+    [Header("Ink JSON")]
+    [SerializeField] private TextAsset inkJSON;
+
+    private bool playerInRange;
+
+    private void Start()
+    {
+        playerInRange = false;
+    }
+
+    private void Update()
+    {
+        if (playerInRange)
+        {
+            MamaDialogue.GetInstance().EnterDialogueMode(inkJSON);
+            playerInRange = false; // Prevents re-triggering
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            playerInRange = false;
+        }
+    }
+}
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DialTrigger : MonoBehaviour
+{
+    [Header("Ink JSON")]
+    [SerializeField] private TextAsset inkJSON;
+
+    [Header("Mama GameObject")]
+    [SerializeField] private GameObject mamaObject;
+
+    private bool playerInRange;
+    private bool dialogueStarted;
+
+    private void Start()
+    {
+        playerInRange = false;
+        dialogueStarted = false;
+    }
+
+    private void Update()
+    {
+        if (playerInRange && !dialogueStarted)
+        {
+            MamaDialogue.GetInstance().EnterDialogueMode(inkJSON);
+            dialogueStarted = true; // Dialogue started, prevent re-triggering
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player" && !dialogueStarted)
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            playerInRange = false;
+        }
+    }
+
+    // Method to be called when Mama's dialogue is completed
+    public void OnMamaDialogueComplete()
+    {
+        dialogueStarted = false;
+        DisableTrigger(); // Disable the trigger once dialogue is complete
+
+        // Start a coroutine to make Mama walk away after some time
+        StartCoroutine(MakeMamaWalkAway());
+    }
+
+    private void DisableTrigger()
+    {
+        // Disable this trigger GameObject
+        gameObject.SetActive(false);
+    }
+
+    private IEnumerator MakeMamaWalkAway()
+    {
+        yield return new WaitForSeconds(2f); // Adjust the time as needed
+
+        // Assuming mamaObject has a component that handles her movement, you can activate it here
+        if (mamaObject != null)
+        {
+            MamaMovement mamaMovement = mamaObject.GetComponent<MamaMovement>();
+            if (mamaMovement != null)
+            {
+                mamaMovement.WalkAway(); // Implement a method to make Mama walk away
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using Ink.Runtime;
+using UnityEngine.UI;
+
+public class MamaDialogue : MonoBehaviour
+{
+    [Header("Dialogue UI")]
+    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private Button continueButton;
+
+    [Header("Choices UI")]
+    [SerializeField] private GameObject[] choices;
+    private TextMeshProUGUI[] choicesText;
+
+    private Story currentStory;
+    public bool dialogueIsPlaying { get; private set; }
+
+    private static MamaDialogue instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Found more than one Mama Dialogue in the scene");
+        }
+        instance = this;
+    }
+
+    public static MamaDialogue GetInstance()
+    {
+        return instance;
+    }
+
+    private void Start()
+    {
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        continueButton.gameObject.SetActive(false);
+        continueButton.onClick.AddListener(ContinueStory);
+
+        choicesText = new TextMeshProUGUI[choices.Length];
+        int index = 0;
+        foreach (GameObject choice in choices)
+        {
+            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+            int choiceIndex = index;
+            choice.GetComponent<Button>().onClick.AddListener(() => MakeChoice(choiceIndex));
+            index++;
+        }
+    }
+
+    private void Update()
+    {
+        if (!dialogueIsPlaying)
+        {
+            return;
+        }
+    }
+
+    public void EnterDialogueMode(TextAsset inkJSON)
+    {
+        currentStory = new Story(inkJSON.text);
+        dialogueIsPlaying = true;
+        dialoguePanel.SetActive(true);
+        continueButton.gameObject.SetActive(true);
+
+        ContinueStory();
+    }
+
+    private void ExitDialogueMode()
+    {
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        dialogueText.text = "";
+        continueButton.gameObject.SetActive(false);
+    }
+
+    private void ContinueStory()
+    {
+        if (currentStory.canContinue)
+        {
+            dialogueText.text = currentStory.Continue();
+            DisplayChoices();
+        }
+        else
+        {
+            ExitDialogueMode();
+        }
+    }
+
+    private void DisplayChoices()
+    {
+        List<Choice> currentChoices = currentStory.currentChoices;
+
+        if (currentChoices.Count > choices.Length)
+        {
+            Debug.LogError("More choices were given than UI can support. Number of choices given: " + currentChoices.Count);
+        }
+
+        int index = 0;
+
+        foreach (Choice choice in currentChoices)
+        {
+            choices[index].gameObject.SetActive(true);
+            choicesText[index].text = choice.text;
+            index++;
+        }
+
+        for (int i = index; i < choices.Length; i++)
+        {
+            choices[i].gameObject.SetActive(false);
+        }
+
+        continueButton.gameObject.SetActive(currentChoices.Count == 0);
+    }
+
+    private void MakeChoice(int choiceIndex)
+    {
+        currentStory.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
+    }
+}

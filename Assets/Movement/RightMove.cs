@@ -10,23 +10,54 @@ public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public float Force;
     public Animator animator;
 
+    private MamaDialogue dialogueManager;
+
+    private void Start()
+    {
+        dialogueManager = MamaDialogue.GetInstance();
+
+        if (Player == null)
+        {
+            Debug.LogError("Player is not assigned in the inspector");
+        }
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator is not assigned in the inspector");
+        }
+
+        if (dialogueManager == null)
+        {
+            Debug.LogError("MamaDialogue instance not found in the scene");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        if (dialogueManager != null && dialogueManager.dialogueIsPlaying)
         {
-            animator.SetBool("isRunning", false);
+            if (animator != null)
+            {
+                animator.SetBool("isRunning", false);
+            }
             return;
         }
 
-        if (isPressed)
+        if (isPressed && Player != null)
         {
             Player.transform.Translate(Force * Time.deltaTime, 0, 0);
-            animator.SetBool("isRunning", true);
+            if (animator != null)
+            {
+                animator.SetBool("isRunning", true);
+            }
         }
         else
         {
-            animator.SetBool("isRunning", false); // Set the isRunning parameter to false
+            if (animator != null)
+            {
+                animator.SetBool("isRunning", false);
+            }
         }
     }
 

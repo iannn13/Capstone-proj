@@ -5,32 +5,62 @@ using UnityEngine.EventSystems;
 
 public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-
     bool isPressed = false;
     public GameObject Player;
     public float Force;
     public Animator animator;
 
-    // Update is called once per frame
-    void Update()
+    private MamaDialogue dialogueManager;
+
+    private void Start()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        // Ensure MamaDialogue instance is assigned
+        dialogueManager = MamaDialogue.GetInstance();
+
+        if (Player == null)
         {
-            animator.SetBool("isRunningleft", false);
-            return;
+            Debug.LogError("Player is not assigned in the inspector");
         }
 
-        if (isPressed)
+        if (animator == null)
         {
-            Player.transform.Translate(Force * Time.deltaTime, 0, 0);
-            animator.SetBool("isRunningleft", true);
+            Debug.LogError("Animator is not assigned in the inspector");
         }
-        else
+
+        if (dialogueManager == null)
         {
-            animator.SetBool("isRunningleft", false); // Set the isRunning parameter to false
+            Debug.LogError("MamaDialogue instance not found in the scene");
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (dialogueManager != null && dialogueManager.dialogueIsPlaying)
+        {
+            if (animator != null)
+            {
+                animator.SetBool("isRunningleft", false);
+            }
+            return;
+        }
+
+        if (isPressed && Player != null)
+        {
+            Player.transform.Translate(-Force * Time.deltaTime, 0, 0);
+            if (animator != null)
+            {
+                animator.SetBool("isRunningleft", true);
+            }
+        }
+        else
+        {
+            if (animator != null)
+            {
+                animator.SetBool("isRunningleft", false);
+            }
+        }
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -39,6 +69,6 @@ public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isPressed= false;
+        isPressed = false;
     }
 }
