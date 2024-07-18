@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
-
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -23,6 +22,13 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Button restartButton;
     [SerializeField] private Button mainMenuButton;
 
+    [Header("Image")]
+    [SerializeField] private Image kid;
+    [SerializeField] private Image tambay;
+
+    [Header("Typing Effect")]
+    [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
+
     private Story currentStory;
 
     public bool dialogueIsPlaying { get; private set; }
@@ -31,7 +37,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-       if (instance != null)
+        if (instance != null)
         {
             Debug.LogWarning("Found more than one Dialogue Manager in the scene");
         }
@@ -40,7 +46,7 @@ public class DialogueManager : MonoBehaviour
 
     public static DialogueManager GetInstance()
     {
-        return instance;    
+        return instance;
     }
 
     private void Start()
@@ -48,6 +54,9 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
+        kid.gameObject.SetActive(false);
+        tambay.gameObject.SetActive(true);  // Assuming tambay is the default image
+
         continueButton.onClick.AddListener(ContinueStory);
 
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -95,12 +104,45 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
+            string storyText = currentStory.Continue();
+            StopAllCoroutines();
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); // Log the current story text
             DisplayChoices();
+
+            // Check for specific text to toggle images
+            if (storyText.Contains("He will come back soon. It won't be that long.") ||
+                storyText.Contains("Canada"))
+            {
+                kid.gameObject.SetActive(true);
+                tambay.gameObject.SetActive(false);
+            }
+            else
+            {
+                kid.gameObject.SetActive(false);
+                tambay.gameObject.SetActive(true);
+            }
+
+            // Check the current story text for the game-over condition
+            if (storyText.Contains("..."))
+            {
+                Debug.Log("Game over detected");
+                ShowGameOver();
+            }
         }
         else
         {
-                ExitDialogueMode();  
+            ExitDialogueMode();
+        }
+    }
+
+    private IEnumerator TypeText(string text)
+    {
+        dialogueText.text = "";
+        foreach (char letter in text.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
 
@@ -111,44 +153,31 @@ public class DialogueManager : MonoBehaviour
         if (currentChoices.Count > choices.Length)
         {
             Debug.LogError("More Choices were given than UI can support. Number of choices given: " + currentChoices.Count);
-
         }
 
         int index = 0;
 
-        foreach (Choice choice in currentChoices) 
+        foreach (Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
             index++;
         }
 
-        for (int i = index ; i < choices.Length; i++)
+        for (int i = index; i < choices.Length; i++)
         {
-            choices[i].gameObject.SetActive(false); 
+            choices[i].gameObject.SetActive(false);
         }
 
         continueButton.gameObject.SetActive(currentChoices.Count == 0);
     }
+
     private void MakeChoice(int choiceIndex)
     {
         Debug.Log("Choice made: " + choiceIndex);
         currentStory.ChooseChoiceIndex(choiceIndex);
-
-
-        Debug.Log("Current Story Text after choice: " + currentStory.currentText);
-        //GAME_OVER
-        if (currentStory.currentText.Contains("GAME_OVER"))
-        {
-            Debug.Log("Game over detected");
-            ShowGameOver();
-        }
-        else
-        {
-            ContinueStory();
-        }
+        ContinueStory();
     }
-
 
     private void ShowGameOver()
     {

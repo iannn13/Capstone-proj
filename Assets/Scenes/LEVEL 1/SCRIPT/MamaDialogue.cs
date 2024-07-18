@@ -19,6 +19,9 @@ public class MamaDialogue : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    [Header("Typing Effect")]
+    [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
+
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
@@ -88,12 +91,23 @@ public class MamaDialogue : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
+            StopAllCoroutines();
+            StartCoroutine(TypeText(currentStory.Continue()));
             DisplayChoices();
         }
         else
         {
             ExitDialogueMode();
+        }
+    }
+
+    private IEnumerator TypeText(string text)
+    {
+        dialogueText.text = "";
+        foreach (char letter in text.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
 

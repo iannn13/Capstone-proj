@@ -22,6 +22,10 @@ public class BAGTRIGGER : MonoBehaviour
     [SerializeField] private GameObject uiCanvas3;
     [SerializeField] private GameObject bagNote;
 
+    [Header("pickupNote")]
+    [SerializeField] private GameObject uiCanva4;
+    [SerializeField] private GameObject pickupnote; 
+
     private bool playerInRange;
     private Collider2D bagCollider;
 
@@ -57,11 +61,14 @@ public class BAGTRIGGER : MonoBehaviour
     {
         bag.gameObject.SetActive(true);
         uiCanvas3.SetActive(false);
+        uiCanva4.SetActive(true);
         pickupButton.gameObject.SetActive(false);
         visualCue.SetActive(false);
         bagItem.gameObject.SetActive(false);
         playerInRange = false;
         bagCollider.enabled = false;
+
+        StartCoroutine(FadeOutUIAfterDelay(uiCanva4, 1.5f, 1.0f));
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -78,5 +85,32 @@ public class BAGTRIGGER : MonoBehaviour
         {
             playerInRange = false;
         }
+    }
+
+    private IEnumerator FadeOutUIAfterDelay(GameObject uiElement, float delay, float duration)
+    {
+        CanvasGroup canvasGroup = uiElement.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = uiElement.AddComponent<CanvasGroup>();
+        }
+
+        canvasGroup.alpha = 1.0f;
+        yield return new WaitForSeconds(delay);
+
+        float startAlpha = canvasGroup.alpha;
+        float rate = 1.0f / duration;
+        float progress = 0.0f;
+
+        while (progress < 1.0f)
+        {
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress);
+            progress += rate * Time.deltaTime;
+
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0;
+        uiElement.SetActive(false);
     }
 }
