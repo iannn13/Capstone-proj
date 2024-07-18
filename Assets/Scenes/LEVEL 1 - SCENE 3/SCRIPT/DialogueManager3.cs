@@ -6,7 +6,7 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager3 : MonoBehaviour
 {
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Image")]
     [SerializeField] private Image kid;
-    [SerializeField] private Image tambay;
+    [SerializeField] private Image npc;
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
 
     public bool dialogueIsPlaying { get; private set; }
 
-    private static DialogueManager instance;
+    private static DialogueManager3 instance;
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         instance = this;
     }
 
-    public static DialogueManager GetInstance()
+    public static DialogueManager3 GetInstance()
     {
         return instance;
     }
@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
         kid.gameObject.SetActive(false);
-        tambay.gameObject.SetActive(true);  // Assuming tambay is the default image
+        npc.gameObject.SetActive(true);  // Assuming tambay is the default image
 
         continueButton.onClick.AddListener(ContinueStory);
 
@@ -105,22 +105,44 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             string storyText = currentStory.Continue();
-            StopAllCoroutines();
-            StartCoroutine(TypeText(storyText));
             Debug.Log("Current Story Text: " + storyText); // Log the current story text
             DisplayChoices();
 
-            // Check for specific text to toggle images
-            if (storyText.Contains("He will come back soon. It won't be that long.") ||
-                storyText.Contains("Canada"))
+            // Check for specific text to toggle images and apply highlight
+            bool highlightFivePeso = false;
+            bool highlightWrong = false;
+            if (storyText.Contains("5 Peso"))
+            {
+                highlightFivePeso = true;
+                storyText = storyText.Replace("5 Peso", "<color=#FFFF00>5 Peso</color>");
+            }
+            if (storyText.Contains("wrong"))
+            {
+                highlightWrong = true;
+                storyText = storyText.Replace("wrong", "<color=#FFFF00>wrong</color>");
+            }
+
+            StopAllCoroutines(); // Stop any ongoing typing coroutine
+            StartCoroutine(TypeText(storyText, highlightFivePeso, highlightWrong));
+            Debug.Log("Current Story Text: " + storyText);
+            // Check for specific conditions to toggle images
+            if (storyText.Contains("Sorry, Lola. I'm going to school.") ||
+                storyText.Contains("Sure, Lola. What is it?") ||
+                storyText.Contains("I think it's this one?") ||
+                storyText.Contains("Here it is, Lola."))
             {
                 kid.gameObject.SetActive(true);
-                tambay.gameObject.SetActive(false);
+                npc.gameObject.SetActive(false);
+            }
+            else if (storyText.Contains("You might pickup the wrong peso but she didn't notice it."))
+            {
+                kid.gameObject.SetActive(false);
+                npc.gameObject.SetActive(false);
             }
             else
             {
                 kid.gameObject.SetActive(false);
-                tambay.gameObject.SetActive(true);
+                npc.gameObject.SetActive(true);
             }
 
             // Check the current story text for the game-over condition
@@ -133,28 +155,47 @@ public class DialogueManager : MonoBehaviour
         else
         {
             ExitDialogueMode();
-
-            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
-            if (transitionManager != null)
-            {
-                transitionManager.FadeToScene(4);
-            }
-            else
-            {
-                Debug.LogError("SceneTransitionManager not found in the scene!");
-            }
         }
     }
 
-    private IEnumerator TypeText(string text)
+
+    private IEnumerator TypeText(string text, bool highlightFivePeso, bool highlightWrong)
     {
         dialogueText.text = "";
-        foreach (char letter in text.ToCharArray())
+        string originalText = text;
+
+        if (highlightFivePeso)
+        {
+            // Remove color tags for typing animation
+            originalText = originalText.Replace("<color=#FFFF00>", "").Replace("</color>", "");
+        }
+
+        if (highlightWrong)
+        {
+            // Remove color tags for typing animation
+            originalText = originalText.Replace("<color=#FFFF00>", "").Replace("</color>", "");
+        }
+
+        foreach (char letter in originalText.ToCharArray())
         {
             dialogueText.text += letter;
+
+            // Add delay for typing effect
             yield return new WaitForSeconds(typingSpeed);
         }
+
+        // After typing, restore the original text with color tags if highlighting was applied
+        if (highlightFivePeso)
+        {
+            dialogueText.text = text;
+        }
+
+        if (highlightWrong)
+        {
+            dialogueText.text = text;
+        }
     }
+
 
     private void DisplayChoices()
     {

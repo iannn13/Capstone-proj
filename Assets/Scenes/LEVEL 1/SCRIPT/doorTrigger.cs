@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,16 +14,14 @@ public class doorTrigger : MonoBehaviour
     private bool playerInRange;
     private Collider2D doorCollider;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerInRange = false;
         cue.SetActive(false);
         doorCollider = GetComponent<Collider2D>();
 
-
         doorButton.gameObject.SetActive(true);
-        doorButton.onClick.AddListener(OndoorButtonClicked);
+        doorButton.onClick.AddListener(OnDoorButtonClicked);
         doorButton.gameObject.SetActive(false);
     }
 
@@ -44,14 +39,27 @@ public class doorTrigger : MonoBehaviour
         }
     }
 
-    private void OndoorButtonClicked()
+    private void OnDoorButtonClicked()
     {
-        SceneManager.LoadSceneAsync(3);
+        Debug.Log("Door button clicked");
+        StartCoroutine(FadeAndLoadScene());
+    }
+
+    private IEnumerator FadeAndLoadScene()
+    {
+        if (FadeManager.Instance != null)
+        {
+            yield return FadeManager.Instance.FadeOut(() => SceneManager.LoadSceneAsync(3));
+        }
+        else
+        {
+            Debug.LogError("FadeManager instance is null!");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
         }
@@ -59,7 +67,7 @@ public class doorTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.CompareTag("Player"))
         {
             playerInRange = false;
         }

@@ -2,6 +2,7 @@
 -> main
 === main ===
 Hey, kid.
+I heard your father went to abroad last Saturday.
         -> 2nd
    
 
