@@ -25,6 +25,8 @@ public class DialogueManager3 : MonoBehaviour
     [Header("Image")]
     [SerializeField] private Image kid;
     [SerializeField] private Image npc;
+    [SerializeField] private Image pesos;
+    [SerializeField] private Image pesobg;
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
@@ -115,6 +117,13 @@ public class DialogueManager3 : MonoBehaviour
             {
                 highlightFivePeso = true;
                 storyText = storyText.Replace("5 Peso", "<color=#FFFF00>5 Peso</color>");
+                pesos.gameObject.SetActive(true);
+                pesobg.gameObject.SetActive(true);
+            }
+            else
+            {
+                pesos.gameObject.SetActive(false);
+                pesobg.gameObject.SetActive(false);
             }
             if (storyText.Contains("wrong"))
             {
@@ -155,6 +164,16 @@ public class DialogueManager3 : MonoBehaviour
         else
         {
             ExitDialogueMode();
+
+            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+            if (transitionManager != null)
+            {
+                transitionManager.FadeToScene(5);
+            }
+            else
+            {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
+            }
         }
     }
 
