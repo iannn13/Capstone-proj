@@ -1,25 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FadeInOut : MonoBehaviour
 {
     [Header("UI Elements")]
-    [SerializeField] private CanvasGroup textCanvasGroup; 
-    [SerializeField] private CanvasGroup backgroundCanvasGroup; 
+    [SerializeField] private CanvasGroup textCanvasGroup;
+    [SerializeField] private CanvasGroup backgroundCanvasGroup;
     [SerializeField] private Image additionalImage;
     [SerializeField] private Image teacher;
+    [SerializeField] private Image greatjobImage; 
 
     [Header("Fade Settings")]
-    [SerializeField] private float fadeDuration = 1f; 
-    [SerializeField] private float displayDuration = 2f; 
+    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private float displayDuration = 2f;
 
     [Header("Dialogue Trigger")]
-    [SerializeField] private DialogueManager5 dialogueManager; 
+    [SerializeField] private DialogueManager5 dialogueManager;
+    [SerializeField] private TextAsset inkJSON;
 
     private void Start()
     {
         additionalImage.canvasRenderer.SetAlpha(0f);
+        greatjobImage.canvasRenderer.SetAlpha(0f); // Set the image to be initially invisible
 
         StartCoroutine(FadeSequence());
     }
@@ -41,22 +45,29 @@ public class FadeInOut : MonoBehaviour
         yield return StartCoroutine(FadeCanvasGroup(textCanvasGroup, 1, 0, fadeDuration));
         yield return StartCoroutine(FadeCanvasGroup(backgroundCanvasGroup, 1, 0, fadeDuration));
 
-        // Fade in the additional image
-        additionalImage.CrossFadeAlpha(1f, fadeDuration, false);
+        // Start dialogue
+        dialogueManager.EnterDialogueMode(inkJSON);
 
-        // Wait for the image to be fully visible, then display it for a short time
+        // Wait for the dialogue to finish
+        while (dialogueManager.dialogueIsPlaying)
+        {
+            yield return null;
+        }
+
+        // Fade in the greatjob image after the dialogue ends
+        greatjobImage.CrossFadeAlpha(1f, fadeDuration, false);
+
+        // Wait for the image to be fully visible, then display it for a few seconds
         yield return new WaitForSeconds(fadeDuration + displayDuration);
 
-        // Fade out the additional image
-        additionalImage.CrossFadeAlpha(0f, fadeDuration, false);
+        // Fade out the greatjob image
+        greatjobImage.CrossFadeAlpha(0f, fadeDuration, false);
 
         // Wait for the image to fully fade out
         yield return new WaitForSeconds(fadeDuration);
 
-        teacher.gameObject.SetActive(false);
-
-        // Start dialogue after the image fades out
-        dialogueManager.StartDialogue();
+       
+        SceneManager.LoadScene("NextSceneName"); 
     }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float startAlpha, float endAlpha, float duration)
