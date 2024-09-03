@@ -67,7 +67,7 @@ public class FadeInOut : MonoBehaviour
         yield return new WaitForSeconds(fadeDuration);
 
        
-        SceneManager.LoadScene("NextSceneName"); 
+        SceneManager.LoadScene(7); 
     }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float startAlpha, float endAlpha, float duration)
