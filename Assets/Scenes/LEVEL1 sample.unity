@@ -640,6 +640,9 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1601406849}
   restartButton: {fileID: 1019919754}
   mainMenuButton: {fileID: 506546405}
+  kid: {fileID: 0}
+  tambay: {fileID: 0}
+  typingSpeed: 0.05
 --- !u!1 &214631052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,7 +2513,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1107874275
