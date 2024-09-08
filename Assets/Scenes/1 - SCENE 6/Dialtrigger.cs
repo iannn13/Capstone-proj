@@ -7,7 +7,12 @@ public class Dialtrigger : MonoBehaviour
     [SerializeField] private TextAsset inkJSON;
 
     [Header("Dialogue Delay")]
-    [SerializeField] private float dialogueStartDelay = 1f; // Delay before starting dialogue
+    [SerializeField] private float dialogueStartDelay = 1f; 
+
+    [Header("Image Fade")]
+    [SerializeField] private CanvasGroup imageCanvasGroup; 
+    [SerializeField] private float fadeDuration = 1.0f;
+    [SerializeField] private float displayDuration = 2.0f;
 
     private bool playerInRange;
     private bool dialogueStarted;
@@ -20,19 +25,23 @@ public class Dialtrigger : MonoBehaviour
         ChismisDialogue.GetInstance().OnDialogueComplete += OnChismisDialogueComplete;
 
         StartCoroutine(StartDialogueAfterDelay());
+
+        // Initialize the image as hidden
+        imageCanvasGroup.alpha = 0;
     }
 
     private void Update()
     {
+    
     }
 
     private IEnumerator StartDialogueAfterDelay()
     {
         if (playerInRange && !dialogueStarted)
         {
-            yield return new WaitForSeconds(dialogueStartDelay); 
-            ChismisDialogue.GetInstance().EnterDialogueMode(inkJSON); 
-            dialogueStarted = true; 
+            yield return new WaitForSeconds(dialogueStartDelay);
+            ChismisDialogue.GetInstance().EnterDialogueMode(inkJSON);
+            dialogueStarted = true;
         }
     }
 
@@ -41,7 +50,6 @@ public class Dialtrigger : MonoBehaviour
         if (collider.gameObject.CompareTag("Player") && !dialogueStarted)
         {
             playerInRange = true;
-       
             StartCoroutine(StartDialogueAfterDelay());
         }
     }
@@ -56,10 +64,34 @@ public class Dialtrigger : MonoBehaviour
 
     public void OnChismisDialogueComplete()
     {
-        // Once the dialogue is complete, reset the dialogueStarted flag to allow triggering again if needed
         dialogueStarted = false;
 
-        // If you want the dialogue not to repeat, you can keep this flag true
-        // dialogueStarted = true; // Uncomment this to prevent the dialogue from repeating
+        StartCoroutine(FadeInAndOutImage());
+    }
+
+    private IEnumerator FadeInAndOutImage()
+    {
+        // Fade in
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            imageCanvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime / fadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        imageCanvasGroup.alpha = 1;
+
+        // Wait for a few seconds with the image fully visible
+        yield return new WaitForSeconds(displayDuration);
+
+        // Fade out
+        elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            imageCanvasGroup.alpha = Mathf.Lerp(1, 0, elapsedTime / fadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        imageCanvasGroup.alpha = 0;
     }
 }
