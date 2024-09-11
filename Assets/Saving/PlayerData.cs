@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 namespace MyGameNamespace
 {
@@ -9,5 +8,6 @@ namespace MyGameNamespace
     public class PlayerData
     {
         public float[] position;
+        public string sceneName;
     }
 }

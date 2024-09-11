@@ -4082,7 +4082,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1472457241}
-        m_TargetAssemblyTypeName: PlayerDataManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: MyGameNamespace.PlayerDataManager, Assembly-CSharp
         m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
