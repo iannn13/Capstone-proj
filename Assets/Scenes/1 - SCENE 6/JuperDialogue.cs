@@ -19,6 +19,9 @@ public class JuperDialogue : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    [Header("Move Button")]
+    [SerializeField] private GameObject movebutton;
+
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
@@ -75,6 +78,7 @@ public class JuperDialogue : MonoBehaviour
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
         continueButton.gameObject.SetActive(false);
+        movebutton.gameObject.SetActive(true);
 
         OnDialogueComplete?.Invoke();
     }

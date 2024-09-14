@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
+using System.Net.NetworkInformation;
 
 public class TeddyDialogue : MonoBehaviour
 {
@@ -21,6 +22,19 @@ public class TeddyDialogue : MonoBehaviour
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
+
+    [Header("Move Button")]
+    [SerializeField] private GameObject movebutton;
+
+
+
+    [Header("Name")]
+    [SerializeField] private GameObject teddy;
+    [SerializeField] private GameObject you;
+
+    [Header("Picture")]
+    [SerializeField] private GameObject teddypic;
+    [SerializeField] private GameObject youpic;
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
@@ -65,6 +79,8 @@ public class TeddyDialogue : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
+        movebutton.gameObject.SetActive(false);
+
 
         ContinueStory();
     }
@@ -83,9 +99,28 @@ public class TeddyDialogue : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
+            string storyText = currentStory.Continue();
             StopAllCoroutines();
-            StartCoroutine(TypeText(currentStory.Continue()));
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); // Log the current story text
             DisplayChoices();
+
+            // Check for specific text to toggle images
+            if (storyText.Contains("That's awesome! I can't wait."))
+            {
+                teddy.gameObject.SetActive(false);
+                you.gameObject.SetActive(true);
+                youpic.gameObject.SetActive(true);
+                teddypic.gameObject.SetActive(false);
+            }
+
+            else
+            {
+                you.gameObject.SetActive(false);
+                teddy.gameObject.SetActive(true);
+                youpic.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(true);
+            }
         }
         else
         {

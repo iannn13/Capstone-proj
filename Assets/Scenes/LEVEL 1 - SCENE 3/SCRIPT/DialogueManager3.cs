@@ -28,6 +28,10 @@ public class DialogueManager3 : MonoBehaviour
     [SerializeField] private Image pesos;
     [SerializeField] private Image pesobg;
 
+    [Header("Name")]
+    [SerializeField] private GameObject kid1;
+    [SerializeField] private GameObject npc1;
+
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
 
@@ -142,6 +146,8 @@ public class DialogueManager3 : MonoBehaviour
             {
                 kid.gameObject.SetActive(true);
                 npc.gameObject.SetActive(false);
+                kid1.gameObject.SetActive(true);
+                npc1.gameObject.SetActive(false);
             }
             else if (storyText.Contains("You might pickup the wrong peso but she didn't notice it."))
             {
@@ -152,6 +158,8 @@ public class DialogueManager3 : MonoBehaviour
             {
                 kid.gameObject.SetActive(false);
                 npc.gameObject.SetActive(true);
+                kid1.gameObject.SetActive(false);
+                npc1.gameObject.SetActive(true);
             }
 
             // Check the current story text for the game-over condition

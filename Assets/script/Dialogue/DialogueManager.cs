@@ -26,6 +26,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image kid;
     [SerializeField] private Image tambay;
 
+    [Header("Name")]
+    [SerializeField] private GameObject kid1; 
+    [SerializeField] private GameObject tambay1;
+
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
 
@@ -116,11 +120,15 @@ public class DialogueManager : MonoBehaviour
             {
                 kid.gameObject.SetActive(true);
                 tambay.gameObject.SetActive(false);
+                kid1.gameObject.SetActive(true);
+                tambay1.gameObject.SetActive(false);
             }
             else
             {
                 kid.gameObject.SetActive(false);
                 tambay.gameObject.SetActive(true);
+                kid1.gameObject.SetActive(false);
+                tambay1.gameObject.SetActive(true);
             }
 
             // Check the current story text for the game-over condition

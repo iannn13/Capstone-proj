@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 16859238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9087139, y: -0.15830666, z: 3.950627}
+  m_LocalPosition: {x: -103.47, y: -0.15830666, z: 3.950627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -842,7 +842,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.4893584
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -867,8 +867,8 @@ Transform:
   m_GameObject: {fileID: 232721601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -100, y: 2.3, z: -10}
+  m_LocalScale: {x: 2.4875, y: 1.925, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1397,7 +1397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -78.90028, y: -250}
+  m_AnchoredPosition: {x: -78.90028, y: -280.7}
   m_SizeDelta: {x: 1143.153, y: 92.1519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &393084149
@@ -4350,6 +4350,8 @@ MonoBehaviour:
   npc: {fileID: 1422870859}
   pesos: {fileID: 1771044993}
   pesobg: {fileID: 1826592450}
+  kid1: {fileID: 0}
+  npc1: {fileID: 0}
   typingSpeed: 0.05
 --- !u!1 &1261392956
 GameObject:
@@ -4966,8 +4968,8 @@ Transform:
   m_GameObject: {fileID: 1441056556}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -98.99, y: -4.24, z: 0}
-  m_LocalScale: {x: 3.26961, y: 3.3371189, z: 1}
+  m_LocalPosition: {x: -98.974, y: -4.24, z: 0}
+  m_LocalScale: {x: 4.659194, y: 3.3371189, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5008,7 +5010,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 889, y: 385}
+  m_AnchoredPosition: {x: 889, y: 454}
   m_SizeDelta: {x: 90.9203, y: 104.0532}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441986152
@@ -5622,7 +5624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -78.900276, y: 189.3598}
+  m_AnchoredPosition: {x: -78.900276, y: 216}
   m_SizeDelta: {x: 1143.1534, y: 92.1519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1732671277
@@ -5973,7 +5975,7 @@ Transform:
   m_GameObject: {fileID: 1924086477}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.51, y: 0.25, z: 0}
+  m_LocalPosition: {x: 17.27, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6058,7 +6060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -531, y: 385}
+  m_AnchoredPosition: {x: -531, y: 446}
   m_SizeDelta: {x: 796.1949, y: 106.8115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1978531407
@@ -6414,8 +6416,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 3}
-    newSize: {x: 2, y: 3}
+    oldSize: {x: 1.35, y: 2.3}
+    newSize: {x: 1.35, y: 2.3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -6512,15 +6514,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ba3ed62f2df791448b0e3aa658c791d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da40a026205d84a4086bbe141ef830de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 3}
+  m_Size: {x: 1.35, y: 2.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2122048478

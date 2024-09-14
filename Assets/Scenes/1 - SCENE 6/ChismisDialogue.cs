@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
+using System.Security.Cryptography;
 
 public class ChismisDialogue : MonoBehaviour
 {
@@ -21,6 +22,14 @@ public class ChismisDialogue : MonoBehaviour
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
+
+    [Header("Name")]
+    [SerializeField] private GameObject pinang;
+    [SerializeField] private GameObject nina;
+
+    [Header("Picture")]
+    [SerializeField] private GameObject pinangpic;
+    [SerializeField] private GameObject ninapic;
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
@@ -83,9 +92,34 @@ public class ChismisDialogue : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
+            string storyText = currentStory.Continue();
             StopAllCoroutines();
-            StartCoroutine(TypeText(currentStory.Continue()));
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); // Log the current story text
             DisplayChoices();
+
+            // Check for specific text to toggle images
+            if (storyText.Contains("Who is the boy you like again, Nina?"))
+            {
+              nina.gameObject.SetActive(false);
+              pinang.gameObject.SetActive(true);
+              pinangpic.gameObject.SetActive(true);
+                ninapic.gameObject.SetActive(false);
+            }
+            else if (storyText.Contains("The girls squeal in excitement."))
+            {
+                nina.gameObject.SetActive(false);
+                pinang.gameObject.SetActive(false);
+                pinangpic.gameObject.SetActive(false);
+                ninapic.gameObject.SetActive(false);
+            }
+            else
+            {
+                pinang.gameObject.SetActive(false);
+                nina.gameObject.SetActive(true);
+                pinang.gameObject.SetActive(false);
+                ninapic.gameObject.SetActive(true);
+            }
         }
         else
         {
