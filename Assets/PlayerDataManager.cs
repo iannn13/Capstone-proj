@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEngine.UI; // Include the UI namespace for Image handling
 
 namespace MyGameNamespace
 {
     public class PlayerDataManager : MonoBehaviour
     {
         public Transform playerTransform;
+        public Image saveAlertImage; // Reference to the Image element
+        public float alertDuration = 2f; // Duration the image will be visible
+        public GameObject pauseMenu; // Reference to the Pause Menu GameObject
 
         private void Start()
         {
@@ -24,6 +28,18 @@ namespace MyGameNamespace
                     Debug.LogError("Player GameObject with tag 'Player' not found.");
                 }
             }
+
+            // Hide the save alert image at the start
+            if (saveAlertImage != null)
+            {
+                saveAlertImage.enabled = false;
+            }
+
+            // Make sure the pause menu is inactive at start
+            if (pauseMenu != null)
+            {
+                pauseMenu.SetActive(false);
+            }
         }
 
         public void SaveGame()
@@ -34,6 +50,13 @@ namespace MyGameNamespace
                 return;
             }
 
+            // Close the pause menu if it's open
+            if (pauseMenu != null && pauseMenu.activeSelf)
+            {
+                ClosePauseMenu();
+            }
+
+            // Save player data
             PlayerData playerData = new PlayerData
             {
                 position = new float[] { playerTransform.position.x, playerTransform.position.y, playerTransform.position.z },
@@ -45,6 +68,44 @@ namespace MyGameNamespace
             File.WriteAllText(path, json);
 
             Debug.Log("Game Saved to " + path);
+
+            // Show save alert image
+            if (saveAlertImage != null)
+            {
+                StartCoroutine(ShowSaveAlertAndGoToMenu());
+            }
+            else
+            {
+                // If there's no save alert image, go to the menu directly
+                GoToMainMenu();
+            }
+        }
+
+        private IEnumerator ShowSaveAlertAndGoToMenu()
+        {
+            // Show the save alert image
+            saveAlertImage.enabled = true;
+
+            // Wait for the specified duration
+            yield return new WaitForSeconds(alertDuration);
+
+            // Hide the save alert image
+            saveAlertImage.enabled = false;
+
+            // Transition to the main menu
+            GoToMainMenu();
+        }
+
+        private void GoToMainMenu()
+        {
+            // Load the main menu scene (replace "MainMenu" with your actual main menu scene name)
+            SceneManager.LoadScene("Main Menu");
+        }
+
+        private void ClosePauseMenu()
+        {
+            // Deactivate the pause menu
+            pauseMenu.SetActive(false);
         }
 
         public void LoadGame()
