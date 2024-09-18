@@ -25,6 +25,14 @@ public class KidnapperDialogue : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    [Header("Name")]
+    [SerializeField] private GameObject Kidnapper;
+    [SerializeField] private GameObject you;
+
+    [Header("Picture")]
+    [SerializeField] private GameObject Kidnapperpic;
+    [SerializeField] private GameObject youpic;
+
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
@@ -102,6 +110,20 @@ public class KidnapperDialogue : MonoBehaviour
             {
                 Debug.Log("Game over detected");
                 ShowGameOver();
+            }
+            else if (storyText.Contains("It's only few blocks away to that corner sir."))
+            {
+                Kidnapper.gameObject.SetActive(false);
+                Kidnapperpic.gameObject.SetActive(false);
+                you.gameObject.SetActive(true);
+                youpic.gameObject.SetActive(true);
+            }
+            else
+            {
+                Kidnapper.gameObject.SetActive(true);
+                Kidnapperpic.gameObject.SetActive(true);
+                you.gameObject.SetActive(false);
+                youpic.gameObject.SetActive(false);
             }
         }
         else

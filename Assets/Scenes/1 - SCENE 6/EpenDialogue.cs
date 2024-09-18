@@ -19,6 +19,15 @@ public class EpenDialogue : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+
+    [Header("Name")]
+    [SerializeField] private GameObject Epen;
+    [SerializeField] private GameObject you;
+
+    [Header("Picture")]
+    [SerializeField] private GameObject Epenpic;
+    [SerializeField] private GameObject youpic;
+
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
@@ -83,9 +92,28 @@ public class EpenDialogue : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
+            string storyText = currentStory.Continue();
             StopAllCoroutines();
-            StartCoroutine(TypeText(currentStory.Continue()));
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); // Log the current story text
             DisplayChoices();
+
+            // Check for specific text to toggle images
+            if (storyText.Contains("Don't worry. your hair will grow back.") || storyText.Contains("I think you still look good with it. Don't mind what the other kids say."))
+            {
+                Epen.gameObject.SetActive(false);
+                you.gameObject.SetActive(true);
+                youpic.gameObject.SetActive(true);
+                Epenpic.gameObject.SetActive(false);
+            }
+
+            else
+            {
+                you.gameObject.SetActive(false);
+                Epen.gameObject.SetActive(true);
+                youpic.gameObject.SetActive(false);
+                Epenpic.gameObject.SetActive(true);
+            }
         }
         else
         {
