@@ -13,6 +13,7 @@ namespace MyGameNamespace
         public Image saveAlertImage; // Reference to the Image element
         public float alertDuration = 2f; // Duration the image will be visible
         public GameObject pauseMenu; // Reference to the Pause Menu GameObject
+        private bool isSaveAlertActive = false; // Track if the save alert is active
 
         private void Start()
         {
@@ -69,37 +70,40 @@ namespace MyGameNamespace
 
             Debug.Log("Game Saved to " + path);
 
-            // Show save alert image
+            // Show save alert image and start the hide countdown
             if (saveAlertImage != null)
             {
-                StartCoroutine(ShowSaveAlertAndGoToMenu());
-            }
-            else
-            {
-                // If there's no save alert image, go to the menu directly
-                GoToMainMenu();
+                StartCoroutine(ShowSaveAlert());
             }
         }
 
-        private IEnumerator ShowSaveAlertAndGoToMenu()
+        private IEnumerator ShowSaveAlert()
         {
             // Show the save alert image
             saveAlertImage.enabled = true;
+            isSaveAlertActive = true;
 
             // Wait for the specified duration
             yield return new WaitForSeconds(alertDuration);
 
-            // Hide the save alert image
+            // Hide the save alert image after the duration
             saveAlertImage.enabled = false;
-
-            // Transition to the main menu
-            GoToMainMenu();
+            isSaveAlertActive = false;
         }
 
-        private void GoToMainMenu()
+        public void OpenPauseMenu()
         {
-            // Load the main menu scene (replace "MainMenu" with your actual main menu scene name)
-            SceneManager.LoadScene("Main Menu");
+            if (pauseMenu != null)
+            {
+                // Ensure the pause menu is active
+                pauseMenu.SetActive(true);
+            }
+
+            // If the save alert is still active (within the 2 seconds), leave it visible
+            if (isSaveAlertActive)
+            {
+                Debug.Log("Save alert is still active, keeping it visible.");
+            }
         }
 
         private void ClosePauseMenu()
