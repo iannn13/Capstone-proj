@@ -32,6 +32,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1 - 7th.unity
     guid: a91ead0c0a9534a438cf4288d1bd8ec6
+  - enabled: 1
+    path: Assets/Scenes/Level 1 - Going Home.unity
+    guid: 82b00452a772dce48a66b8a8505a9f6a
+  - enabled: 1
+    path: Assets/Scenes/Level 1 - 8th.unity
+    guid: 460886aad5893264684e7fb55f2d80ea
+  - enabled: 1
+    path: Assets/Scenes/Level 1 - Complete.unity
+    guid: ff36cacb8762df149a4449d65d144133
   - enabled: 0
     path: Assets/Scenes/LEVEL1 sample.unity
     guid: eda788beb63d805468911757adb0dffc

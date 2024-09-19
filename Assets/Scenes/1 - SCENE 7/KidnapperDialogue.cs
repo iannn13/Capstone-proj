@@ -130,7 +130,15 @@ public class KidnapperDialogue : MonoBehaviour
         {
             ExitDialogueMode();
             SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
-        
+            if (transitionManager != null)
+            {
+                transitionManager.FadeToScene(9);
+            }
+            else
+            {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
+            }
+
         }
 
 

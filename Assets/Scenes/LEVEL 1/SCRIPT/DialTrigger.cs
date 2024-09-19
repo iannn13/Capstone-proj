@@ -78,10 +78,6 @@ public class DialTrigger : MonoBehaviour
             uiCanvas2.SetActive(false); // Hide the Canvas initially
             continueButton2.interactable = false; // Disable continue button 2 initially
         }
-        else
-        {
-            Debug.LogError("UI elements for note 2 not assigned in the Inspector");
-        }
     }
 
     private void Update()

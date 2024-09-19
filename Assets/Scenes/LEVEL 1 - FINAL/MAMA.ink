@@ -24,6 +24,7 @@ Alright, son. Let's have dinner.
 I don't feel safe going home.
 I'm so sorry my child. It will be only for a week.
 Here have the house telephone number if you needed me, call mama okay?
++[Take it.]
 Thank you, mama. i'm hungry now.
 ->END
 

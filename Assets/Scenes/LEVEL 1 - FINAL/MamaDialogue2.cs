@@ -30,6 +30,11 @@ public class MamaDialogue2 : MonoBehaviour
     [SerializeField] private GameObject mamapic;
     [SerializeField] private GameObject youpic;
 
+    [Header("number")]
+    [SerializeField] private GameObject number;
+    [SerializeField] private GameObject bg;
+
+
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
@@ -58,6 +63,8 @@ public class MamaDialogue2 : MonoBehaviour
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
         continueButton.onClick.AddListener(ContinueStory);
+        number.gameObject.SetActive(false);
+        bg.gameObject.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -132,6 +139,15 @@ public class MamaDialogue2 : MonoBehaviour
                 youpic.gameObject.SetActive(true);
                 mama.gameObject.SetActive(false);
                 mamapic.gameObject.SetActive(false);
+                number.gameObject.SetActive(false);
+                bg.gameObject.SetActive(false);
+            }
+            else if (storyText.Contains("Here have the house telephone number if you needed me, call mama okay?"))
+            {
+                mama.gameObject.SetActive(true);
+                mamapic.gameObject.SetActive(true);
+                number.gameObject.SetActive(true);
+                bg.gameObject.SetActive(true);
             }
             else
             {
@@ -139,11 +155,22 @@ public class MamaDialogue2 : MonoBehaviour
                 youpic.gameObject.SetActive(false);
                 mama.gameObject.SetActive(true);
                 mamapic.gameObject.SetActive(true);
+                number.gameObject.SetActive(false);
+                bg.gameObject.SetActive(false);
             }
         }
         else
         {
             ExitDialogueMode();
+            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+            if (transitionManager != null)
+            {
+                transitionManager.FadeToScene(11);
+            }
+            else
+            {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
+            }
         }
     }
 

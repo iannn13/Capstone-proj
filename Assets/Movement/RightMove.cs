@@ -26,10 +26,6 @@ public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             Debug.LogError("Animator is not assigned in the inspector");
         }
 
-        if (dialogueManager == null)
-        {
-            Debug.LogError("MamaDialogue instance not found in the scene");
-        }
     }
 
     // Update is called once per frame
