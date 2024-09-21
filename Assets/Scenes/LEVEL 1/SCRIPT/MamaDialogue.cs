@@ -22,6 +22,7 @@ public class MamaDialogue : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
 
+    
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
