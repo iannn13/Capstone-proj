@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace MyGameNamespace
 {
@@ -9,5 +7,8 @@ namespace MyGameNamespace
     {
         public float[] position;
         public string sceneName;
+
+        // Item list
+        public List<string> collectedItems;
     }
 }
