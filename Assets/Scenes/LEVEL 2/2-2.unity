@@ -1309,7 +1309,7 @@ Transform:
   m_GameObject: {fileID: 96636317}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 219.74368, y: -192.15619, z: -0.0926}
+  m_LocalPosition: {x: 219.74368, y: -192.206, z: -0.0926}
   m_LocalScale: {x: 3.0017, y: 3.0017, z: 3.0017}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4057,7 +4057,7 @@ Transform:
   m_GameObject: {fileID: 364899385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 225.36, y: -199.462, z: -26.54}
+  m_LocalPosition: {x: 225.2345, y: -200.09781, z: -26.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16980,8 +16980,8 @@ Transform:
   m_GameObject: {fileID: 1346617234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 218.8, y: -200.662, z: -16.54}
-  m_LocalScale: {x: 0.792272, y: 0.77825904, z: 0.81916773}
+  m_LocalPosition: {x: 218.6745, y: -201.2978, z: -16.54}
+  m_LocalScale: {x: 0.6063223, y: 0.58022654, z: 0.81916773}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -19535,8 +19535,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 320}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -0.000083923, y: 276}
+  m_SizeDelta: {x: 452.4177, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1542721226
 GameObject:
@@ -19949,7 +19949,7 @@ Transform:
   m_GameObject: {fileID: 1571241503}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 247.44, y: -194.43, z: -0.09256914}
+  m_LocalPosition: {x: 248.26, y: -194.3, z: -0.09256914}
   m_LocalScale: {x: 0.60777164, y: 0.60777164, z: 0.60777164}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21208,7 +21208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1346617234}
   Force: 3
-  animator: {fileID: 0}
+  animator: {fileID: 1346617237}
 --- !u!114 &1617818375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23176,7 +23176,7 @@ Transform:
   m_GameObject: {fileID: 1724401020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 226.18613, y: -199.11768, z: -26.54}
+  m_LocalPosition: {x: 226.16435, y: -199.11768, z: -26.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
