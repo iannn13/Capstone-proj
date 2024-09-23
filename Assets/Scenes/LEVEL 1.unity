@@ -5205,7 +5205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &831850267
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5306,6 +5306,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6507,7 +6519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0101, y: 1.1793}
+  m_AnchoredPosition: {x: -0.0000050003, y: 1.145}
   m_SizeDelta: {x: 2018.49, y: 1135.8607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1010192637
@@ -7591,6 +7603,7 @@ MonoBehaviour:
   saveAlertImage: {fileID: 1014176861}
   alertDuration: 2
   pauseMenu: {fileID: 0}
+  collectedItems: []
 --- !u!4 &1472457242
 Transform:
   m_ObjectHideFlags: 0

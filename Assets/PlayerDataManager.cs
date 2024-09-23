@@ -14,6 +14,7 @@ namespace MyGameNamespace
         public float alertDuration = 2f; // Duration the image will be visible
         public GameObject pauseMenu; // Reference to the Pause Menu GameObject
         private bool isSaveAlertActive = false; // Track if the save alert is active
+        public List<string> collectedItems = new List<string>(); // Track collected items
 
         private void Start()
         {
@@ -61,7 +62,8 @@ namespace MyGameNamespace
             PlayerData playerData = new PlayerData
             {
                 position = new float[] { playerTransform.position.x, playerTransform.position.y, playerTransform.position.z },
-                sceneName = SceneManager.GetActiveScene().name
+                sceneName = SceneManager.GetActiveScene().name,
+                collectedItems = collectedItems
             };
 
             string json = JsonUtility.ToJson(playerData);
@@ -128,6 +130,7 @@ namespace MyGameNamespace
                 else
                 {
                     playerTransform.position = new Vector3(loadedData.position[0], loadedData.position[1], loadedData.position[2]);
+                    collectedItems = loadedData.collectedItems;
                     Debug.Log("Game Loaded from " + path);
                 }
             }
