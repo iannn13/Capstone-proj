@@ -62,4 +62,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 2/2-5 - going home.unity
     guid: 4d0dc73d2260294409d13b4d15c823cc
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 2/2-2.unity
+    guid: 366e5cc2a3554dd43a6250742759ac5d
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 2/2- complete.unity
+    guid: d56ea4acde26e124d8725cd93fc6d095
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 3/LEVEL 3.unity
+    guid: b6bfa3292dbe01d4db6edb1de8fc6521
   m_configObjects: {}

@@ -60,7 +60,7 @@ public class NoteDialogue : MonoBehaviour
             SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
             if (transitionManager != null)
             {
-                transitionManager.FadeToScene(11); // Change the scene index as necessary
+                transitionManager.FadeToScene(17); // Change the scene index as necessary
             }
             else
             {

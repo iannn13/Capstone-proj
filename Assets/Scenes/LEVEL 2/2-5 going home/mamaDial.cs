@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
-using UnityEngine.XR;
 
 public class mamaDial : MonoBehaviour
 {
@@ -20,13 +19,10 @@ public class mamaDial : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    [Header("Move Button")]
-    [SerializeField] private GameObject movebutton;
-
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
-    [Header("name and pic")]
+    [Header("Name and Pic")]
     [SerializeField] private GameObject you;
     [SerializeField] private GameObject youname;
     [SerializeField] private GameObject mama;
@@ -85,17 +81,14 @@ public class mamaDial : MonoBehaviour
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
         continueButton.gameObject.SetActive(false);
-        movebutton.gameObject.SetActive(true);
-
         OnDialogueComplete?.Invoke();
+
     }
 
     private void ContinueStory()
     {
         if (currentStory.canContinue)
         {
-            if (currentStory.canContinue)
-            {
                 string storyText = currentStory.Continue();
                 StopAllCoroutines();
                 StartCoroutine(TypeText(storyText));
@@ -111,19 +104,26 @@ public class mamaDial : MonoBehaviour
                     mama.gameObject.SetActive(true);
                     mamaname.gameObject.SetActive(true);
                 }
-
                 else
                 {
                     you.gameObject.SetActive(true);
                     youname.gameObject.SetActive(true);
                     mama.gameObject.SetActive(false);
                     mamaname.gameObject.SetActive(false);
-                }
-            }
+                }          
         }
         else
         {
             ExitDialogueMode();
+            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+            if (transitionManager != null)
+            {
+                transitionManager.FadeToScene(18);
+            }
+            else
+            {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
+            }
         }
     }
 
