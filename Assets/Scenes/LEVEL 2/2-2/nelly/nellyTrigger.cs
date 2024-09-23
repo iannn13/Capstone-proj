@@ -15,21 +15,22 @@ public class nellyTsrigger : MonoBehaviour
     [SerializeField] private TextAsset inkJSON;
 
     private bool playerInRange;
-    private Collider2D otitsCollider;
+    private Collider2D NellyCollider;
 
     void Start()
     {
         playerInRange = false;
         cue.SetActive(false);
-        otitsCollider = GetComponent<Collider2D>();
+        NellyCollider = GetComponent<Collider2D>();
 
         Interact.gameObject.SetActive(true);
         Interact.onClick.AddListener(OnDoorButtonClicked);
+        Interact.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        if (playerInRange && !OtitsDialogue.GetInstance().dialogueIsPlaying)
+        if (playerInRange && !NellyDialogue.GetInstance().dialogueIsPlaying)
         {
             cue.SetActive(true);
             Interact.gameObject.SetActive(true);
@@ -43,7 +44,7 @@ public class nellyTsrigger : MonoBehaviour
 
     private void OnDoorButtonClicked()
     {
-        OtitsDialogue.GetInstance().EnterDialogueMode(inkJSON);
+        NellyDialogue.GetInstance().EnterDialogueMode(inkJSON);
     }
 
     private IEnumerator FadeAndLoadScene()

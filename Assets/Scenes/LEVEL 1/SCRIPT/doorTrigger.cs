@@ -51,7 +51,7 @@ public class doorTrigger : MonoBehaviour
         {
             yield return FadeManager.Instance.FadeOut(() => SceneManager.LoadSceneAsync(3));
         }
-        else
+        else 
         {
             Debug.LogError("FadeManager instance is null!");
         }
