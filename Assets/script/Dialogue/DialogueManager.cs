@@ -116,7 +116,7 @@ public class DialogueManager : MonoBehaviour
 
             // Check for specific text to toggle images
             if (storyText.Contains("He will come back soon. It won't be that long.") ||
-                storyText.Contains("Canada"))
+                storyText.Contains("Yep, he went to Dubai for work."))
             {
                 kid.gameObject.SetActive(true);
                 tambay.gameObject.SetActive(false);
@@ -131,12 +131,7 @@ public class DialogueManager : MonoBehaviour
                 tambay1.gameObject.SetActive(true);
             }
 
-            // Check the current story text for the game-over condition
-            if (storyText.Contains("..."))
-            {
-                Debug.Log("Game over detected");
-                ShowGameOver();
-            }
+  
         }
         else
         {
@@ -201,7 +196,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Restarting game");
         dialoguePanel.SetActive(false);
-        gameOverPanel.SetActive(true);
+        gameOverPanel.SetActive(false);
     }
 
     private void RestartGame()
