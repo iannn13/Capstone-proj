@@ -71,4 +71,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 3/LEVEL 3.unity
     guid: b6bfa3292dbe01d4db6edb1de8fc6521
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 3/3-2.unity
+    guid: affa92bdec5d66841bd2b3e31d4639f2
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 3/clasrom.unity
+    guid: 166e82bc429cc6a4a8938f04812902bb
   m_configObjects: {}

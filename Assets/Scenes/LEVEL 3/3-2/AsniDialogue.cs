@@ -5,43 +5,64 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
 
-public class MamaLevel3 : MonoBehaviour
+public class AsniDialogue : MonoBehaviour
 {
+    public delegate void DialogueCompleteHandler();
+    public event DialogueCompleteHandler OnDialogueComplete;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Button continueButton;
 
-    [Header("Typing Effect")]
-    [SerializeField] private float typingSpeed = 0.05f;
-
     [Header("Choices UI")]
-    [SerializeField] private GameObject[] choices;  // Array for the 2 choice buttons
+    [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    [Header("Ink File")]
-    [SerializeField] private TextAsset inkFile;
-
-    [Header("Move Button")]
-    [SerializeField] private GameObject movebutton;
-
     [Header("Dialogue UI")]
-    [SerializeField] private GameObject you;
-    [SerializeField] private GameObject youpic;
-    [SerializeField] private GameObject mama;
-    [SerializeField] private GameObject mamapic;
+    [SerializeField] private GameObject hiro;
+    [SerializeField] private GameObject hiropic;
+    [SerializeField] private GameObject asni;
+    [SerializeField] private GameObject asnipic;
+
+    [Header("Poster")]
+    [SerializeField] private GameObject poster;
+
+    [Header("Poster Button")]
+    [SerializeField] private Button posterButton;
+
+    [Header("Typing Effect")]
+    [SerializeField] private float typingSpeed = 0.05f;
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
+    private static AsniDialogue instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Found more than one Chismis Dialogue in the scene");
+        }
+        instance = this;
+    }
+
+    public static AsniDialogue GetInstance()
+    {
+        return instance;
+    }
+
     private void Start()
     {
+        dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
+        poster.gameObject.SetActive(false) ;
+        posterButton.gameObject.SetActive(false);
+        posterButton.onClick.AddListener(HidePoster);
         continueButton.onClick.AddListener(ContinueStory);
-        movebutton.gameObject.SetActive(false);
 
-        // Initialize the choices array
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
         foreach (GameObject choice in choices)
@@ -51,30 +72,29 @@ public class MamaLevel3 : MonoBehaviour
             choice.GetComponent<Button>().onClick.AddListener(() => MakeChoice(choiceIndex));
             index++;
         }
-
-        // Automatically start dialogue after 1-second delay
-        StartCoroutine(StartDialogueAfterDelay(1f));
     }
 
-    private IEnumerator StartDialogueAfterDelay(float delay)
+    public void EnterDialogueMode(TextAsset inkJSON)
     {
-        yield return new WaitForSeconds(delay);
-        EnterDialogueMode();
-    }
-
-    private void EnterDialogueMode()
-    {
-        if (inkFile == null)
-        {
-            Debug.LogError("Ink file not found!");
-            return;
-        }
-
-        currentStory = new Story(inkFile.text);
+        currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
+
         ContinueStory();
+    }
+
+    private void ExitDialogueMode()
+    {
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        dialogueText.text = "";
+        continueButton.gameObject.SetActive(false);
+        poster.gameObject.SetActive(true);
+        poster.gameObject.SetActive(true); // Show poster at end of dialogue
+        posterButton.gameObject.SetActive(true);
+
+        OnDialogueComplete?.Invoke();
     }
 
     private void ContinueStory()
@@ -88,19 +108,19 @@ public class MamaLevel3 : MonoBehaviour
             DisplayChoices();
 
             // Check for specific text to toggle images
-            if (storyText.Contains("Good morning, Mama.") || storyText.Contains("Yes but he went to te town's game event after.") || storyText.Contains("Not so long, cause he went to a game event."))
+            if (storyText.Contains("Meow!"))
             {
-                you.gameObject.SetActive(true);
-                youpic.gameObject.SetActive(true);
-                mama.gameObject.SetActive(false);
-                mamapic.gameObject.SetActive(false);
+                hiro.gameObject.SetActive(true);
+                hiropic.gameObject.SetActive(true);
+                asni.gameObject.SetActive(false);
+                asnipic.gameObject.SetActive(false);
             }
             else
             {
-                you.gameObject.SetActive(false);
-                youpic.gameObject.SetActive(false);
-                mama.gameObject.SetActive(true);
-                mamapic.gameObject.SetActive(true);
+                hiro.gameObject.SetActive(false);
+                hiropic.gameObject.SetActive(false);
+                asni.gameObject.SetActive(true);
+                asnipic.gameObject.SetActive(true);
             }
         }
         else
@@ -119,18 +139,16 @@ public class MamaLevel3 : MonoBehaviour
         }
     }
 
-
     private void DisplayChoices()
     {
         List<Choice> currentChoices = currentStory.currentChoices;
 
         if (currentChoices.Count > choices.Length)
         {
-            Debug.LogError("More choices than UI can support! Number of choices given: " + currentChoices.Count);
+            Debug.LogError("More choices were given than UI can support. Number of choices given: " + currentChoices.Count);
         }
 
         int index = 0;
-        // Display each choice text
         foreach (Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
@@ -138,13 +156,11 @@ public class MamaLevel3 : MonoBehaviour
             index++;
         }
 
-        // Hide any unused choice buttons
         for (int i = index; i < choices.Length; i++)
         {
             choices[i].gameObject.SetActive(false);
         }
 
-        // Show the continue button only if there are no choices
         continueButton.gameObject.SetActive(currentChoices.Count == 0);
     }
 
@@ -154,18 +170,9 @@ public class MamaLevel3 : MonoBehaviour
         ContinueStory();
     }
 
-    private void ExitDialogueMode()
+    private void HidePoster()
     {
-        dialogueIsPlaying = false;
-        dialoguePanel.SetActive(false);
-        dialogueText.text = "";  // Clear the text
-        continueButton.gameObject.SetActive(false);
-        movebutton.gameObject.SetActive(true);
-
-        // Hide the choice buttons after the dialogue is over
-        foreach (GameObject choice in choices)
-        {
-            choice.gameObject.SetActive(false);
-        }
+        poster.gameObject.SetActive(false);
+        posterButton.gameObject.SetActive(false);
     }
 }
