@@ -10,5 +10,9 @@ namespace MyGameNamespace
 
         // Item list
         public List<string> collectedItems;
+
+
+
+
     }
 }

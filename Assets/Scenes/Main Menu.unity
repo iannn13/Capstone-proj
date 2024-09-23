@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 330810997}
   - component: {fileID: 330810996}
   - component: {fileID: 330810995}
+  - component: {fileID: 330810998}
   m_Layer: 5
   m_Name: HowToPlay
   m_TagString: Untagged
@@ -301,7 +302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -147, y: 255}
+  m_AnchoredPosition: {x: -214, y: 242}
   m_SizeDelta: {x: 618.4418, y: 94.6808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &330810995
@@ -386,6 +387,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330810993}
   m_CullTransparentMesh: 1
+--- !u!114 &330810998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330810993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cd034c189e68243838f76506c7de0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HowToPlay: {fileID: 330810993}
 --- !u!1 &360823254
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +635,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399601290}
   m_CullTransparentMesh: 1
+--- !u!1 &516812078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516812080}
+  - component: {fileID: 516812081}
+  - component: {fileID: 516812082}
+  m_Layer: 0
+  m_Name: Triggerhowtoplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &516812080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516812078}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 198.2645, y: 28.934658, z: -0.027822899}
+  m_LocalScale: {x: 0.90582174, y: 0.90582174, z: 0.90582174}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1856197867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &516812081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516812078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cd034c189e68243838f76506c7de0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HowToPlay: {fileID: 330810993}
+--- !u!114 &516812082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516812078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cd034c189e68243838f76506c7de0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HowToPlay: {fileID: 330810993}
 --- !u!1 &559978408
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +881,7 @@ MonoBehaviour:
   saveAlertImage: {fileID: 0}
   alertDuration: 2
   pauseMenu: {fileID: 0}
+  collectedItems: []
 --- !u!4 &683914018
 Transform:
   m_ObjectHideFlags: 0
@@ -981,6 +1055,7 @@ GameObject:
   - component: {fileID: 1281455839}
   - component: {fileID: 1281455842}
   - component: {fileID: 1281455843}
+  - component: {fileID: 1281455844}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1086,6 +1161,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cf80a5529c64540bed44ad9ff00192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1281455844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281455838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f063c2d1a407ea24db241ffb2bd36de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 0}
+  fadeDuration: 1
 --- !u!1 &1338244811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1907,7 +1996,7 @@ GameObject:
   - component: {fileID: 1782691557}
   m_Layer: 5
   m_Name: Boy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2196,6 +2285,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 516812080}
   - {fileID: 629408299}
   - {fileID: 1338244812}
   - {fileID: 2022959377}
