@@ -30895,7 +30895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -531, y: 393}
+  m_AnchoredPosition: {x: -800, y: 395}
   m_SizeDelta: {x: 796.1949, y: 106.8115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1715467934
@@ -30918,7 +30918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1 - STORY ONE
+  m_text: Level 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
   m_sharedMaterial: {fileID: 3313763901078786556, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
@@ -38596,7 +38596,6 @@ SceneRoots:
   - {fileID: 267276403}
   - {fileID: 2131910685}
   - {fileID: 1899814157}
-  - {fileID: 362098783}
   - {fileID: 1896893109}
   - {fileID: 266823428}
   - {fileID: 2029514434}

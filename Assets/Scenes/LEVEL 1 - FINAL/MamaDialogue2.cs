@@ -29,7 +29,8 @@ public class MamaDialogue2 : MonoBehaviour
     [Header("Picture")]
     [SerializeField] private GameObject mamapic;
     [SerializeField] private GameObject youpic;
-
+    [Header("phone number")]
+    [SerializeField] private GameObject PhoneNumber;
     [Header("number")]
     [SerializeField] private GameObject number;
     [SerializeField] private GameObject bg;
@@ -148,6 +149,7 @@ public class MamaDialogue2 : MonoBehaviour
                 mamapic.gameObject.SetActive(true);
                 number.gameObject.SetActive(true);
                 bg.gameObject.SetActive(true);
+                PhoneNumber.gameObject.SetActive(true);
             }
             else
             {
@@ -157,6 +159,7 @@ public class MamaDialogue2 : MonoBehaviour
                 mamapic.gameObject.SetActive(true);
                 number.gameObject.SetActive(false);
                 bg.gameObject.SetActive(false);
+               
             }
         }
         else
