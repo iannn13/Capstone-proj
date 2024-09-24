@@ -10,12 +10,13 @@ public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public float Force;
     public Animator animator;
 
-    private MamaDialogue dialogueManager;
+    public OtitsDialogue otitsdialogueManager; 
+    public CatDialogue catdialogueManager;
 
     private void Start()
     {
-        dialogueManager = MamaDialogue.GetInstance();
-
+        otitsdialogueManager = OtitsDialogue.GetInstance();
+        catdialogueManager = CatDialogue.GetInstance();
         if (Player == null)
         {
             Debug.LogError("Player is not assigned in the inspector");
@@ -31,7 +32,8 @@ public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Update is called once per frame
     void Update()
     {
-        if (dialogueManager != null && dialogueManager.dialogueIsPlaying)
+        if ((otitsdialogueManager != null && otitsdialogueManager.dialogueIsPlaying) ||
+           (catdialogueManager != null && catdialogueManager.dialogueIsPlaying))
         {
             if (animator != null)
             {

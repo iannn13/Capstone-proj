@@ -10,12 +10,12 @@ public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public float Force;
     public Animator animator;
 
-    private MamaDialogue dialogueManager;
+    private OtitsDialogue dialogueManager;
 
     private void Start()
     {
         // Ensure MamaDialogue instance is assigned
-        dialogueManager = MamaDialogue.GetInstance();
+        dialogueManager = OtitsDialogue.GetInstance();
 
         if (Player == null)
         {
