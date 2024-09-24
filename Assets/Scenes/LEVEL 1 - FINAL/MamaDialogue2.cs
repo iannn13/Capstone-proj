@@ -19,9 +19,6 @@ public class MamaDialogue2 : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    [Header("Move Button")]
-    [SerializeField] private GameObject movebutton;
-
     [Header("Name")]
     [SerializeField] private GameObject mama;
     [SerializeField] private GameObject you;
@@ -86,19 +83,6 @@ public class MamaDialogue2 : MonoBehaviour
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
 
-        if (movebutton != null)
-        {
-            movebutton.SetActive(false); // Hide the move button
-        }
-
-        // Simulate button click if needed (e.g., reset its state)
-        Button moveButtonComponent = movebutton.GetComponent<Button>();
-        if (moveButtonComponent != null)
-        {
-            // Reset button state if needed (not usually necessary)
-            // moveButtonComponent.onClick.Invoke(); // Optional: Simulate click
-        }
-
         ContinueStory();
     }
 
@@ -108,13 +92,6 @@ public class MamaDialogue2 : MonoBehaviour
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
         continueButton.gameObject.SetActive(false);
-
-        // Re-enable the move button after dialogue
-        if (movebutton != null)
-        {
-            movebutton.SetActive(true); // Show the move button
-        }
-
 
         OnDialogueComplete?.Invoke();
     }

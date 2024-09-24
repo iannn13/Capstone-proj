@@ -2069,8 +2069,8 @@ Transform:
   m_GameObject: {fileID: 517969364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -99.9766, y: -3.27, z: 0}
-  m_LocalScale: {x: 4.3420377, y: 3.4228828, z: 1}
+  m_LocalPosition: {x: -99.965, y: -3.27, z: 0}
+  m_LocalScale: {x: 5.6446486, y: 3.4228828, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4409,6 +4409,13 @@ MonoBehaviour:
   Player: {fileID: 1874509046}
   Force: 3
   animator: {fileID: 1874509047}
+  mamadialogueManager: {fileID: 0}
+  tambaydialogueManager: {fileID: 0}
+  loladialogueManager: {fileID: 0}
+  chismisdialogueManager: {fileID: 0}
+  teddydialogueManager: {fileID: 0}
+  juperdialogueManager: {fileID: 0}
+  ependialogueManager: {fileID: 0}
 --- !u!114 &1027611571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4523,7 +4530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1115107086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4641,7 +4648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 650844229}
   dialogueOpenClip: {fileID: 0}
-  dialogueLoopClip: {fileID: 8300000, guid: 6923bc02c894b644393afdc210a115f5, type: 3}
+  dialogueLoopClip: {fileID: 0}
   dialogueEndClip: {fileID: 0}
 --- !u!1 &1149782052
 GameObject:
@@ -5291,6 +5298,16 @@ MonoBehaviour:
   Player: {fileID: 1874509046}
   Force: 3
   animator: {fileID: 1874509047}
+  otitsdialogueManager: {fileID: 0}
+  catdialogueManager: {fileID: 0}
+  mamadialogueManager: {fileID: 0}
+  tambaydialogueManager: {fileID: 0}
+  loladialogueManager: {fileID: 0}
+  chismisdialogueManager: {fileID: 0}
+  teddydialogueManager: {fileID: 0}
+  juperdialogueManager: {fileID: 0}
+  ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
 --- !u!114 &1376422947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7054,6 +7071,7 @@ MonoBehaviour:
   saveAlertImage: {fileID: 1803579033}
   alertDuration: 2
   pauseMenu: {fileID: 0}
+  collectedItems: []
 --- !u!4 &1825086733
 Transform:
   m_ObjectHideFlags: 0

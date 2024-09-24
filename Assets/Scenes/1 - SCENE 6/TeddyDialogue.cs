@@ -23,10 +23,6 @@ public class TeddyDialogue : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
-    [Header("Move Button")]
-    [SerializeField] private GameObject movebutton;
-
-
 
     [Header("Name")]
     [SerializeField] private GameObject teddy;
@@ -79,7 +75,6 @@ public class TeddyDialogue : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
-        movebutton.gameObject.SetActive(false);
 
 
         ContinueStory();

@@ -828,7 +828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.7874, y: -22.5028}
+  m_AnchoredPosition: {x: 3, y: -30.97}
   m_SizeDelta: {x: 2189.8535, y: 1241.9454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &170288298
@@ -2028,7 +2028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 932, y: 346}
+  m_AnchoredPosition: {x: 915, y: 360}
   m_SizeDelta: {x: 90.9203, y: 104.0532}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380549597
@@ -5023,6 +5023,8 @@ MonoBehaviour:
   Player: {fileID: 354026281}
   Force: 3
   animator: {fileID: 354026284}
+  otitsdialogueManager: {fileID: 0}
+  catdialogueManager: {fileID: 0}
 --- !u!114 &1018177207
 MonoBehaviour:
   m_ObjectHideFlags: 0
