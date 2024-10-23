@@ -1268,6 +1268,23 @@ MonoBehaviour:
   Player: {fileID: 2122048473}
   Force: 3
   animator: {fileID: 2122048476}
+  catdialogueManager: {fileID: 0}
+  mamadialogueManager: {fileID: 0}
+  tambaydialogueManager: {fileID: 0}
+  loladialogueManager: {fileID: 0}
+  chismisdialogueManager: {fileID: 0}
+  teddydialogueManager: {fileID: 0}
+  juperdialogueManager: {fileID: 0}
+  ependialogueManager: {fileID: 0}
+  mama2dialogueManager: {fileID: 0}
+  nellydialogueManager: {fileID: 0}
+  IcedialogueManager: {fileID: 0}
+  kidnapper1dialogueManager: {fileID: 0}
+  IandialogueManager: {fileID: 0}
+  mama3dialogueManager: {fileID: 0}
+  asnidialogueManager: {fileID: 0}
+  warsakdialogueManager: {fileID: 0}
+  mom2dialogueManager: {fileID: 0}
 --- !u!114 &327973626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2369,6 +2386,23 @@ MonoBehaviour:
   animator: {fileID: 2122048476}
   otitsdialogueManager: {fileID: 0}
   catdialogueManager: {fileID: 0}
+  mamadialogueManager: {fileID: 0}
+  tambaydialogueManager: {fileID: 0}
+  loladialogueManager: {fileID: 0}
+  chismisdialogueManager: {fileID: 0}
+  teddydialogueManager: {fileID: 0}
+  juperdialogueManager: {fileID: 0}
+  ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
+  mama2dialogueManager: {fileID: 0}
+  nellydialogueManager: {fileID: 0}
+  IcedialogueManager: {fileID: 0}
+  kidnapper1dialogueManager: {fileID: 0}
+  IandialogueManager: {fileID: 0}
+  mama3dialogueManager: {fileID: 0}
+  asnidialogueManager: {fileID: 0}
+  warsakdialogueManager: {fileID: 0}
+  mom2dialogueManager: {fileID: 0}
 --- !u!114 &579293321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7678,7 +7712,7 @@ Transform:
   m_GameObject: {fileID: 2022118316}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -105.28975, y: 0.5346377, z: -10}
+  m_LocalPosition: {x: -107.45566, y: 0.5564139, z: -10}
   m_LocalScale: {x: 1.690975, y: 1.2298, z: 1.2298}
   m_ConstrainProportionsScale: 0
   m_Children: []

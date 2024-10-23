@@ -20,7 +20,7 @@ What is it?
 === 2nd ===
 10 peesos only
  +[Buy.]
--> DONE 
--> END
+   boughtItem  // Set the variable when the player buys an item
+-> DONE  
 +[Change Item]
 -> main 

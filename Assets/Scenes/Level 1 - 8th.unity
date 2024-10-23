@@ -492,7 +492,6 @@ MonoBehaviour:
   - {fileID: 435350438}
   - {fileID: 1489847673}
   - {fileID: 1091804665}
-  movebutton: {fileID: 1703807036}
   mama: {fileID: 67768139}
   you: {fileID: 926051249}
   mamapic: {fileID: 676047620}
@@ -3445,6 +3444,23 @@ MonoBehaviour:
   Player: {fileID: 1897990001}
   Force: 3
   animator: {fileID: 1897990005}
+  catdialogueManager: {fileID: 0}
+  mamadialogueManager: {fileID: 0}
+  tambaydialogueManager: {fileID: 0}
+  loladialogueManager: {fileID: 0}
+  chismisdialogueManager: {fileID: 0}
+  teddydialogueManager: {fileID: 0}
+  juperdialogueManager: {fileID: 0}
+  ependialogueManager: {fileID: 0}
+  mama2dialogueManager: {fileID: 0}
+  nellydialogueManager: {fileID: 0}
+  IcedialogueManager: {fileID: 0}
+  kidnapper1dialogueManager: {fileID: 0}
+  IandialogueManager: {fileID: 0}
+  mama3dialogueManager: {fileID: 0}
+  asnidialogueManager: {fileID: 0}
+  warsakdialogueManager: {fileID: 0}
+  mom2dialogueManager: {fileID: 0}
 --- !u!114 &615847368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8441,7 +8457,7 @@ Transform:
   m_GameObject: {fileID: 1593221638}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0966883, y: -0.8720908, z: -10}
+  m_LocalPosition: {x: 2.679454, y: -0.8810172, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10401,6 +10417,23 @@ MonoBehaviour:
   animator: {fileID: 1897990005}
   otitsdialogueManager: {fileID: 0}
   catdialogueManager: {fileID: 0}
+  mamadialogueManager: {fileID: 0}
+  tambaydialogueManager: {fileID: 0}
+  loladialogueManager: {fileID: 0}
+  chismisdialogueManager: {fileID: 0}
+  teddydialogueManager: {fileID: 0}
+  juperdialogueManager: {fileID: 0}
+  ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
+  mama2dialogueManager: {fileID: 0}
+  nellydialogueManager: {fileID: 0}
+  IcedialogueManager: {fileID: 0}
+  kidnapper1dialogueManager: {fileID: 0}
+  IandialogueManager: {fileID: 0}
+  mama3dialogueManager: {fileID: 0}
+  asnidialogueManager: {fileID: 0}
+  warsakdialogueManager: {fileID: 0}
+  mom2dialogueManager: {fileID: 0}
 --- !u!114 &2035978154
 MonoBehaviour:
   m_ObjectHideFlags: 0

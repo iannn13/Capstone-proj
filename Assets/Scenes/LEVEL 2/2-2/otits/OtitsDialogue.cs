@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
+using System.Linq;
 
 public class OtitsDialogue : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class OtitsDialogue : MonoBehaviour
     public bool dialogueIsPlaying { get; private set; }
 
     private static OtitsDialogue instance;
+
+    // Reference to the DataHandler script for handling the player's money
+    [Header("Data Handler")]
+    [SerializeField] private DataHandler dataHandler;
 
     private void Awake()
     {
@@ -87,9 +92,28 @@ public class OtitsDialogue : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
+            string storyText = currentStory.Continue();
             StopAllCoroutines();
-            StartCoroutine(TypeText(currentStory.Continue()));
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); 
             DisplayChoices();
+
+
+            if (storyText.Contains("boughtItem"))
+            {
+
+                Debug.Log("Calling BuyItem()...");
+
+
+                DataHandler dataHandler = FindObjectOfType<DataHandler>();
+                if (dataHandler != null)
+                {
+                    dataHandler.BuyItem();
+                    Debug.Log("BuyItem called!");
+                }
+
+                currentStory.variablesState["boughtItem"] = "";
+            }
         }
         else
         {

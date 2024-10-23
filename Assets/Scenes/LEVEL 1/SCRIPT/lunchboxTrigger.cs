@@ -10,7 +10,6 @@ public class lunchboxTrigger : MonoBehaviour
     [SerializeField] private GameObject visualCue;
 
     [Header("BAG")]
-    [SerializeField] private GameObject box;
     [SerializeField] private GameObject boxOrig;
 
     [Header("UI Button")]
@@ -25,7 +24,6 @@ public class lunchboxTrigger : MonoBehaviour
     {
         playerInRange = false;
         visualCue.SetActive(false);
-        box.gameObject.SetActive(false);
         bagCollider = GetComponent<Collider2D>();
 
 
@@ -52,7 +50,6 @@ public class lunchboxTrigger : MonoBehaviour
     {
         pickupButton.gameObject.SetActive(false);
         visualCue.SetActive(false);
-        box.gameObject.SetActive(true);
         boxOrig.gameObject.SetActive(false) ;
    
         playerInRange = false;
