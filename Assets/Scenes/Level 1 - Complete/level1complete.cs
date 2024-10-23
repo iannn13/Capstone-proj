@@ -25,7 +25,7 @@ public class level1complete : MonoBehaviour
 
     public void Level2()
     {
-        SceneManager.LoadScene(12);
+        SceneManager.LoadScene(13);
     }
 
 }

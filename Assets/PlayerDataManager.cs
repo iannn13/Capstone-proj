@@ -77,6 +77,7 @@ namespace MyGameNamespace
             {
                 StartCoroutine(ShowSaveAlert());
             }
+            PointsManager.Instance.SaveAchievementPoints();
         }
 
         private IEnumerator ShowSaveAlert()
@@ -138,6 +139,7 @@ namespace MyGameNamespace
             {
                 Debug.LogWarning("Save file not found at " + path);
             }
+            PointsManager.Instance.LoadAchievementPoints();
         }
 
         private IEnumerator LoadSceneAndSetPosition(PlayerData loadedData)
