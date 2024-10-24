@@ -8,13 +8,18 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryPanel; // Assign your inventory panel in the Inspector
     public GameObject buttonPrefab; // Assign your button prefab in the Inspector
     public Button deleteButton; // Assign your delete button in the Inspector
+    public GameObject confirmDeletePanel; // Assign your confirmation panel in the Inspector
+    public Button confirmDeleteButton; // Assign your confirm button in the Inspector
+    public Button cancelDeleteButton; // Assign your cancel button in the Inspector
     private List<string> items = new List<string>(); // List to hold inventory items
     private string selectedItem; // To keep track of the selected item
     private const int maxItems = 5; // Maximum items in inventory
 
+    // List of items that cannot be deleted
+    private List<string> undeletableItems = new List<string>() { "LunchBox" }; // Add items here
+
     void Awake()
     {
-        // Ensure this object is not destroyed on loading a new scene
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -22,18 +27,66 @@ public class InventoryManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Keep this object across scenes
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
-        LoadInventory(); // Load inventory items on start
-        deleteButton.onClick.AddListener(DeleteSelectedItem); // Add listener for delete button
-        deleteButton.interactable = false; // Disable delete button initially
+        LoadInventory();
+        deleteButton.onClick.AddListener(ShowDeleteConfirmation);
+        deleteButton.interactable = false;
+        confirmDeleteButton.onClick.AddListener(DeleteSelectedItem);
+        cancelDeleteButton.onClick.AddListener(HideDeleteConfirmation);
+        confirmDeletePanel.SetActive(false);
     }
 
-    // Populate inventory with existing items
-    void PopulateInventory()
+    // Show the confirmation panel when delete button is clicked
+    void ShowDeleteConfirmation()
+    {
+        if (!string.IsNullOrEmpty(selectedItem))
+        {
+            if (undeletableItems.Contains(selectedItem))
+            {
+                Debug.LogWarning("This item cannot be deleted: " + selectedItem);
+                return;
+            }
+            confirmDeletePanel.SetActive(true);
+        }
+    }
+
+    // Hide the confirmation panel if user cancels the deletion
+    void HideDeleteConfirmation()
+    {
+        confirmDeletePanel.SetActive(false);
+    }
+
+    // Method to delete the selected item
+    void DeleteSelectedItem()
+    {
+        if (!string.IsNullOrEmpty(selectedItem))
+        {
+            // Check if the selected item is in the undeletable list
+            if (undeletableItems.Contains(selectedItem))
+            {
+                Debug.LogWarning("Cannot delete item: " + selectedItem + " because it is protected.");
+                HideDeleteConfirmation(); // Hide the panel if deletion is not allowed
+                return;
+            }
+
+            items.Remove(selectedItem);
+            Debug.Log("Deleted item: " + selectedItem);
+            RefreshInventoryUI();
+            deleteButton.interactable = false;
+            selectedItem = null;
+            SaveInventory();
+            HideDeleteConfirmation();
+        }
+        else
+        {
+            Debug.LogError("No item selected for deletion!");
+        }
+    }
+void PopulateInventory()
     {
         foreach (var item in items)
         {
@@ -173,37 +226,18 @@ public class InventoryManager : MonoBehaviour
     // Handle item button click
     void OnItemClick(string itemName)
     {
-        selectedItem = itemName; // Store selected item
-        Debug.Log("Clicked on: " + itemName); // Handle item click (e.g., use or equip the item)
-        deleteButton.interactable = true; // Enable delete button
+        selectedItem = itemName; 
+        Debug.Log("Clicked on: " + itemName); 
+        deleteButton.interactable = true;
     }
 
-    // Delete the selected item from the inventory
-    void DeleteSelectedItem()
-    {
-        if (!string.IsNullOrEmpty(selectedItem))
-        {
-            items.Remove(selectedItem); // Remove the item from the list
-            Debug.Log("Deleted item: " + selectedItem);
-            RefreshInventoryUI(); // Refresh the UI to reflect changes
-            deleteButton.interactable = false; // Disable delete button again
-            selectedItem = null; // Reset selected item
-            SaveInventory(); // Save the inventory after deletion
-        }
-        else
-        {
-            Debug.LogError("No item selected for deletion!");
-        }
-    }
-
-    // Refresh the inventory UI after an item is deleted
     private void RefreshInventoryUI()
     {
         foreach (Transform child in inventoryPanel.transform)
         {
-            Destroy(child.gameObject); // Clear the current UI
+            Destroy(child.gameObject); 
         }
 
-        PopulateInventory(); // Repopulate the inventory UI
+        PopulateInventory(); 
     }
 }
