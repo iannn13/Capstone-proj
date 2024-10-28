@@ -3,24 +3,51 @@
 === main ===
 What is it?
  +[Oleo Cookies]
--> 2nd  
+ ->Oleo
 -> DONE 
 +[Leave...]
 ->END
 +[Mang John Chips]
-->2nd
+->Chips
 ->DONE
 +[Skeetels]
-->2nd
+->Skeetels
 ->DONE
 +[Mani Nuts]
-->2nd
+->Mani
 ->DONE
    
-=== 2nd ===
+=== Oleo ===
 10 peesos only
  +[Buy.]
-   boughtItem  // Set the variable when the player buys an item
+   bought "Oleo Cookies"  
 -> DONE  
 +[Change Item]
 -> main 
+
+=== Chips ===
+10 peesos only
+ +[Buy.]
+   bought "Mang John Chips"  
+-> DONE  
++[Change Item]
+-> main 
+
+=== Skeetels ===
+10 peesos only
+ +[Buy.]
+   bought "Skeetels"  
+-> DONE  
++[Change Item]
+-> main 
+
+=== Mani ===
+10 peesos only
+ +[Buy.]
+   bought "Mani Nuts"  
+-> DONE  
++[Change Item]
+-> main 
+
+
+

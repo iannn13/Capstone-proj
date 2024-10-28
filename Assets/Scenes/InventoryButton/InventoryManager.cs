@@ -86,78 +86,72 @@ public class InventoryManager : MonoBehaviour
             Debug.LogError("No item selected for deletion!");
         }
     }
-void PopulateInventory()
+    void PopulateInventory()
     {
+        Debug.Log("Populating inventory with " + items.Count + " items.");
+
         foreach (var item in items)
         {
+            Debug.Log("Creating button for item: " + item);
             CreateButton(item);
         }
     }
 
-    // Method to create a button for an item
+
     public void CreateButton(string itemName)
     {
+        Debug.Log("Creating button for: " + itemName);
+
         if (buttonPrefab == null)
         {
-            Debug.LogError("buttonPrefab is not assigned!");
+            Debug.LogError("Button prefab is not assigned!");
             return;
         }
 
         if (inventoryPanel == null)
         {
-            Debug.LogError("inventoryPanel is not assigned!");
+            Debug.LogError("Inventory panel is not assigned!");
             return;
         }
 
-        // Check the maximum limit
+        // Check if the inventory has reached the maximum limit
         if (items.Count >= maxItems)
         {
-            Debug.LogWarning("Maximum inventory limit reached!");
+            Debug.LogWarning("Max item limit reached! Cannot create button for: " + itemName);
             return;
         }
 
-        // Instantiate the button from prefab and add it to the inventory panel
+        // Instantiate the button and add it to the inventory panel
         GameObject newButton = Instantiate(buttonPrefab, inventoryPanel.transform);
+        Debug.Log("Button instantiated for: " + itemName);
 
-        // Check if the button contains a Text component and set the item name
+        // Set button text
         Text buttonText = newButton.GetComponentInChildren<Text>();
         if (buttonText != null)
         {
             buttonText.text = itemName;
-        }
-        else
-        {
-            Debug.LogError("Text component not found in the button prefab!");
+            Debug.Log("Set button text for: " + itemName);
         }
 
-        // Get the sprite for the item and assign it to the button's Image component
+        // Set button sprite
         Sprite itemSprite = GetItemSprite(itemName);
         Image buttonImage = newButton.GetComponent<Image>();
-        if (buttonImage != null)
+        if (buttonImage != null && itemSprite != null)
         {
-            if (itemSprite != null)
-            {
-                buttonImage.sprite = itemSprite;
-            }
-            else
-            {
-                Debug.LogWarning("Item sprite not found for: " + itemName);
-            }
-        }
-        else
-        {
-            Debug.LogError("Image component not found in the button prefab!");
+            buttonImage.sprite = itemSprite;
+            Debug.Log("Set button sprite for: " + itemName);
         }
 
-        // Add a click listener to the button
+        // Add click listener
         Button button = newButton.GetComponent<Button>();
         if (button != null)
         {
-            button.onClick.AddListener(() => OnItemClick(itemName)); // Use lambda to pass item name
+            button.onClick.AddListener(() => OnItemClick(itemName));
+            Debug.Log("Click listener added for: " + itemName);
         }
         else
         {
-            Debug.LogError("Button component not found in the prefab!");
+            Debug.LogError("Button component not found!");
         }
     }
 
@@ -171,6 +165,7 @@ void PopulateInventory()
                 items.Add(itemName); // Add to the list
                 CreateButton(itemName); // Create a button for the new item
                 SaveInventory(); // Save the inventory after adding
+                Debug.Log("Current item count: " + items.Count);
             }
             else
             {
@@ -183,6 +178,7 @@ void PopulateInventory()
         }
     }
 
+
     // Method to save the inventory to PlayerPrefs
     public void SaveInventory()
     {
@@ -194,8 +190,7 @@ void PopulateInventory()
         PlayerPrefs.Save();
     }
 
-    // Method to load the inventory from PlayerPrefs
-    public void LoadInventory()
+    void LoadInventory()
     {
         int count = PlayerPrefs.GetInt("ItemCount", 0);
         items.Clear();
@@ -205,10 +200,12 @@ void PopulateInventory()
             if (!string.IsNullOrEmpty(item))
             {
                 items.Add(item);
+                Debug.Log("Loaded item: " + item); // Debug to check
                 CreateButton(item); // Create buttons for loaded items
             }
         }
     }
+
 
     Sprite GetItemSprite(string itemName)
     {
@@ -233,11 +230,15 @@ void PopulateInventory()
 
     private void RefreshInventoryUI()
     {
+        Debug.Log("Refreshing UI. Clearing all buttons.");
+
         foreach (Transform child in inventoryPanel.transform)
         {
-            Destroy(child.gameObject); 
+            Debug.Log("Destroying button for: " + child.name);
+            Destroy(child.gameObject);
         }
 
-        PopulateInventory(); 
+        PopulateInventory();
     }
+
 }

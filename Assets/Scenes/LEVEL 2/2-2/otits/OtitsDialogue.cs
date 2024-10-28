@@ -31,9 +31,11 @@ public class OtitsDialogue : MonoBehaviour
 
     private static OtitsDialogue instance;
 
-    // Reference to the DataHandler script for handling the player's money
     [Header("Data Handler")]
     [SerializeField] private DataHandler dataHandler;
+
+    [Header("Inventory Manager")]
+    [SerializeField] private InventoryManager inventoryManager;
 
     private void Awake()
     {
@@ -97,6 +99,59 @@ public class OtitsDialogue : MonoBehaviour
             StartCoroutine(TypeText(storyText));
             Debug.Log("Current Story Text: " + storyText); 
             DisplayChoices();
+
+            if (storyText.Contains("Oleo Cookies"))
+            {
+                Debug.Log("Adding 'Oleo' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Oleo Cookies");
+                    Debug.Log("'Oleo' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Mang John Chips"))
+            {
+                Debug.Log("Adding 'Mang John Chips' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Mang John Chips");
+                    Debug.Log("'Mang John Chips' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Skeetels"))
+            {
+                Debug.Log("Adding 'Skeetels' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Skeetels");
+                    Debug.Log("'Skeetels' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Mani Nuts"))
+            {
+                Debug.Log("Adding 'Mani Nuts' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Mani Nuts");
+                    Debug.Log("'Mani Nuts' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
 
 
             if (storyText.Contains("boughtItem"))
