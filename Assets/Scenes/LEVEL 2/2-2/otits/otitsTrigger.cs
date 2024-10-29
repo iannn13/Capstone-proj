@@ -17,6 +17,15 @@ public class otiTsrigger : MonoBehaviour
     private bool playerInRange;
     private Collider2D otitsCollider;
 
+    [Header("Inventory Full Panel")]
+    [SerializeField] private GameObject inventoryFullPanel;
+    [SerializeField] private Button inventoryFullOkButton;
+
+    [Header("Insufficient Funds Panel")]
+    [SerializeField] private GameObject insufficientFundsPanel;
+    [SerializeField] private Button insufficientFundsOkButton;
+
+
     void Start()
     {
         playerInRange = false;
@@ -25,6 +34,9 @@ public class otiTsrigger : MonoBehaviour
 
         Interact.gameObject.SetActive(true);
         Interact.onClick.AddListener(OnDoorButtonClicked);
+
+        inventoryFullOkButton.onClick.AddListener(() => inventoryFullPanel.SetActive(false));
+        insufficientFundsOkButton.onClick.AddListener(() => insufficientFundsPanel.SetActive(false));
     }
 
     private void Update()
@@ -43,7 +55,19 @@ public class otiTsrigger : MonoBehaviour
 
     private void OnDoorButtonClicked()
     {
-        OtitsDialogue.GetInstance().EnterDialogueMode(inkJSON);
+        if (InventoryManager.Instance != null && InventoryManager.Instance.ItemsCount >= 5)
+        {
+            // Show the "Inventory Full" panel if the inventory is full
+            inventoryFullPanel.SetActive(true);
+        }
+        else if (DataHandler.Instance != null && DataHandler.Instance.GetMoney() < 10)
+        {
+            insufficientFundsPanel.SetActive(true); // Show "Insufficient Funds" panel
+        }
+        else
+        {
+            OtitsDialogue.GetInstance().EnterDialogueMode(inkJSON);
+        }
     }
 
     private IEnumerator FadeAndLoadScene()

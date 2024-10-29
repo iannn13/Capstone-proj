@@ -30,6 +30,12 @@ public class IceDialogue : MonoBehaviour
 
     private static IceDialogue instance;
 
+    [Header("Data Handler")]
+    [SerializeField] private DataHandler dataHandler;
+
+    [Header("Inventory Manager")]
+    [SerializeField] private InventoryManager inventoryManager;
+
     private void Awake()
     {
         if (instance != null)
@@ -87,9 +93,81 @@ public class IceDialogue : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
+            string storyText = currentStory.Continue();
             StopAllCoroutines();
-            StartCoroutine(TypeText(currentStory.Continue()));
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText);
             DisplayChoices();
+
+            if (storyText.Contains("Strawberry Ice cream"))
+            {
+                Debug.Log("Adding 'Strawberry Ice cream' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Strawberry Ice cream");
+                    Debug.Log("'Strawberry Ice cream' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Watermelon Ice cream"))
+            {
+                Debug.Log("Adding 'Watermelon Ice cream' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Watermelon Ice cream");
+                    Debug.Log("'Watermelon Ice cream' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Ube Ice cream"))
+            {
+                Debug.Log("Adding 'Ube Ice cream' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Ube Ice cream");
+                    Debug.Log("'Ube Ice cream' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Choco Ice cream"))
+            {
+                Debug.Log("Adding 'Choco Ice cream' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Choco Ice cream");
+                    Debug.Log("'Choco Ice cream' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+
+
+            if (storyText.Contains("bought"))
+            {
+
+                Debug.Log("Calling BuyItem()...");
+
+
+                DataHandler dataHandler = FindObjectOfType<DataHandler>();
+                if (dataHandler != null)
+                {
+                    dataHandler.BuyItem();
+                    Debug.Log("BuyItem called!");
+                }
+
+                currentStory.variablesState["boughtItem"] = "";
+            }
         }
         else
         {

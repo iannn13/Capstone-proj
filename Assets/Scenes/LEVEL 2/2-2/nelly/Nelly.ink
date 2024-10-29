@@ -3,24 +3,48 @@
 === main ===
 What is it?
  +[Spanish Bread]
--> 2nd  
+-> spanish  
 -> DONE 
 +[I'm not buying...]
 ->END
 +[Crinkles]
-->2nd
+->crinkles
 ->DONE
-+[Pam de Coco]
-->2nd
++[Pan de Coco]
+->coco
 ->DONE
 +[Egg Pie]
-->2nd
+->egg
 ->DONE
    
-=== 2nd ===
+=== spanish ===
 5 peesos only
  +[Buy.]
+ bought "Spanish Bread" 
 -> DONE 
--> END
++[Change Item]
+-> main 
+
+=== crinkles ===
+5 peesos only
+ +[Buy.]
+ bought "Crinkles" 
+-> DONE 
++[Change Item]
+-> main 
+
+=== coco ===
+5 peesos only
+ +[Buy.]
+ bought "Pan de Coco" 
+-> DONE 
++[Change Item]
+-> main 
+
+=== egg ===
+5 peesos only
+ +[Buy.]
+ bought "Egg Pie" 
+-> DONE 
 +[Change Item]
 -> main 

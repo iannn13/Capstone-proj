@@ -15,6 +15,17 @@ public class lunchboxTrigger : MonoBehaviour
     [Header("UI Button")]
     [SerializeField] private Button pickupButton;
 
+    [Header("Achievement")]
+    [SerializeField] private GameObject uiCanva4;
+    [SerializeField] private GameObject pickupnote;
+
+    [Header("pickupNote")]
+    [SerializeField] private GameObject uiCanva5;
+    [SerializeField] private GameObject pickupnote2;
+
+    [Header("DoorTrigger")]
+    [SerializeField] private GameObject cue;
+
 
     private bool playerInRange;
     private Collider2D bagCollider;
@@ -38,11 +49,13 @@ public class lunchboxTrigger : MonoBehaviour
         {
             visualCue.SetActive(true);
             pickupButton.gameObject.SetActive(true);
+            uiCanva5.gameObject.SetActive(true);
         }
         else
         {
             visualCue.SetActive(false);
             pickupButton.gameObject.SetActive(false);
+            uiCanva5.gameObject.SetActive(false);
         }
     }
 
@@ -51,10 +64,14 @@ public class lunchboxTrigger : MonoBehaviour
         pickupButton.gameObject.SetActive(false);
         visualCue.SetActive(false);
         boxOrig.gameObject.SetActive(false) ;
-   
+        uiCanva4.SetActive(true);
+        uiCanva5.SetActive(false);
+        cue.SetActive(true);
+
         playerInRange = false;
         bagCollider.enabled = false;
 
+        StartCoroutine(FadeOutUIAfterDelay(uiCanva4, 1.5f, 1.0f));
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -71,5 +88,32 @@ public class lunchboxTrigger : MonoBehaviour
         {
             playerInRange = false;
         }
+    }
+
+    private IEnumerator FadeOutUIAfterDelay(GameObject uiElement, float delay, float duration)
+    {
+        CanvasGroup canvasGroup = uiElement.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = uiElement.AddComponent<CanvasGroup>();
+        }
+
+        canvasGroup.alpha = 1.0f;
+        yield return new WaitForSeconds(delay);
+
+        float startAlpha = canvasGroup.alpha;
+        float rate = 1.0f / duration;
+        float progress = 0.0f;
+
+        while (progress < 1.0f)
+        {
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress);
+            progress += rate * Time.deltaTime;
+
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0;
+        uiElement.SetActive(false);
     }
 }

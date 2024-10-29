@@ -35,7 +35,22 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (currentSceneIndex == 2)
+        {
+            if (DataHandler.Instance != null)
+            {
+                DataHandler.Instance.ResetCash();
+            }
+
+            if (InventoryManager.Instance != null)
+            {
+                InventoryManager.Instance.ClearInventory();
+            }
+        }
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
 }

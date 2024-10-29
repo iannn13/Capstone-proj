@@ -1,53 +1,94 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DataHandler : MonoBehaviour
 {
+    public static DataHandler Instance { get; private set; } // Singleton instance
     public Text moneyText;
 
     private int money;
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
-        money = PlayerPrefs.GetInt("PlayerMoney", 50);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 2) 
+        {
+            ResetCash();
+        }
+        else
+        {
+            money = PlayerPrefs.GetInt("PlayerMoney", 50); // Load saved money
+        }
+
         UpdateMoneyText();
     }
 
+    public int GetMoney() => money;
+
     public void BuyItem()
     {
-        Debug.Log("Attempting to buy item. Current money: " + money);
         if (money >= 10)
         {
             money -= 10;
             UpdateMoneyText();
             PlayerPrefs.SetInt("PlayerMoney", money);
-            Debug.Log("Item bought! Money left: " + money);
         }
         else
         {
-            Debug.Log("Not enough money to buy the item. Current money: " + money);
+            Debug.Log("Not enough money to buy the item.");
+        }
+    }
+    public void BuyItemBread()
+    {
+        if (money >= 5)
+        {
+            money -= 5;
+            UpdateMoneyText();
+            PlayerPrefs.SetInt("PlayerMoney", money);
+        }
+        else
+        {
+            Debug.Log("Not enough money to buy the item.");
         }
     }
 
     public void AddCash()
     {
-        Debug.Log("Attempting to add cash. Current money: " + money);
         money += 10;
         UpdateMoneyText();
         PlayerPrefs.SetInt("PlayerMoney", money);
     }
 
-    // Method to reset the money to 0
     public void ResetCash()
     {
-        money = 0; // Reset cash to 0
-        UpdateMoneyText(); // Update the money display
-        PlayerPrefs.SetInt("PlayerMoney", money); // Save the updated value to PlayerPrefs
-        Debug.Log("Cash reset to 0.");
+        money = 0;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
+    }
+
+    public void PickupCash()
+    {
+        money = 50;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
     }
 
     private void UpdateMoneyText()
     {
         moneyText.text = " " + money.ToString();
     }
+
 }

@@ -30,6 +30,12 @@ public class NellyDialogue : MonoBehaviour
 
     private static NellyDialogue instance;
 
+    [Header("Data Handler")]
+    [SerializeField] private DataHandler dataHandler;
+
+    [Header("Inventory Manager")]
+    [SerializeField] private InventoryManager inventoryManager;
+
     private void Awake()
     {
         if (instance != null)
@@ -87,9 +93,81 @@ public class NellyDialogue : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
+            string storyText = currentStory.Continue();
             StopAllCoroutines();
-            StartCoroutine(TypeText(currentStory.Continue()));
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText);
             DisplayChoices();
+
+            if (storyText.Contains("Spanish Bread"))
+            {
+                Debug.Log("Adding 'Spanish Bread' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Spanish Bread");
+                    Debug.Log("'Spanish Bread' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Crinkles"))
+            {
+                Debug.Log("Adding 'Crinkles' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Crinkles");
+                    Debug.Log("'Crinkles' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Pan de Coco"))
+            {
+                Debug.Log("Adding 'Pan de Coco' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Pan de Coco");
+                    Debug.Log("'Pan de Coco' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+            if (storyText.Contains("Egg Pie"))
+            {
+                Debug.Log("Adding 'Egg Pie' to the inventory...");
+                if (inventoryManager != null)
+                {
+                    inventoryManager.AddItem("Egg Pie");
+                    Debug.Log("'Egg Pie' added to the inventory!");
+                }
+                else
+                {
+                    Debug.LogError("InventoryManager not assigned!");
+                }
+            }
+
+
+            if (storyText.Contains("bought"))
+            {
+
+                Debug.Log("Calling BuyItem()...");
+
+
+                DataHandler dataHandler = FindObjectOfType<DataHandler>();
+                if (dataHandler != null)
+                {
+                    dataHandler.BuyItemBread();
+                    Debug.Log("BuyItem called!");
+                }
+
+                currentStory.variablesState["boughtItem"] = "";
+            }
         }
         else
         {

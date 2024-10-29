@@ -17,6 +17,14 @@ public class nellyTsrigger : MonoBehaviour
     private bool playerInRange;
     private Collider2D NellyCollider;
 
+    [Header("Inventory Full Panel")]
+    [SerializeField] private GameObject inventoryFullPanel;
+    [SerializeField] private Button inventoryFullOkButton;
+
+    [Header("Insufficient Funds Panel")]
+    [SerializeField] private GameObject insufficientFundsPanel;
+    [SerializeField] private Button insufficientFundsOkButton;
+
     void Start()
     {
         playerInRange = false;
@@ -26,6 +34,8 @@ public class nellyTsrigger : MonoBehaviour
         Interact.gameObject.SetActive(true);
         Interact.onClick.AddListener(OnDoorButtonClicked);
         Interact.gameObject.SetActive(false);
+        inventoryFullOkButton.onClick.AddListener(() => inventoryFullPanel.SetActive(false));
+        insufficientFundsOkButton.onClick.AddListener(() => insufficientFundsPanel.SetActive(false));
     }
 
     private void Update()
@@ -44,7 +54,19 @@ public class nellyTsrigger : MonoBehaviour
 
     private void OnDoorButtonClicked()
     {
-        NellyDialogue.GetInstance().EnterDialogueMode(inkJSON);
+        if (InventoryManager.Instance != null && InventoryManager.Instance.ItemsCount >= 5)
+        {
+            // Show the "Inventory Full" panel if the inventory is full
+            inventoryFullPanel.SetActive(true);
+        }
+        else if (DataHandler.Instance != null && DataHandler.Instance.GetMoney() < 5)
+        {
+            insufficientFundsPanel.SetActive(true); 
+        }
+        else
+        {
+            NellyDialogue.GetInstance().EnterDialogueMode(inkJSON);
+        }
     }
 
     private IEnumerator FadeAndLoadScene()

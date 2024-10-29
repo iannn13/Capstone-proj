@@ -154,7 +154,7 @@ public class OtitsDialogue : MonoBehaviour
             }
 
 
-            if (storyText.Contains("boughtItem"))
+            if (storyText.Contains("bought"))
             {
 
                 Debug.Log("Calling BuyItem()...");

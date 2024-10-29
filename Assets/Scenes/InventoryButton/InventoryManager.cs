@@ -1,22 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance { get; private set; } // Singleton instance
-    public GameObject inventoryPanel; // Assign your inventory panel in the Inspector
-    public GameObject buttonPrefab; // Assign your button prefab in the Inspector
-    public Button deleteButton; // Assign your delete button in the Inspector
-    public GameObject confirmDeletePanel; // Assign your confirmation panel in the Inspector
-    public Button confirmDeleteButton; // Assign your confirm button in the Inspector
-    public Button cancelDeleteButton; // Assign your cancel button in the Inspector
-    private List<string> items = new List<string>(); // List to hold inventory items
-    private string selectedItem; // To keep track of the selected item
-    private const int maxItems = 5; // Maximum items in inventory
+    public static InventoryManager Instance { get; private set; } 
+    public GameObject inventoryPanel; 
+    public GameObject buttonPrefab; 
+    public Button deleteButton; 
+    public GameObject confirmDeletePanel; 
+    public Button confirmDeleteButton; 
+    public Button cancelDeleteButton;
+    private List<string> items = new List<string>(); 
+    private string selectedItem; 
+    private const int maxItems = 5;
+    public int ItemsCount => items.Count;
 
     // List of items that cannot be deleted
-    private List<string> undeletableItems = new List<string>() { "LunchBox" }; // Add items here
+    private List<string> undeletableItems = new List<string>() { "" }; 
 
     void Awake()
     {
@@ -38,6 +40,12 @@ public class InventoryManager : MonoBehaviour
         confirmDeleteButton.onClick.AddListener(DeleteSelectedItem);
         cancelDeleteButton.onClick.AddListener(HideDeleteConfirmation);
         confirmDeletePanel.SetActive(false);
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            ClearInventory();
+            RefreshInventoryUI();
+        }
     }
 
     // Show the confirmation panel when delete button is clicked
@@ -114,12 +122,12 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
-        // Check if the inventory has reached the maximum limit
+        /*        // Check if the inventory has reached the maximum limit
         if (items.Count >= maxItems)
         {
             Debug.LogWarning("Max item limit reached! Cannot create button for: " + itemName);
             return;
-        }
+        }*/
 
         // Instantiate the button and add it to the inventory panel
         GameObject newButton = Instantiate(buttonPrefab, inventoryPanel.transform);
@@ -239,6 +247,12 @@ public class InventoryManager : MonoBehaviour
         }
 
         PopulateInventory();
+    }
+
+    public void ClearInventory()
+    {
+        items.Clear();
+        SaveInventory();
     }
 
 }
