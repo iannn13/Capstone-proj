@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+
     bool isPressed = false;
     public GameObject Player;
     public float Force;

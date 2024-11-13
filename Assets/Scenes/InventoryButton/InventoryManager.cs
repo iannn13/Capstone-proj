@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,10 +16,17 @@ public class InventoryManager : MonoBehaviour
     private List<string> items = new List<string>(); 
     private string selectedItem; 
     private const int maxItems = 5;
+    public Button eatButton;
+    public GameObject eatButtonPanel;
+
+    public Button leftButton;
+    public Button rightButton;
+
+
     public int ItemsCount => items.Count;
 
     // List of items that cannot be deleted
-    private List<string> undeletableItems = new List<string>() { "" }; 
+    private List<string> undeletableItems = new List<string>() { "LunchBox" }; 
 
     void Awake()
     {
@@ -40,6 +48,9 @@ public class InventoryManager : MonoBehaviour
         confirmDeleteButton.onClick.AddListener(DeleteSelectedItem);
         cancelDeleteButton.onClick.AddListener(HideDeleteConfirmation);
         confirmDeletePanel.SetActive(false);
+
+        leftButton.onClick.AddListener(OnLeftButtonClicked);
+        rightButton.onClick.AddListener(OnRightButtonClicked);
 
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
@@ -228,13 +239,50 @@ public class InventoryManager : MonoBehaviour
         return itemSprite;
     }
 
-    // Handle item button click
+
+    string[] edibleItems = new string[] { "Oleo Cookies", "Skeetels", "Mani Nuts", "Mang John Chips"};
+
     void OnItemClick(string itemName)
     {
-        selectedItem = itemName; 
-        Debug.Log("Clicked on: " + itemName); 
+        selectedItem = itemName;
+        Debug.Log("Clicked on: " + itemName);
+
+        // Check if the itemName is in the edibleItems array
+        if (Array.Exists(edibleItems, element => element == itemName))
+        {
+            eatButtonPanel.SetActive(true); // Show the "Eat" button
+            eatButton.onClick.RemoveAllListeners(); // Remove previous listeners
+            eatButton.onClick.AddListener(() => EatItem(itemName)); // Add listener to eat item
+        }
+
         deleteButton.interactable = true;
     }
+
+
+    public void EatItem(string itemName)
+    {
+        if (!string.IsNullOrEmpty(itemName))
+        {
+            // Remove item from inventory
+            items.Remove(itemName);
+            Debug.Log("Ate item: " + itemName);
+
+            // Refresh the inventory UI to reflect the changes
+            RefreshInventoryUI();
+
+            // Save the updated inventory
+            SaveInventory();
+
+            // Hide the "Eat" button
+            eatButtonPanel.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("No item selected for eating!");
+        }
+    }
+
+
 
     private void RefreshInventoryUI()
     {
@@ -253,6 +301,23 @@ public class InventoryManager : MonoBehaviour
     {
         items.Clear();
         SaveInventory();
+    }
+
+    void OnLeftButtonClicked()
+    {
+        selectedItem = null;
+        eatButtonPanel.SetActive(false);
+        deleteButton.interactable = false;
+        Debug.Log("Left button clicked: Deselected item.");
+    }
+
+    // Right button click handler
+    void OnRightButtonClicked()
+    {
+        selectedItem = null;
+        eatButtonPanel.SetActive(false);
+        deleteButton.interactable = false;
+        Debug.Log("Right button clicked: Deselected item.");
     }
 
 }
