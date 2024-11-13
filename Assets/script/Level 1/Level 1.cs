@@ -32,12 +32,12 @@ public class Level1 : MonoBehaviour
         }
         else
         {
-            // No save file, proceed directly to starting a new game
+
             StartNewGame();
         }
     }
 
-    // Called when the "Confirm" button on the panel is clicked
+
     public void ConfirmOverwrite()
     {
         string path = Path.Combine(Application.persistentDataPath, "playerData.json");
@@ -49,11 +49,9 @@ public class Level1 : MonoBehaviour
             Debug.Log("Save file deleted.");
         }
 
-        // Proceed with starting a new game
         StartNewGame();
     }
 
-    // Called when the "Cancel" button on the panel is clicked
     public void CancelOverwrite()
     {
         // Hide the confirmation panel without doing anything

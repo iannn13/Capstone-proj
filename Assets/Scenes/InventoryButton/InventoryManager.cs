@@ -42,7 +42,15 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
-        LoadInventory();
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            ClearInventory();
+            RefreshInventoryUI();
+        }
+        else
+        {
+            LoadInventory();
+        }
         deleteButton.onClick.AddListener(ShowDeleteConfirmation);
         deleteButton.interactable = false;
         confirmDeleteButton.onClick.AddListener(DeleteSelectedItem);
@@ -51,12 +59,6 @@ public class InventoryManager : MonoBehaviour
 
         leftButton.onClick.AddListener(OnLeftButtonClicked);
         rightButton.onClick.AddListener(OnRightButtonClicked);
-
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            ClearInventory();
-            RefreshInventoryUI();
-        }
     }
 
     void ShowDeleteConfirmation()

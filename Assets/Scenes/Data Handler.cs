@@ -27,8 +27,7 @@ public class DataHandler : MonoBehaviour
         if (isNewGame)
         {
             ResetCash();
-            // Optionally, reset inventory here if needed
-            isNewGame = false; // Reset the flag so it's only effective at the start of a new game
+            isNewGame = false; 
         }
         else
         {
