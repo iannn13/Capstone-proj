@@ -117,6 +117,7 @@ namespace MyGameNamespace
 
         public void LoadGame()
         {
+            DataHandler.isNewGame = false;
             string path = Path.Combine(Application.persistentDataPath, "playerData.json");
 
             if (File.Exists(path))
@@ -139,8 +140,10 @@ namespace MyGameNamespace
             {
                 Debug.LogWarning("Save file not found at " + path);
             }
+
             PointsManager.Instance.LoadAchievementPoints();
         }
+
 
         private IEnumerator LoadSceneAndSetPosition(PlayerData loadedData)
         {
