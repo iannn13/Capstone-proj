@@ -59,7 +59,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Show the confirmation panel when delete button is clicked
     void ShowDeleteConfirmation()
     {
         if (!string.IsNullOrEmpty(selectedItem))
@@ -73,22 +72,20 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Hide the confirmation panel if user cancels the deletion
     void HideDeleteConfirmation()
     {
         confirmDeletePanel.SetActive(false);
     }
 
-    // Method to delete the selected item
     void DeleteSelectedItem()
     {
         if (!string.IsNullOrEmpty(selectedItem))
         {
-            // Check if the selected item is in the undeletable list
+
             if (undeletableItems.Contains(selectedItem))
             {
                 Debug.LogWarning("Cannot delete item: " + selectedItem + " because it is protected.");
-                HideDeleteConfirmation(); // Hide the panel if deletion is not allowed
+                HideDeleteConfirmation(); 
                 return;
             }
 
@@ -133,14 +130,6 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
-        /*        // Check if the inventory has reached the maximum limit
-        if (items.Count >= maxItems)
-        {
-            Debug.LogWarning("Max item limit reached! Cannot create button for: " + itemName);
-            return;
-        }*/
-
-        // Instantiate the button and add it to the inventory panel
         GameObject newButton = Instantiate(buttonPrefab, inventoryPanel.transform);
         Debug.Log("Button instantiated for: " + itemName);
 
@@ -179,11 +168,11 @@ public class InventoryManager : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(itemName))
         {
-            if (items.Count < maxItems) // Check for max items before adding
+            if (items.Count < maxItems) 
             {
-                items.Add(itemName); // Add to the list
-                CreateButton(itemName); // Create a button for the new item
-                SaveInventory(); // Save the inventory after adding
+                items.Add(itemName); 
+                CreateButton(itemName); 
+                SaveInventory(); 
                 Debug.Log("Current item count: " + items.Count);
             }
             else
@@ -228,7 +217,7 @@ public class InventoryManager : MonoBehaviour
 
     Sprite GetItemSprite(string itemName)
     {
-        string path = itemName; // Adjust the path as needed
+        string path = itemName; 
         Sprite itemSprite = Resources.Load<Sprite>(path);
 
         if (itemSprite == null)
@@ -240,19 +229,21 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    string[] edibleItems = new string[] { "Oleo Cookies", "Skeetels", "Mani Nuts", "Mang John Chips"};
+    string[] edibleItems = new string[] { "Oleo Cookies", "Skeetels", "Mani Nuts", "Mang John Chips",
+                                          "Spanish Bread", "Crinkles", "Pan de Coco", "Egg Pie",
+                                          "Strawberry Ice cream", "Watermelon Ice cream", "Ube Ice cream", "Choco Ice cream" };
 
     void OnItemClick(string itemName)
     {
         selectedItem = itemName;
         Debug.Log("Clicked on: " + itemName);
 
-        // Check if the itemName is in the edibleItems array
+ 
         if (Array.Exists(edibleItems, element => element == itemName))
         {
-            eatButtonPanel.SetActive(true); // Show the "Eat" button
-            eatButton.onClick.RemoveAllListeners(); // Remove previous listeners
-            eatButton.onClick.AddListener(() => EatItem(itemName)); // Add listener to eat item
+            eatButtonPanel.SetActive(true);
+            eatButton.onClick.RemoveAllListeners(); 
+            eatButton.onClick.AddListener(() => EatItem(itemName)); 
         }
 
         deleteButton.interactable = true;
@@ -263,17 +254,13 @@ public class InventoryManager : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(itemName))
         {
-            // Remove item from inventory
             items.Remove(itemName);
             Debug.Log("Ate item: " + itemName);
 
-            // Refresh the inventory UI to reflect the changes
             RefreshInventoryUI();
 
-            // Save the updated inventory
             SaveInventory();
 
-            // Hide the "Eat" button
             eatButtonPanel.SetActive(false);
         }
         else
