@@ -21,6 +21,8 @@ public class DialogueManager5 : MonoBehaviour
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; 
+    [Header("Points")]
+    [SerializeField] private PointsManager PointsManager;
     private Story currentStory;
 
     public bool dialogueIsPlaying { get; private set; }
@@ -96,6 +98,20 @@ public class DialogueManager5 : MonoBehaviour
             Debug.Log("Current Story Text: " + storyText); // Log the current story text
             DisplayChoices();
 
+
+            if (storyText.Contains("Correct"))
+            {
+               Debug.Log("Adding Points");
+                if (PointsManager.Instance != null)
+                {
+                    PointsManager.Instance.AddPoints(10);
+                    Debug.Log("Added");
+                }
+                else
+                {
+                    Debug.LogError("PointsManager not assigned!");
+                }
+            }
             // Check for specific text to toggle images
             if (storyText.Contains("He will come back soon. It won't be that long.") ||
                 storyText.Contains("Canada"))

@@ -28,5 +28,4 @@ You might pickup the wrong peso but she didn't notice it.
 I think it's this one?
 Here it is, Lola.
 Thank you, Iho.
-
 -> END

@@ -1,4 +1,6 @@
+
 using UnityEngine;
+using Ink.Runtime;
 
 public class PointsManager : MonoBehaviour
 {

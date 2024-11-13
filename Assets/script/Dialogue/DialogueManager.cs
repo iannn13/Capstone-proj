@@ -32,7 +32,8 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
-
+    [Header("Points")]
+    [SerializeField] private PointsManager PointsManager;
     private Story currentStory;
 
     public bool dialogueIsPlaying { get; private set; }

@@ -32,9 +32,10 @@ public class DialogueManager3 : MonoBehaviour
     [SerializeField] private GameObject kid1;
     [SerializeField] private GameObject npc1;
 
-    [Header("Typing Effect")]
+     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; // Speed of the typing effect
-
+    [Header("Points")]
+    [SerializeField] private PointsManager PointsManager;
     private Story currentStory;
 
     public bool dialogueIsPlaying { get; private set; }
@@ -117,6 +118,21 @@ public class DialogueManager3 : MonoBehaviour
             // Check for specific text to toggle images and apply highlight
             bool highlightFivePeso = false;
             bool highlightWrong = false;
+
+            if (storyText.Contains("Thank you, Iho."))
+            {
+                Debug.Log("Adding Points");
+                if (PointsManager.Instance != null)
+                {
+                    PointsManager.Instance.AddPoints(10);
+                    Debug.Log("Added");
+                }
+                else
+                {
+                    Debug.LogError("PointsManager not assigned!");
+                }
+            }
+
             if (storyText.Contains("5 Peso"))
             {
                 highlightFivePeso = true;
