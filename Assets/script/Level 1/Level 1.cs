@@ -7,6 +7,7 @@ public class Level1 : MonoBehaviour
 {
    public void level1()
     {
+        DataHandler.isNewGame = true;
         SceneManager.LoadSceneAsync(2);
     }
 }

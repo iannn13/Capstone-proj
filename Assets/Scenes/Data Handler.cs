@@ -8,6 +8,7 @@ public class DataHandler : MonoBehaviour
     public Text moneyText;
 
     private int money;
+    public static bool isNewGame; // Flag to check if starting a new game
 
     void Awake()
     {
@@ -23,14 +24,15 @@ public class DataHandler : MonoBehaviour
 
     void Start()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (currentSceneIndex == 2) 
+        if (isNewGame)
         {
             ResetCash();
+            // Optionally, reset inventory here if needed
+            isNewGame = false; // Reset the flag so it's only effective at the start of a new game
         }
         else
         {
-            money = PlayerPrefs.GetInt("PlayerMoney", 50); // Load saved money
+            money = PlayerPrefs.GetInt("PlayerMoney", 50); // Load saved money if not a new game
         }
 
         UpdateMoneyText();
@@ -51,6 +53,7 @@ public class DataHandler : MonoBehaviour
             Debug.Log("Not enough money to buy the item.");
         }
     }
+
     public void BuyItemBread()
     {
         if (money >= 5)
@@ -90,5 +93,4 @@ public class DataHandler : MonoBehaviour
     {
         moneyText.text = " " + money.ToString();
     }
-
 }
