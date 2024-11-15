@@ -123,7 +123,7 @@ public class clasrom : MonoBehaviour
                storyText.Contains("Now, kids. Here’s a lesson for all of you.") ||
                storyText.Contains("Never believe or talk to any strangers, okay.") ||
                storyText.Contains("If you ever feel unsafe, you can call your parents on the phone or approach to police officers and teachers.")
-               || storyText.Contains("Let’s all hope that our dear Teddy will be found soon.") || storyText.Contains("Class dismissed. Good bye everyone. Be safe!"))
+               || storyText.Contains("Let’s all hope that our dear Teddy will be found soon.") || storyText.Contains("Class dismissed. Good bye everyone."))
             {
                 pinang.gameObject.SetActive(false);
                 pinangpic.gameObject.SetActive(false);
