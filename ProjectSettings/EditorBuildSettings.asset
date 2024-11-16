@@ -83,4 +83,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 3/ToBeContinue.unity
     guid: a4beac0ef85b2f04a8a2b2de7574ed54
+  - enabled: 1
+    path: Assets/Scenes/ROOM.unity
+    guid: ddbe04fa8e932a54f8eb675b63905113
   m_configObjects: {}

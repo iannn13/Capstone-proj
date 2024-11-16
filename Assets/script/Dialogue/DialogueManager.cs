@@ -116,13 +116,20 @@ public class DialogueManager : MonoBehaviour
             DisplayChoices();
 
             // Check for specific text to toggle images
-            if (storyText.Contains("He will come back soon. It won't be that long.") ||
-                storyText.Contains("Yep, he went to Dubai for work."))
+            if (storyText.Contains("He will come back soon. It won't be that long."))
             {
                 kid.gameObject.SetActive(true);
                 tambay.gameObject.SetActive(false);
                 kid1.gameObject.SetActive(true);
                 tambay1.gameObject.SetActive(false);
+            }
+            else if (storyText.Contains("Yep, he went to Dubai for work."))
+            {
+                kid.gameObject.SetActive(true);
+                tambay.gameObject.SetActive(false);
+                kid1.gameObject.SetActive(true);
+                tambay1.gameObject.SetActive(false);
+                ShowGameOver();
             }
             else
             {
@@ -197,7 +204,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Restarting game");
         dialoguePanel.SetActive(false);
-        gameOverPanel.SetActive(false);
+        gameOverPanel.SetActive(true);
     }
 
     private void RestartGame()
