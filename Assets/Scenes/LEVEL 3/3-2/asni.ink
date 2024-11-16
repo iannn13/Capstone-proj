@@ -1,4 +1,3 @@
- 
 -> main
 === main ===
 This poor kid, Will he be okay?
@@ -12,6 +11,3 @@ I hope your friend will be found soon.
 You better be careful with strangers, Aris. It’s getting scary these days.
 Meow!
 ->END
-
-
-
