@@ -3491,8 +3491,8 @@ Transform:
   m_GameObject: {fileID: 746571884}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.85, y: -60.431, z: 0}
-  m_LocalScale: {x: 1.9450166, y: 1.6820413, z: 1}
+  m_LocalPosition: {x: 1.9993, y: -59.9931, z: 0}
+  m_LocalScale: {x: 0.9764006, y: 1.1845121, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4898,7 +4898,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4070f5805275f064ca316500f1cc3ebb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7374,6 +7374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1525784815}
   - component: {fileID: 1525784814}
+  - component: {fileID: 1525784816}
   m_Layer: 0
   m_Name: Computer shop
   m_TagString: Untagged
@@ -7421,7 +7422,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 4e67b7d354409644c930911365c33d28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7448,6 +7449,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1525784816
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525784813}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 036604584a0a5fd49aaf0d86f765dccc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1542852873
 GameObject:
   m_ObjectHideFlags: 0
@@ -8945,7 +8967,7 @@ Transform:
   m_GameObject: {fileID: 1943599254}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6093, y: -56.4802, z: 0}
+  m_LocalPosition: {x: -7.6, y: -56.44, z: 0}
   m_LocalScale: {x: 2.0196, y: 1.9981805, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9679,13 +9701,13 @@ SceneRoots:
   m_Roots:
   - {fileID: 624316791}
   - {fileID: 2058563904}
+  - {fileID: 1039883121}
   - {fileID: 746571887}
-  - {fileID: 1525784815}
   - {fileID: 1943599256}
   - {fileID: 1317849144}
-  - {fileID: 1039883121}
   - {fileID: 1944344072}
   - {fileID: 1200240905}
   - {fileID: 1431086197}
   - {fileID: 1317226573}
   - {fileID: 385111503}
+  - {fileID: 1525784815}
