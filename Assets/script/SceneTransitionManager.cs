@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using MyGameNamespace;
 public class SceneTransitionManager : MonoBehaviour
 {
     public Image fadeImage; // Reference to the Image component used for fading
@@ -20,7 +20,16 @@ public class SceneTransitionManager : MonoBehaviour
             Debug.LogError("Fade Image not assigned!");
             yield break;
         }
-
+     PlayerDataManager playerDataManager = FindObjectOfType<PlayerDataManager>();
+    if (playerDataManager != null)
+    {
+        playerDataManager.SaveGame();
+        Debug.Log("Game autosaved.");
+    }
+    else
+    {
+        Debug.LogError("PlayerDataManager not found!");
+    }
         fadeImage.gameObject.SetActive(true);
 
         float elapsedTime = 0f;

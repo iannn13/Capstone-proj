@@ -1434,7 +1434,7 @@ Transform:
   m_GameObject: {fileID: 212167550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7200732, y: -0.32850242, z: -10}
+  m_LocalPosition: {x: -0.9602032, y: -0.3453772, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9041,7 +9041,7 @@ MonoBehaviour:
   playerTransform: {fileID: 736483567}
   saveAlertImage: {fileID: 1014176861}
   alertDuration: 2
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 927962648}
   collectedItems: []
 --- !u!4 &1472457242
 Transform:
