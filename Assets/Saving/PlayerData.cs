@@ -7,7 +7,12 @@ namespace MyGameNamespace
     {
         public float[] position;
         public string sceneName;
+
         // Item list
         public List<string> collectedItems;
+
+
+
+
     }
 }

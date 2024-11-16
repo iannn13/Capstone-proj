@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using MyGameNamespace;
 
 public class FadeManager : MonoBehaviour
 {
@@ -64,39 +63,26 @@ public class FadeManager : MonoBehaviour
         Debug.Log("FadeIn complete");
     }
 
- public IEnumerator FadeOut(System.Action onComplete)
-{
-    Debug.Log("Starting FadeOut");
-    float elapsedTime = 0f;
-    Color color = fadeImage.color;
-    color.a = 0f; // Start fully transparent
-    fadeImage.color = color;
-    fadeImage.gameObject.SetActive(true);
-
-    // Call SaveGame before fading
-    PlayerDataManager playerDataManager = FindObjectOfType<PlayerDataManager>();
-    if (playerDataManager != null)
+    public IEnumerator FadeOut(System.Action onComplete)
     {
-        playerDataManager.SaveGame();
-        Debug.Log("Game autosaved.");
-    }
-    else
-    {
-        Debug.LogError("PlayerDataManager not found!");
-    }
-
-    while (elapsedTime < fadeDuration)
-    {
-        elapsedTime += Time.deltaTime;
-        color.a = Mathf.Clamp01(elapsedTime / fadeDuration);
+        Debug.Log("Starting FadeOut");
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+        color.a = 0f; // Start fully transparent
         fadeImage.color = color;
-        yield return null;
+        fadeImage.gameObject.SetActive(true);
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(elapsedTime / fadeDuration);
+            fadeImage.color = color;
+            yield return null;
+        }
+
+        Debug.Log("FadeOut complete");
+        onComplete?.Invoke();
     }
-
-    Debug.Log("FadeOut complete");
-    onComplete?.Invoke();
-}
-
 
     private void OnDestroy()
     {
