@@ -22,9 +22,6 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         string nextSceneName = SceneManager.GetSceneByBuildIndex(sceneIndex).name;
-
-
-
      PlayerDataManager playerDataManager = FindObjectOfType<PlayerDataManager>();
     if (playerDataManager != null)
     {
