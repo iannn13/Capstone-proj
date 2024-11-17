@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tedsmomPoliceTrigger : MonoBehaviour
+public class noteTrigger : MonoBehaviour
 {
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
@@ -10,8 +10,9 @@ public class tedsmomPoliceTrigger : MonoBehaviour
     [Header("Dialogue Delay")]
     [SerializeField] private float dialogueStartDelay = 1f;
 
-    [Header("panel")]
-    [SerializeField] private GameObject panel;
+    [Header("movebutton and inventory")]
+    [SerializeField] private GameObject move;
+    [SerializeField] private GameObject inventory;
 
 
     private bool dialogueStarted;
@@ -22,7 +23,7 @@ public class tedsmomPoliceTrigger : MonoBehaviour
         dialogueStarted = false;
         playerInRange = false;
 
-        neneDial2.GetInstance().OnDialogueComplete += OnCatDialogueComplete;
+        noteDial.GetInstance().OnDialogueComplete += OnCatDialogueComplete;
 
     }
 
@@ -31,7 +32,8 @@ public class tedsmomPoliceTrigger : MonoBehaviour
         if (playerInRange && !dialogueStarted)
         {
             StartCoroutine(StartDialogueAfterDelay());
-            panel.SetActive(true);
+            move.SetActive(false);
+            inventory.SetActive(false);
         }
     }
 
@@ -41,7 +43,7 @@ public class tedsmomPoliceTrigger : MonoBehaviour
         {
             dialogueStarted = true;
             yield return new WaitForSeconds(dialogueStartDelay);
-            neneDial2.GetInstance().EnterDialogueMode(inkJSON);
+            noteDial.GetInstance().EnterDialogueMode(inkJSON);
         }
     }
 

@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class tedsmomPoliceTrigger : MonoBehaviour
+public class C2TRIGGER : MonoBehaviour
 {
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
@@ -14,6 +13,7 @@ public class tedsmomPoliceTrigger : MonoBehaviour
     [SerializeField] private GameObject panel;
 
 
+
     private bool dialogueStarted;
     private bool playerInRange;
 
@@ -21,17 +21,20 @@ public class tedsmomPoliceTrigger : MonoBehaviour
     {
         dialogueStarted = false;
         playerInRange = false;
+        panel.gameObject.SetActive(false);
 
-        neneDial2.GetInstance().OnDialogueComplete += OnCatDialogueComplete;
+        // Subscribe to TeddyDialogue's OnDialogueComplete event
+        C2Dial.GetInstance().OnDialogueComplete += OnCatDialogueComplete;
 
     }
 
     private void Update()
     {
+        // Start the dialogue if the player is in range and the dialogue hasn't started
         if (playerInRange && !dialogueStarted)
         {
             StartCoroutine(StartDialogueAfterDelay());
-            panel.SetActive(true);
+            panel.gameObject.SetActive(true);
         }
     }
 
@@ -39,9 +42,9 @@ public class tedsmomPoliceTrigger : MonoBehaviour
     {
         if (!dialogueStarted)
         {
-            dialogueStarted = true;
+            dialogueStarted = true; // Prevents starting the dialogue multiple times
             yield return new WaitForSeconds(dialogueStartDelay);
-            neneDial2.GetInstance().EnterDialogueMode(inkJSON);
+            C2Dial.GetInstance().EnterDialogueMode(inkJSON);
         }
     }
 
@@ -63,6 +66,9 @@ public class tedsmomPoliceTrigger : MonoBehaviour
 
     private void OnCatDialogueComplete()
     {
+        // Do not reset dialogueStarted, so the dialogue cannot be retriggered
         Debug.Log("Dialogue finished and will not be repeated.");
+
+        // Enable the specified GameObject when the dialogue is finished
     }
 }
