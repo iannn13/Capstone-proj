@@ -5,7 +5,7 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
 
-public class tedsmomPoliceDial : MonoBehaviour
+public class noteDial : MonoBehaviour
 {
     public delegate void DialogueCompleteHandler();
     public event DialogueCompleteHandler OnDialogueComplete;
@@ -19,22 +19,13 @@ public class tedsmomPoliceDial : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    [Header("panel")]
-    [SerializeField] private GameObject panel;
-
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
-
-    [Header("name and pic")]
-    [SerializeField] private GameObject mompic;
-    [SerializeField] private GameObject momname;
-    [SerializeField] private GameObject policepic;
-    [SerializeField] private GameObject policename;
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
-    private static tedsmomPoliceDial instance;
+    private static noteDial instance;
 
     private void Awake()
     {
@@ -45,7 +36,7 @@ public class tedsmomPoliceDial : MonoBehaviour
         instance = this;
     }
 
-    public static tedsmomPoliceDial GetInstance()
+    public static noteDial GetInstance()
     {
         return instance;
     }
@@ -55,10 +46,6 @@ public class tedsmomPoliceDial : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
-        momname.gameObject.SetActive(false);
-        mompic.gameObject.SetActive(false);
-        policepic.gameObject.SetActive(false);
-        policename.gameObject.SetActive(false);
         continueButton.onClick.AddListener(ContinueStory);
 
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -105,23 +92,14 @@ public class tedsmomPoliceDial : MonoBehaviour
 
             if (storyText.Contains("Ma’am, we send off officers to look around town to find your son."))
             {
-                policename.gameObject.SetActive(true);
-                policepic.gameObject.SetActive(true);
-                mompic.gameObject.SetActive(false);
-                momname.gameObject.SetActive(false);
             }
             else
             {
-                policename.gameObject.SetActive(false);
-                policepic.gameObject.SetActive(false);
-                mompic.gameObject.SetActive(true);
-                momname.gameObject.SetActive(true);
             }
         }
         else
         {
             ExitDialogueMode();
-            panel.gameObject.SetActive(false);
         }
     }
 

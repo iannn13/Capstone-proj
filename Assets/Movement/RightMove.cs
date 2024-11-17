@@ -10,6 +10,11 @@ public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject Player;
     public float Force;
     public Animator animator;
+    public RightMove rightMove; 
+
+
+    public Vector3 targetPosition; // The target position to walk towards
+    public bool moveToTarget = false;
 
     public OtitsDialogue otitsdialogueManager; 
     public CatDialogue catdialogueManager;
@@ -104,10 +109,32 @@ public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (isPressed && Player != null)
         {
+            // Move right continuously
             Player.transform.Translate(Force * Time.deltaTime, 0, 0);
             if (animator != null)
             {
                 animator.SetBool("isRunning", true);
+            }
+        }
+        else if (moveToTarget && Player != null)
+        {
+            // Move towards the target position
+            float step = Force * Time.deltaTime; // Speed to move
+            Player.transform.position = Vector3.MoveTowards(Player.transform.position, targetPosition, step);
+
+            if (animator != null)
+            {
+                animator.SetBool("isRunning", true);
+            }
+
+            // Stop moving if the target is reached
+            if (Vector3.Distance(Player.transform.position, targetPosition) < 0.1f)
+            {
+                moveToTarget = false;
+                if (animator != null)
+                {
+                    animator.SetBool("isRunning", false);
+                }
             }
         }
         else
@@ -127,5 +154,10 @@ public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         isPressed = false;
+    }
+    public void SetTargetPosition(Vector3 target)
+    {
+        targetPosition = target;
+        moveToTarget = true;
     }
 }
