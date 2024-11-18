@@ -36,12 +36,6 @@ public class RightMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public WarsakDial warsakdialogueManager;
     public mom2Dial mom2dialogueManager;
 
-
-
-
-
-
-
     private void Start()
     {
         otitsdialogueManager = OtitsDialogue.GetInstance();

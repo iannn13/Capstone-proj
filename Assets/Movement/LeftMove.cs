@@ -19,6 +19,7 @@ public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public TeddyDialogue teddydialogueManager;
     public JuperDialogue juperdialogueManager;
     public EpenDialogue ependialogueManager;
+    public KidnapperDialogue kidnapperdialogueManager;
     public MamaDialogue2 mama2dialogueManager;
     public NellyDialogue nellydialogueManager;
     public IceDialogue IcedialogueManager;
@@ -42,6 +43,7 @@ public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         teddydialogueManager = TeddyDialogue.GetInstance();
         juperdialogueManager = JuperDialogue.GetInstance();
         ependialogueManager = EpenDialogue.GetInstance();
+        kidnapperdialogueManager = KidnapperDialogue.GetInstance();
         mama2dialogueManager = MamaDialogue2.GetInstance();
         nellydialogueManager = NellyDialogue.GetInstance();
         IcedialogueManager = IceDialogue.GetInstance();
@@ -80,6 +82,7 @@ public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
            (teddydialogueManager != null && teddydialogueManager.dialogueIsPlaying) ||
            (juperdialogueManager != null && juperdialogueManager.dialogueIsPlaying) ||
            (ependialogueManager != null && ependialogueManager.dialogueIsPlaying) ||
+           (kidnapperdialogueManager != null && kidnapperdialogueManager.dialogueIsPlaying) ||
            (mama2dialogueManager != null && mama2dialogueManager.dialogueIsPlaying) ||
            (nellydialogueManager != null && nellydialogueManager.dialogueIsPlaying) ||
            (IcedialogueManager != null && IcedialogueManager.dialogueIsPlaying) ||
