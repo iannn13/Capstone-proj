@@ -1434,7 +1434,7 @@ Transform:
   m_GameObject: {fileID: 212167550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7200732, y: -0.32850242, z: -10}
+  m_LocalPosition: {x: -0.9602032, y: -0.3453772, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7972,6 +7972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1210206257}
   - component: {fileID: 1210206258}
+  - component: {fileID: 1210206259}
   m_Layer: 5
   m_Name: FadeEffects
   m_TagString: Untagged
@@ -8012,6 +8013,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1010192637}
+  fadeDuration: 1
+--- !u!114 &1210206259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210206256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f063c2d1a407ea24db241ffb2bd36de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 0}
   fadeDuration: 1
 --- !u!1 &1236577270
 GameObject:
