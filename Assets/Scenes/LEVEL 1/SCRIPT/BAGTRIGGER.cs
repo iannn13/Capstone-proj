@@ -22,10 +22,6 @@ public class BAGTRIGGER : MonoBehaviour
     [SerializeField] private GameObject uiCanvas3;
     [SerializeField] private GameObject bagNote;
 
-    [Header("pickupNote")]
-    [SerializeField] private GameObject uiCanva4;
-    [SerializeField] private GameObject pickupnote;
-
     [Header("Wall")]
     [SerializeField] private GameObject wall;
 
@@ -66,14 +62,12 @@ public class BAGTRIGGER : MonoBehaviour
         bag.gameObject.SetActive(true);
         wall.gameObject.SetActive(false);
         uiCanvas3.SetActive(false);
-        uiCanva4.SetActive(true);
         pickupButton.gameObject.SetActive(false);
         visualCue.SetActive(false);
         bagItem.gameObject.SetActive(false);
         playerInRange = false;
         bagCollider.enabled = false;
 
-        StartCoroutine(FadeOutUIAfterDelay(uiCanva4, 1.5f, 1.0f));
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

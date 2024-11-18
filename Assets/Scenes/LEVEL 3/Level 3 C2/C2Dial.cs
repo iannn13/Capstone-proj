@@ -28,6 +28,11 @@ public class C2Dial : MonoBehaviour
     [SerializeField] private Button restartButton;
     [SerializeField] private Button mainMenuButton;
 
+    [Header("Fade Settings")]
+    [SerializeField] private Image fadeImage; 
+    [SerializeField] private float fadeDuration = 1f;
+
+
     [Header("Special GameObject")]
     [SerializeField] private GameObject specialObject;
 
@@ -46,6 +51,10 @@ public class C2Dial : MonoBehaviour
     [Header("box")]
     [SerializeField] private GameObject box1;
     [SerializeField] private GameObject box2;
+
+    [Header("kidnapper")]
+    [SerializeField] private GameObject maskedman;
+    [SerializeField] private GameObject car;
 
     public FadeManager fadeManager;
 
@@ -139,7 +148,7 @@ public class C2Dial : MonoBehaviour
             Debug.Log("Current Story Text: " + storyText);
             DisplayChoices();
 
-
+            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
             if (storyText.Contains("The masked man scoffs and you pulled Alice to the Sand box."))
             {
                 Vector3 targetPosition = new Vector3(290.47f, Player.transform.position.y, Player.transform.position.z);
@@ -160,9 +169,9 @@ public class C2Dial : MonoBehaviour
                 warsakpic.SetActive(false);
             }
             else if (storyText.Contains("The masked man looked nervous and tried to take Alice by force!") || (storyText.Contains("You got the attention of several civilians and he left the scene."))
-                || (storyText.Contains("You and Alice played for 30 minutes and a familiar face arrived.")) || (storyText.Contains("You notice the masked man was no where to found anymore."))
+                || (storyText.Contains("You and Alice played for 30 minutes and a familiar face arrived.")) || (storyText.Contains("You and Alice waited for 30 minutes and a familiar face arrived.")) || (storyText.Contains("You notice the masked man was no where to found anymore."))
                 || (storyText.Contains("The two said their goodbyes and left.")) || (storyText.Contains("The man pushed you away and let go of her arm, He took her."))
-                || (storyText.Contains("He is lying, Ask another question.")) || (storyText.Contains("The two said their goodbyes and left.")))
+                || (storyText.Contains("He is lying, Ask another question.")) || (storyText.Contains("The two said their goodbyes and left.")) || (storyText.Contains("Uncle Owen and Alice will give you a ride home.")))
             {
                 box2.gameObject.SetActive(true);
                 box1.gameObject.SetActive(false); 
@@ -210,8 +219,7 @@ public class C2Dial : MonoBehaviour
                 warsak.SetActive(false);
                 warsakpic.SetActive(false);
             }
-            else if (storyText.Contains("Oh my! What happen?") || (storyText.Contains("Uncle, There's a suspicious guy who came to pick up Alice. He says that he is your friend."))
-                || (storyText.Contains("I'm glad both of you are okay.")) || (storyText.Contains("Are you walking home alone? We can give you a ride."))
+            else if (storyText.Contains("I'm glad both of you are okay.") || (storyText.Contains("Are you walking home alone? We can give you a ride."))
                 || (storyText.Contains("No, I should bring you home and tell your mom about this."))  || (storyText.Contains("Hello, Aris."))
                 || (storyText.Contains("No, Alice. I'm glad you stayed here. Thank you for telling, Aris.")))
             {
@@ -259,12 +267,15 @@ public class C2Dial : MonoBehaviour
                 warsakpic.SetActive(false);
                 ShowGameOver();
             }
-           else if (storyText.Contains("Hi sweetie, It's time to go home."))
+           else if (storyText.Contains("Hi sweetie, It's time to go home.") || (storyText.Contains("Oh my! What happen?")))
             {
-                FadeManager.Instance.FadeOut(() => Debug.Log("FadeOut Complete!"));
+                StartCoroutine(FadeOut());
                 specialObject.SetActive(true);
+                maskedman.SetActive(false);
+                car.SetActive(false);
                 box1.gameObject.SetActive(true);
                 box2.gameObject.SetActive(false);
+                StartCoroutine(FadeIn());
                 man.SetActive(false);
                 manpic.SetActive(false);
                 alice.SetActive(false);
@@ -275,7 +286,11 @@ public class C2Dial : MonoBehaviour
                 youpic.SetActive(false);
                 warsak.SetActive(false);
                 warsakpic.SetActive(false);
+            }
 
+            else if (storyText.Contains("...") || (storyText.Contains("....")))
+            {
+                transitionManager.FadeToScene(27);
             }
             else
             {
@@ -296,6 +311,41 @@ public class C2Dial : MonoBehaviour
             ExitDialogueMode();
             panel.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator FadeOut()
+    {
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+        color.a = 0f; // Start fully transparent
+        fadeImage.color = color;
+        fadeImage.gameObject.SetActive(true); // Ensure the fadeImage is active
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(elapsedTime / fadeDuration);
+            fadeImage.color = color;
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeIn()
+    {
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+        color.a = 1f; // Start fully opaque
+        fadeImage.color = color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(1 - (elapsedTime / fadeDuration));
+            fadeImage.color = color;
+            yield return null;
+        }
+
+        fadeImage.gameObject.SetActive(false); // Hide the fadeImage after fading in
     }
 
     private IEnumerator FadeAndLoadScene()
