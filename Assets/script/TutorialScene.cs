@@ -34,6 +34,6 @@ public class TutorialScene : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         
-        SceneManager.LoadSceneAsync(14); 
+        SceneManager.LoadSceneAsync(32); 
     }
 }

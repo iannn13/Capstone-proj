@@ -107,4 +107,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 4/Level 4 - School Time.unity
     guid: 5803e0e8083b1e547a1621141276338a
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: ed629ba4a1a03834f8b65d038bd2e96b
   m_configObjects: {}
