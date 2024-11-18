@@ -1,4 +1,8 @@
-Bystander: Hey, kid. How are you today?
+-> main
+=== main ===
+
+
+Hey, kid. How are you today?
 +[I'm okay.]
 ->OKAY
 +[Who are you?]
@@ -14,13 +18,15 @@ Bystander: Hey, kid. How are you today?
   +[Bye]
  ->BYE
  
- ==WHY==
- Why are you talking to me?
- Nothing, I just talk to everyone passing by. How is your mom?
- +[She's busy.]
- ->BUSY
- +[She is okay.]
- ->SHESOKAY
+==WHY==
+Why are you talking to me?  
+Nothing, I just talk to everyone passing by. How is your mom?  
++[She's busy.]  
+->BUSY  
++[She is okay.]  
+->SHESOKAY  
++[I don't know.]  
+->IDK
 
 ==BYE==
 Bye, I gotta go to school.
@@ -61,6 +67,9 @@ I see, good to know.
  I don't know.
  Oh okay, haha.
  ->BYE
+ 
+ ->END
+ 
  
  
  
