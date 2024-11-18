@@ -746,7 +746,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2100696614}
-        m_TargetAssemblyTypeName: level2complete, Assembly-CSharp
+        m_TargetAssemblyTypeName: level3complete, Assembly-CSharp
         m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1025,8 +1025,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2100696614}
-        m_TargetAssemblyTypeName: level2complete, Assembly-CSharp
-        m_MethodName: Level3
+        m_TargetAssemblyTypeName: level3complete, Assembly-CSharp
+        m_MethodName: Level4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1654,7 +1654,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2100696612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1ee87b226ef354db5be790db875453, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e53ef6bee5fd264aa59c153f9220db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

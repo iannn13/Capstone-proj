@@ -96,6 +96,8 @@ EditorBuildSettings:
     path: Assets/Scenes/LEVEL 3/Level 3 C3.unity
     guid: fa750ad527c5ee24c903da7a1bd66880
   - enabled: 1
+    path: Assets/Scenes/LEVEL 4/Level 4-1.unity
+    guid: 9f7a686a2ad46924eaa19cfbffb856d0
     path: Assets/Scenes/LEVEL 3/Computer Shop.unity
     guid: 0cd65a7e189d1da46ac29ebcd7418472
   - enabled: 1
