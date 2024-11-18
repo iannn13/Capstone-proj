@@ -98,4 +98,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 3/Computer Shop.unity
     guid: 0cd65a7e189d1da46ac29ebcd7418472
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 3/3-3 after school.unity
+    guid: 093dc77d7d031944d8ec477423650cfe
   m_configObjects: {}

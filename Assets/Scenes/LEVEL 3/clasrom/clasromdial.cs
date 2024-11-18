@@ -186,7 +186,7 @@ public class clasrom : MonoBehaviour
             SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
             if (transitionManager != null)
             {
-                transitionManager.FadeToScene(23);
+                transitionManager.FadeToScene(29);
             }
             else
             {
