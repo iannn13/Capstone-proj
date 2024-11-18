@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using MyGameNamespace;
+
 public class SceneTransitionManager : MonoBehaviour
 {
     public Image fadeImage; // Reference to the Image component used for fading
@@ -21,20 +21,6 @@ public class SceneTransitionManager : MonoBehaviour
             yield break;
         }
 
-        string nextSceneName = SceneManager.GetSceneByBuildIndex(sceneIndex).name;
-
-
-
-     PlayerDataManager playerDataManager = FindObjectOfType<PlayerDataManager>();
-    if (playerDataManager != null)
-    {
-        playerDataManager.SaveGame();
-        Debug.Log("Game autosaved.");
-    }
-    else
-    {
-        Debug.LogError("PlayerDataManager not found!");
-    }
         fadeImage.gameObject.SetActive(true);
 
         float elapsedTime = 0f;
@@ -42,6 +28,7 @@ public class SceneTransitionManager : MonoBehaviour
         color.a = 0f; // Start fully transparent
         fadeImage.color = color;
 
+        // Fade out effect
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
@@ -50,6 +37,7 @@ public class SceneTransitionManager : MonoBehaviour
             yield return null;
         }
 
+        // Load the target scene
         SceneManager.LoadScene(sceneIndex);
     }
 }

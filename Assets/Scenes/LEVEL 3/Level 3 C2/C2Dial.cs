@@ -6,6 +6,8 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.Experimental.GlobalIllumination;
 using Unity.Burst.Intrinsics;
+using UnityEngine.SceneManagement;
+using UnityEditor.VersionControl;
 
 public class C2Dial : MonoBehaviour
 {
@@ -20,6 +22,14 @@ public class C2Dial : MonoBehaviour
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
+
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button mainMenuButton;
+
+    [Header("Special GameObject")]
+    [SerializeField] private GameObject specialObject;
 
     [Header("panel")]
     [SerializeField] private GameObject panel;
@@ -36,6 +46,8 @@ public class C2Dial : MonoBehaviour
     [Header("box")]
     [SerializeField] private GameObject box1;
     [SerializeField] private GameObject box2;
+
+    public FadeManager fadeManager;
 
     [Header("name and pic")]
     [SerializeField] private GameObject man;
@@ -148,7 +160,7 @@ public class C2Dial : MonoBehaviour
                 warsakpic.SetActive(false);
             }
             else if (storyText.Contains("The masked man looked nervous and tried to take Alice by force!") || (storyText.Contains("You got the attention of several civilians and he left the scene."))
-                || (storyText.Contains("You and Alice waited for 30 minutes and a familiar face arrived.")) || (storyText.Contains("You notice the masked man was no where to found anymore."))
+                || (storyText.Contains("You and Alice played for 30 minutes and a familiar face arrived.")) || (storyText.Contains("You notice the masked man was no where to found anymore."))
                 || (storyText.Contains("The two said their goodbyes and left.")) || (storyText.Contains("The man pushed you away and let go of her arm, He took her."))
                 || (storyText.Contains("He is lying, Ask another question.")) || (storyText.Contains("The two said their goodbyes and left.")))
             {
@@ -200,7 +212,7 @@ public class C2Dial : MonoBehaviour
             }
             else if (storyText.Contains("Oh my! What happen?") || (storyText.Contains("Uncle, There's a suspicious guy who came to pick up Alice. He says that he is your friend."))
                 || (storyText.Contains("I'm glad both of you are okay.")) || (storyText.Contains("Are you walking home alone? We can give you a ride."))
-                || (storyText.Contains("No, I should bring you home and tell your mom about this.")) || (storyText.Contains("Hi sweetie, It's time to go home.")) || (storyText.Contains("Hello, Aris."))
+                || (storyText.Contains("No, I should bring you home and tell your mom about this."))  || (storyText.Contains("Hello, Aris."))
                 || (storyText.Contains("No, Alice. I'm glad you stayed here. Thank you for telling, Aris.")))
             {
                 box1.gameObject.SetActive(true);
@@ -231,6 +243,40 @@ public class C2Dial : MonoBehaviour
                 warsak.SetActive(true);
                 warsakpic.SetActive(true);
             }
+            else if (storyText.Contains("I'm taking her!"))
+            {
+                box1.gameObject.SetActive(true);
+                box2.gameObject.SetActive(false);
+                man.SetActive(true);
+                manpic.SetActive(true);
+                alice.SetActive(false);
+                alicepic.SetActive(false);
+                owen.SetActive(false);
+                owenpic.SetActive(false);
+                you.SetActive(false);
+                youpic.SetActive(false);
+                warsak.SetActive(false);
+                warsakpic.SetActive(false);
+                ShowGameOver();
+            }
+           else if (storyText.Contains("Hi sweetie, It's time to go home."))
+            {
+                FadeManager.Instance.FadeOut(() => Debug.Log("FadeOut Complete!"));
+                specialObject.SetActive(true);
+                box1.gameObject.SetActive(true);
+                box2.gameObject.SetActive(false);
+                man.SetActive(false);
+                manpic.SetActive(false);
+                alice.SetActive(false);
+                alicepic.SetActive(false);
+                owen.SetActive(true);
+                owenpic.SetActive(true);
+                you.SetActive(false);
+                youpic.SetActive(false);
+                warsak.SetActive(false);
+                warsakpic.SetActive(false);
+
+            }
             else
             {
                 box1.gameObject.SetActive(true);
@@ -249,6 +295,18 @@ public class C2Dial : MonoBehaviour
         {
             ExitDialogueMode();
             panel.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator FadeAndLoadScene()
+    {
+        if (FadeManager.Instance != null)
+        {
+            yield return FadeManager.Instance.FadeOut(() => SceneManager.LoadSceneAsync(20));
+        }
+        else
+        {
+            Debug.LogError("FadeManager instance is null!");
         }
     }
 
@@ -291,5 +349,21 @@ public class C2Dial : MonoBehaviour
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
+    }
+    private void ShowGameOver()
+    {
+        Debug.Log("Restarting game");
+        dialoguePanel.SetActive(false);
+        gameOverPanel.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

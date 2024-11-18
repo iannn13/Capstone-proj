@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class noteDial : MonoBehaviour
 {
@@ -89,17 +90,32 @@ public class noteDial : MonoBehaviour
             Debug.Log("Current Story Text: " + storyText);
             DisplayChoices();
 
-
-            if (storyText.Contains("Ma’am, we send off officers to look around town to find your son."))
+            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+            if (storyText.Contains("Going to Playground."))
             {
+                Debug.Log("Teleporting to scene 25 ");
+                transitionManager.FadeToScene(25);
             }
             else
             {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
             }
         }
         else
         {
             ExitDialogueMode();
+        }
+    }
+
+    private IEnumerator FadeAndLoadScene()
+    {
+        if (FadeManager.Instance != null)
+        {
+            yield return FadeManager.Instance.FadeOut(() => SceneManager.LoadSceneAsync(25));
+        }
+        else
+        {
+            Debug.LogError("FadeManager instance is null!");
         }
     }
 

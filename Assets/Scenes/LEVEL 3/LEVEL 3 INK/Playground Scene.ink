@@ -81,16 +81,15 @@ The masked man looked nervous and tried to take Alice by force!
 ->DONE
 
 ==PULL==
-GAME OVER
-The man pushed you away and let go of her arm, He took her.
+I'm taking her!
 ->END
 
 ==SCREAM==
 LET GO! HELP! KIDNAPPER!
 You got the attention of several civilians and he left the scene.
-CIVILIAN: Leave them alone!
-CIVILIAN: Someone call the police!
-CIVILIAN: Are you okay?
+Leave them alone!
+Someone call the police!
+Are you okay?
 
 You and Alice waited for 30 minutes and a familiar face arrived.
 Oh my! What happen?
