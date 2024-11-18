@@ -95,6 +95,14 @@ public class noteDial : MonoBehaviour
             {
                 transitionManager.FadeToScene(25);
             }
+            else if (storyText.Contains("Going to Kompyuter Shop"))
+            {
+                transitionManager.FadeToScene(28);
+            }
+            else if (storyText.Contains("Going to Kompyuter Shop"))
+            {
+                transitionManager.FadeToScene(27);
+            }
             else
             {
                 Debug.LogError("SceneTransitionManager not found in the scene!");
