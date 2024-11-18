@@ -93,7 +93,6 @@ public class noteDial : MonoBehaviour
             SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
             if (storyText.Contains("Going to Playground."))
             {
-                Debug.Log("Teleporting to scene 25 ");
                 transitionManager.FadeToScene(25);
             }
             else
