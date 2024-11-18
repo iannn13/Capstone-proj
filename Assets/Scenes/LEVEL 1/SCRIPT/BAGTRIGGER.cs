@@ -37,7 +37,6 @@ public class BAGTRIGGER : MonoBehaviour
         bagItem.gameObject.SetActive(true);
         bagCollider = GetComponent<Collider2D>();
 
-
         pickupButton.gameObject.SetActive(true);
         pickupButton.onClick.AddListener(OnpickupButtonClicked);
         pickupButton.gameObject.SetActive(false); 
