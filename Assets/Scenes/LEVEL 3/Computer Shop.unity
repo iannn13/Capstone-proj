@@ -2974,7 +2974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8216be4cde1a848bf7930d7caebdeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSON: {fileID: 4900000, guid: 91b5c49eab9a38d4699cbb6776150bbf, type: 3}
+  inkJSON: {fileID: 4900000, guid: 17317dd63bcbce34099dc2cfc5f7df62, type: 3}
   dialoguePanel: {fileID: 1133890140}
   dialogueText: {fileID: 805733236}
   continueButton: {fileID: 672882089}
