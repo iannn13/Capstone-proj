@@ -9,6 +9,7 @@ Playing?
 ->END
 ==YES==
 Only 10 peesos.
+...
 ->END 
 
 ==NO==

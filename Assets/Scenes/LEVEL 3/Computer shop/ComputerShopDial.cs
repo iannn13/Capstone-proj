@@ -21,6 +21,9 @@ public class ComputerShopDial : MonoBehaviour
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f; 
+
+     [Header("PLAY PANEL")]
+    [SerializeField] private GameObject PlayPanel;
     private Story currentStory;
 
     public bool dialogueIsPlaying { get; private set; }
@@ -47,6 +50,7 @@ public class ComputerShopDial : MonoBehaviour
     dialogueIsPlaying = false;
     dialoguePanel.SetActive(false);
     continueButton.gameObject.SetActive(false);
+    PlayPanel.gameObject.SetActive(false);
 
     continueButton.onClick.AddListener(ContinueStory);
 
@@ -87,30 +91,41 @@ for (int index = 0; index < choices.Length; index++)
     continueButton.gameObject.SetActive(true);
     ContinueStory();
 }
-
             private void ExitDialogueMode()
             {
                 dialogueIsPlaying = false;
                 dialoguePanel.SetActive(false);
                 dialogueText.text = "";
                 continueButton.gameObject.SetActive(false);
-
-              //  LoadNextScene();
             }
 
-        private void ContinueStory()
-            {
-                if (currentStory.canContinue)
-                {
-                    StopAllCoroutines();
-                    StartCoroutine(TypeText(currentStory.Continue()));
-                    DisplayChoices();
-                }
-                else
-                {
-                    ExitDialogueMode();
-                }
-            }
+       private void ContinueStory()
+    {
+        if (currentStory.canContinue)
+        {
+            string storyText = currentStory.Continue();
+            StopAllCoroutines();
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); // Log the current story text
+            DisplayChoices();
+
+
+           if (storyText.Contains("..."))
+        {
+            PlayPanel.gameObject.SetActive(true);
+            StartCoroutine(LoadSceneAfterDelay("YourNextSceneName", 1f)); // 1-second delay
+        }
+    }
+    else
+    {
+        ExitDialogueMode();
+    }
+    }
+    private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
+{
+    yield return new WaitForSeconds(delay);
+    SceneManager.LoadScene(27);
+}
 
     private IEnumerator TypeText(string text)
     {
@@ -124,10 +139,6 @@ for (int index = 0; index < choices.Length; index++)
 
     private void DisplayChoices()
     {
-
-       
-
-
         List<Choice> currentChoices = currentStory.currentChoices;
 
         if (currentChoices.Count > choices.Length)
