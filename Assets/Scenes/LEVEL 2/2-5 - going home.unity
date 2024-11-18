@@ -29944,6 +29944,7 @@ MonoBehaviour:
   teddydialogueManager: {fileID: 0}
   juperdialogueManager: {fileID: 0}
   ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
   mama2dialogueManager: {fileID: 0}
   nellydialogueManager: {fileID: 0}
   IcedialogueManager: {fileID: 0}

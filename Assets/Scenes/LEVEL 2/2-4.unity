@@ -6438,6 +6438,7 @@ MonoBehaviour:
   teddydialogueManager: {fileID: 0}
   juperdialogueManager: {fileID: 0}
   ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
   mama2dialogueManager: {fileID: 0}
   nellydialogueManager: {fileID: 0}
   IcedialogueManager: {fileID: 0}
@@ -25883,7 +25884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1377980753
 RectTransform:
   m_ObjectHideFlags: 0

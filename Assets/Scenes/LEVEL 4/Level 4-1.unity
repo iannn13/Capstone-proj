@@ -6806,7 +6806,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29.002075, y: 354.76895}
+  m_AnchoredPosition: {x: 343, y: 333.8}
   m_SizeDelta: {x: 422.261, y: 88.9634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057567407
@@ -7633,7 +7633,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1206058270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529d8ee53014929408f70dfd4d6c7c39, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ee215782d45ac34981d2b85372bfdff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   doorButton: {fileID: 127999302}
@@ -7839,6 +7839,7 @@ MonoBehaviour:
   teddydialogueManager: {fileID: 0}
   juperdialogueManager: {fileID: 0}
   ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
   mama2dialogueManager: {fileID: 0}
   nellydialogueManager: {fileID: 0}
   IcedialogueManager: {fileID: 0}

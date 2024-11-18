@@ -406,6 +406,7 @@ MonoBehaviour:
   teddydialogueManager: {fileID: 0}
   juperdialogueManager: {fileID: 0}
   ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
   mama2dialogueManager: {fileID: 0}
   nellydialogueManager: {fileID: 0}
   IcedialogueManager: {fileID: 0}
@@ -7823,7 +7824,7 @@ Transform:
   m_GameObject: {fileID: 1975978126}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101.567535, y: -0.5536082, z: -10}
+  m_LocalPosition: {x: -103.37198, y: -0.5402982, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9264,7 +9265,6 @@ RectTransform:
   - {fileID: 1846592902}
   - {fileID: 662642571}
   - {fileID: 2049197373}
-  - {fileID: 2002333060}
   - {fileID: 1139857959}
   - {fileID: 1457657229}
   - {fileID: 2031544350}
@@ -9274,6 +9274,7 @@ RectTransform:
   - {fileID: 1319585365}
   - {fileID: 1818198737}
   - {fileID: 2130514138}
+  - {fileID: 2002333060}
   - {fileID: 1157047347}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
