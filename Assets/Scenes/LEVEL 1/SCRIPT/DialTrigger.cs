@@ -24,6 +24,10 @@ public class DialTrigger : MonoBehaviour
     [SerializeField] private Image messageImage2;
     [SerializeField] private Button continueButton2;
 
+    [Header("Fade Settings")]
+    [SerializeField] private Image fadeImage;
+    [SerializeField] private float fadeDuration = 1f;
+
     [Header("Note3")]
     [SerializeField] private GameObject uiCanvas3;
     [SerializeField] private Image bagNote;
@@ -119,14 +123,15 @@ public class DialTrigger : MonoBehaviour
         if (mamaFade != null)
         {
             mamaFade.startFading(); // Start Mama fade out
-            yield return new WaitForSeconds(1.5f); // Wait for fade out to complete (adjust as needed)
+            yield return new WaitForSeconds(0f); // Wait for fade out to complete (adjust as needed)
         }
         else
         {
             Debug.LogError("mamaFadeout component missing from Mama GameObject");
         }
-
+        StartCoroutine(FadeOut());
         Destroy(mamaGameObject); // Destroy Mama game object
+        StartCoroutine(FadeIn());
 
         // Show the image on the UI Canvas
         uiCanvas.SetActive(true);
@@ -139,6 +144,41 @@ public class DialTrigger : MonoBehaviour
 
         // Enable continue button and make it interactable
         continueButton.interactable = true;
+    }
+
+    private IEnumerator FadeOut()
+    {
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+        color.a = 0f; // Start fully transparent
+        fadeImage.color = color;
+        fadeImage.gameObject.SetActive(true); // Ensure the fadeImage is active
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(elapsedTime / fadeDuration);
+            fadeImage.color = color;
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeIn()
+    {
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+        color.a = 1f; // Start fully opaque
+        fadeImage.color = color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(1 - (elapsedTime / fadeDuration));
+            fadeImage.color = color;
+            yield return null;
+        }
+
+        fadeImage.gameObject.SetActive(false); // Hide the fadeImage after fading in
     }
 
     public void OnContinueButtonClicked()

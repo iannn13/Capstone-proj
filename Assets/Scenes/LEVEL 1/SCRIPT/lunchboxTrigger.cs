@@ -15,10 +15,6 @@ public class lunchboxTrigger : MonoBehaviour
     [Header("UI Button")]
     [SerializeField] private Button pickupButton;
 
-    [Header("Achievement")]
-    [SerializeField] private GameObject uiCanva4;
-    [SerializeField] private GameObject pickupnote;
-
     [Header("pickupNote")]
     [SerializeField] private GameObject uiCanva5;
     [SerializeField] private GameObject pickupnote2;
@@ -64,14 +60,11 @@ public class lunchboxTrigger : MonoBehaviour
         pickupButton.gameObject.SetActive(false);
         visualCue.SetActive(false);
         boxOrig.gameObject.SetActive(false) ;
-        uiCanva4.SetActive(true);
         uiCanva5.SetActive(false);
         cue.SetActive(true);
 
         playerInRange = false;
         bagCollider.enabled = false;
-
-        StartCoroutine(FadeOutUIAfterDelay(uiCanva4, 1.5f, 1.0f));
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

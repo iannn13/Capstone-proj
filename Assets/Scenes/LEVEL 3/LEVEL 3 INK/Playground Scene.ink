@@ -137,10 +137,12 @@ Are you walking home alone? We can give you a ride.
 -> NOTHANKS
 
 ==SURE==
-SCENE: Uncle Owen and Alice gave you a ride home.
+Uncle Owen and Alice will give you a ride home.
+...
 ->DONE
 ==NOTHANKS==
 No, thank you. I can walk alone.
 The two said their goodbyes and left.
+....
 ->DONE
 ->END
