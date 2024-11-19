@@ -14,9 +14,11 @@ Ohh, you mean Pako? I talked to him too and he looks like a nice funny kid.
 ->Okay
 +[Can we go home?]
 Sure, I'll make something for you to eat.
+...
 ->END
 +[Can I play?]
 Sure, 10 minutes then we go home.
+...
 ->END
 
 ==Okay==
@@ -34,9 +36,11 @@ The way he talks is weird.
 Haha, I don't see it that way.
 +[Can we go home?]
 Sure, I'll make something for you to eat.
+...
 ->END
 +[Can I play?]
 Sure, 10 minutes then we go home.
+...
 ->END
 
 ==ASKS==
@@ -46,9 +50,11 @@ I'm serious, mama.
 Alright, hahaha.
 +[Can we go home?]
 Sure, I'll make something for you to eat.
+...
 ->END
 +[Can I play?]
 Sure, 10 minutes then we go home.
+...
 ->END
 
 ==IDK==
@@ -58,9 +64,11 @@ Okay, mama. That's a good idea.
 Let me know about it too.
 +[Can we go home?]
 Sure, I'll make something for you to eat.
+...
 ->END
 +[Can I play?]
 Sure, 10 minutes then we go home.
+...
 ->END
 
 
@@ -71,9 +79,11 @@ He's a street kid and He says he haven't seen his mom for a long time.
 Ohh... Poor little boy.
 +[Can we go home?]
 Sure, I'll make something for you to eat.
+...
 ->END
 +[Can I play?]
 Sure, 10 minutes then we go home.
+...
 ->END
 
 //LEVEL 4 COMPLETE! You got to meet your mama and she's happy that you are safe.

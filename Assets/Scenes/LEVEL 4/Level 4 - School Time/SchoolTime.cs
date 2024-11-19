@@ -135,7 +135,7 @@ public class SchoolTime : MonoBehaviour
             SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
             if (transitionManager != null)
             {
-                transitionManager.FadeToScene(29);
+                transitionManager.FadeToScene(33);
             }
             else
             {

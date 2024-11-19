@@ -89,6 +89,7 @@ public class MamaDial : MonoBehaviour
         continueButton.gameObject.SetActive(false);
         movebutton.gameObject.SetActive(true);
 
+
         OnDialogueComplete?.Invoke();
     }
 
@@ -127,11 +128,24 @@ public class MamaDial : MonoBehaviour
                 youname.gameObject.SetActive(true);
                 mamaname.gameObject.SetActive(false);
             }
-        
+            else if (storyText.Contains("..."))
+            
+            {
+                SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+                if (transitionManager != null)
+                {
+                    transitionManager.FadeToScene(34);
+                }
+                else
+                {
+                    Debug.LogError("SceneTransitionManager not found in the scene!");
+                }
+            }
+
         }   
         else
         {       
-            ExitDialogueMode();
+            ExitDialogueMode();  
         }
     }
 

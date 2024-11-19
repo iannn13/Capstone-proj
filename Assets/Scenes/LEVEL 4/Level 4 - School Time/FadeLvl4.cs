@@ -67,7 +67,7 @@ public class FadeLvl4 : MonoBehaviour
         yield return new WaitForSeconds(fadeDuration);
 
        
-        SceneManager.LoadScene(31); 
+        SceneManager.LoadScene(33); 
     }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float startAlpha, float endAlpha, float duration)

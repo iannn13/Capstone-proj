@@ -110,4 +110,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: ed629ba4a1a03834f8b65d038bd2e96b
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 4/Level 4-3 Going Home.unity
+    guid: 38b78ad42b4796a4587095cec62f04a5
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 4/LEVEL 4 COMPLETE.unity
+    guid: 82cc00e5698cecd4dba199d20991b1e8
   m_configObjects: {}
