@@ -15,6 +15,9 @@ public class BystanderDial : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Button continueButton;
 
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
+
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
@@ -56,6 +59,7 @@ public class BystanderDial : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
         continueButton.onClick.AddListener(ContinueStory);
      
 
@@ -86,7 +90,7 @@ public class BystanderDial : MonoBehaviour
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
         continueButton.gameObject.SetActive(false);
-
+        panel.gameObject.SetActive(false);
         OnDialogueComplete?.Invoke();
     }
 

@@ -19,6 +19,9 @@ public class StrayDial : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject kid;
     [SerializeField] private GameObject kidpic;
@@ -59,6 +62,7 @@ public class StrayDial : MonoBehaviour
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
         continueButton.onClick.AddListener(ContinueStory);
+        panel.gameObject.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -88,7 +92,7 @@ public class StrayDial : MonoBehaviour
         dialogueText.text = "";
         continueButton.gameObject.SetActive(false);
         movebutton.gameObject.SetActive(true);
-
+        
         OnDialogueComplete?.Invoke();
     }
 
@@ -135,6 +139,7 @@ public class StrayDial : MonoBehaviour
         {
             ExitDialogueMode();
             kid.gameObject.SetActive(true);
+            panel.gameObject.SetActive(false);
         }
     }
     private IEnumerator TypeText(string text)

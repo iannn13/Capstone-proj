@@ -9,6 +9,9 @@ public class straytrigger : MonoBehaviour
     [Header("Dialogue Delay")]
     [SerializeField] private float dialogueStartDelay = 0.05f;
 
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
+
 
     private bool dialogueStarted;
     private bool playerInRange;
@@ -17,6 +20,7 @@ public class straytrigger : MonoBehaviour
     {
         dialogueStarted = false;
         playerInRange = false;
+        panel.gameObject.SetActive(false);
 
     }
 
@@ -26,6 +30,7 @@ public class straytrigger : MonoBehaviour
         if (playerInRange && !dialogueStarted)
         {
             StartCoroutine(StartDialogueAfterDelay());
+            panel.gameObject.SetActive(true);
         }
     }
 
