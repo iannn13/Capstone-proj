@@ -1865,7 +1865,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 386460984}
         m_TargetAssemblyTypeName: LoadAndNew, Assembly-CSharp
-        m_MethodName: Room
+        m_MethodName: MyRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
