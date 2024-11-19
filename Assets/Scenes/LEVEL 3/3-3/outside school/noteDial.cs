@@ -97,7 +97,7 @@ public class noteDial : MonoBehaviour
             }
             else if (storyText.Contains("Going to Kompyuter Shop"))
             {
-                transitionManager.FadeToScene(28);
+                transitionManager.FadeToScene(33);
             }
             else if (storyText.Contains("Going Home."))
             {
