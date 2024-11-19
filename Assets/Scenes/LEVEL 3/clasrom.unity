@@ -3516,6 +3516,7 @@ MonoBehaviour:
   teddydialogueManager: {fileID: 0}
   juperdialogueManager: {fileID: 0}
   ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
   mama2dialogueManager: {fileID: 0}
   nellydialogueManager: {fileID: 0}
   IcedialogueManager: {fileID: 0}
@@ -4196,6 +4197,7 @@ RectTransform:
   - {fileID: 1099016972}
   - {fileID: 40259912}
   - {fileID: 887949083}
+  - {fileID: 2095671421}
   - {fileID: 1046455205}
   - {fileID: 1048440100}
   - {fileID: 611100459}
@@ -4207,7 +4209,6 @@ RectTransform:
   - {fileID: 454827656}
   - {fileID: 316954316}
   - {fileID: 1923821670}
-  - {fileID: 2095671421}
   - {fileID: 1541860501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6673,7 +6674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21.049927, y: -74.43994}
+  m_AnchoredPosition: {x: 4, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1046455206
