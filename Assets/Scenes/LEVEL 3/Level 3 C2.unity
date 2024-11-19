@@ -9844,8 +9844,8 @@ Transform:
   m_GameObject: {fileID: 492782364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.18, y: -0.0841, z: 26.529762}
-  m_LocalScale: {x: 0.75073075, y: 0.63982743, z: 0.58489996}
+  m_LocalPosition: {x: 4.1645, y: 0.0091, z: 26.529762}
+  m_LocalScale: {x: 0.72115195, y: 0.6926132, z: 0.58489996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 203287980}
@@ -9988,7 +9988,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.179825, y: -2.5052872}
+  m_Offset: {x: 4.9203215, y: -2.5052872}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9999,7 +9999,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.4587097, y: 1.6110382}
+  m_Size: {x: 3.5703878, y: 1.6110382}
   m_EdgeRadius: 0
 --- !u!114 &505753581
 MonoBehaviour:
@@ -10013,7 +10013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6181da97b7409c84789622136c0a5c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSON: {fileID: 4900000, guid: 61b47cdd4e82f084b8b9185b01c68b0b, type: 3}
+  inkJSON: {fileID: 4900000, guid: a98b588cbabd6bf4ab048b6efa46f132, type: 3}
   dialogueStartDelay: 0
   panel: {fileID: 21460385}
 --- !u!1 &520461444
@@ -14532,13 +14532,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797472214}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.00069049717, w: 0.99999976}
   m_LocalPosition: {x: 286.5549, y: -193.11633, z: -0.09256914}
   m_LocalScale: {x: 1.5122198, y: 1.5122198, z: 1.5122198}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2069925164}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.079}
 --- !u!212 &797472216
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14978,7 +14978,7 @@ Transform:
   m_GameObject: {fileID: 828126218}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 286.81, y: -200.79, z: -16.54}
+  m_LocalPosition: {x: 286.81, y: -200.823, z: -16.54}
   m_LocalScale: {x: 0.73212475, y: 0.7006146, z: 0.9891323}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24190,7 +24190,7 @@ Transform:
   m_GameObject: {fileID: 1282940808}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.45, y: -0.5083771, z: 9.989761}
+  m_LocalPosition: {x: 2.441, y: -0.62, z: 9.989761}
   m_LocalScale: {x: 0.73212475, y: 0.7006146, z: 0.9891323}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25752,7 +25752,7 @@ Transform:
   m_GameObject: {fileID: 1358379956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 285.52838, y: -199.59, z: -26.54}
+  m_LocalPosition: {x: 285.52838, y: -199.623, z: -26.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26046,7 +26046,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -31048,8 +31048,8 @@ Transform:
   m_GameObject: {fileID: 1617026909}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalScale: {x: 0.6680635, y: 0.6336069, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1354505684}
@@ -39924,8 +39924,8 @@ Transform:
   m_GameObject: {fileID: 2000519103}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0145, y: -0.1176, z: 26.529762}
-  m_LocalScale: {x: 0.72012883, y: 0.6170694, z: 0.58489996}
+  m_LocalPosition: {x: 0.9819, y: -0.0851, z: 26.529762}
+  m_LocalScale: {x: 0.6680635, y: 0.6336069, z: 0.58489996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 203287980}
