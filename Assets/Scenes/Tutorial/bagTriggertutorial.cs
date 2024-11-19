@@ -66,15 +66,15 @@ public class bagTriggertutorial : MonoBehaviour
             forpickup.gameObject.SetActive(true);
             Move.gameObject.SetActive(false);
             Arrow.gameObject.SetActive(false);
-            
-
 
         }
         else
         {
-           
+            BagCue.gameObject.SetActive(false);
+            Arrow.gameObject.SetActive(true);
             lunchboxinteract.gameObject.SetActive(false);
             Move.gameObject.SetActive(true);
+            forpickup.gameObject.SetActive(false);
         }
     }
 
