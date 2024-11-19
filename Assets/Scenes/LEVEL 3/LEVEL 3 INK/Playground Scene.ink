@@ -103,7 +103,8 @@ Are you walking home alone? We can give you a ride.
 
 ==NOTHANKS2==
 No, I should bring you home and tell your mom about this.
-SCENE: Uncle Owen and Alice gave you a ride home.
+Uncle Owen and Alice will give you a ride home.
+....
 ->DONE
 
 

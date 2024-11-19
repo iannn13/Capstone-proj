@@ -7,7 +7,6 @@ using UnityEngine.UI;
 using UnityEngine.Experimental.GlobalIllumination;
 using Unity.Burst.Intrinsics;
 using UnityEngine.SceneManagement;
-using UnityEditor.VersionControl;
 
 public class C2Dial : MonoBehaviour
 {
@@ -288,7 +287,7 @@ public class C2Dial : MonoBehaviour
                 warsakpic.SetActive(false);
             }
 
-            else if (storyText.Contains("...") || (storyText.Contains("....")))
+            else if (storyText.Contains("...") || (storyText.Contains("....")) || (storyText.Contains(".....")))
             {
                 transitionManager.FadeToScene(27);
             }
