@@ -5941,7 +5941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 64849767}
-  Force: 3
+  Force: 4
   animator: {fileID: 64849769}
   rightMove: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
@@ -32114,7 +32114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 64849767}
-  Force: 3
+  Force: 4
   animator: {fileID: 64849769}
   catdialogueManager: {fileID: 0}
   mamadialogueManager: {fileID: 0}
@@ -32124,6 +32124,7 @@ MonoBehaviour:
   teddydialogueManager: {fileID: 0}
   juperdialogueManager: {fileID: 0}
   ependialogueManager: {fileID: 0}
+  kidnapperdialogueManager: {fileID: 0}
   mama2dialogueManager: {fileID: 0}
   nellydialogueManager: {fileID: 0}
   IcedialogueManager: {fileID: 0}
