@@ -1082,6 +1082,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1298213654}
   dialogueText: {fileID: 440708962}
   continueButton: {fileID: 524810735}
+  panel: {fileID: 0}
   choices:
   - {fileID: 1328243839}
   - {fileID: 383264074}
@@ -8981,6 +8982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 7e859a7c875cf1d4ba4d177402595dba, type: 3}
   dialogueStartDelay: 1
+  panel: {fileID: 0}
 --- !u!1 &488537979
 GameObject:
   m_ObjectHideFlags: 0
@@ -12155,6 +12157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2e0d53f1f139c4796ec45ae0c2991a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCoins: 0
   moneyText: {fileID: 967157492}
 --- !u!1 &576921486
 GameObject:
@@ -19567,7 +19570,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bbbe7147f4080d47ad5ce80fd12f2b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c566d08be4f7494692264857b511d7d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25341,6 +25344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: ec4a8fd00124f134b9b1f1f79dc44380, type: 3}
   dialogueStartDelay: 1
+  panel: {fileID: 0}
 --- !u!1 &1244443633
 GameObject:
   m_ObjectHideFlags: 0

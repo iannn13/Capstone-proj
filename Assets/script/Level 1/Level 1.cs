@@ -64,6 +64,10 @@ public class Level1 : MonoBehaviour
     private void StartNewGame()
     {
         DataHandler.isNewGame = true;
+        PlayerPrefs.SetInt("IsNewGame", 1);
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadSceneAsync(2);
     }
+
+
 }
