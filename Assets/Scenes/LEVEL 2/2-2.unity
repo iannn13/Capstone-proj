@@ -25985,7 +25985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1346617234}
-  Force: 3
+  Force: 4
   animator: {fileID: 1346617237}
   catdialogueManager: {fileID: 0}
   mamadialogueManager: {fileID: 0}
@@ -29616,7 +29616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1346617234}
-  Force: 3
+  Force: 4
   animator: {fileID: 1346617237}
   rightMove: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}

@@ -1,24 +1,15 @@
 ->MAIN
 ==MAIN==
 Aris! Psst! Over here!
-+[Who's there?]
-->husder
-+[Huh?]
-->huh
-
-==husder==
 It's me, Teddy. You have to come with me!
 +[Why?]
 ->why
 +[You have to go home!]
 ->home
 
-==huh==
-Aris, I'm behind the bush.
-->husder
 
 ==why==
-Why? What are we gonna go?
+Why? What are we gonna do?
 We have to go back to the woods.
 +[Because?]
 ->because
@@ -39,19 +30,26 @@ I can't! Not yet!
 ->because
 
 ==because==
-Because... There were other kids in woods too.
+Because... There were other kids in the woods too.
 We have to save them.
-+[Alright.]
++[Police.]
+->police2
++[Ask help to someone.]
 ->alright
-+[We have to...]
-->wehaveto
++[Let's go.]
+->letsgo
+
+==letsgo==
+Let's go and save them!
+We're gonna be like superheroes!
+->END
 
 ==alright==
 Alright, but we have to ask help to an adult.
 Okay.
 ->END
 
-==wehaveto==
+==police2==
 We have to ask help to the police.
 Okay!
 ->END

@@ -848,11 +848,11 @@ Transform:
   m_GameObject: {fileID: 41574091}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -709.86, y: -639.71, z: 0}
-  m_LocalScale: {x: 0.5484844, y: 0.5484844, z: 0.5484844}
+  m_LocalPosition: {x: -62.6131, y: -0.35864258, z: -3.950627}
+  m_LocalScale: {x: 0.63532925, y: 0.63532925, z: 0.63532925}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2077999395}
+  m_Father: {fileID: 1026980085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &41574093
 MonoBehaviour:
@@ -7311,9 +7311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527c2df8754ffee499e2fd56d7e089b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1022973464}
+  audioSource: {fileID: 0}
   dialogueOpenClip: {fileID: 0}
-  dialogueLoopClip: {fileID: 8300000, guid: 6923bc02c894b644393afdc210a115f5, type: 3}
+  dialogueLoopClip: {fileID: 0}
   dialogueEndClip: {fileID: 0}
 --- !u!114 &356408389
 MonoBehaviour:
@@ -17212,7 +17212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b4a82bf6789536041ad1534a6e047725, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e08e467c9ae2394c83f0c57d8f5aa74, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17749,9 +17749,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527c2df8754ffee499e2fd56d7e089b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1022973464}
+  audioSource: {fileID: 0}
   dialogueOpenClip: {fileID: 0}
-  dialogueLoopClip: {fileID: 8300000, guid: 6923bc02c894b644393afdc210a115f5, type: 3}
+  dialogueLoopClip: {fileID: 0}
   dialogueEndClip: {fileID: 0}
 --- !u!114 &866137965
 MonoBehaviour:
@@ -21651,6 +21651,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 41574092}
   - {fileID: 573046387}
   - {fileID: 1920624013}
   - {fileID: 2080723745}
@@ -31251,7 +31252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1484865474}
-  Force: 3
+  Force: 4
   animator: {fileID: 1484865477}
   catdialogueManager: {fileID: 0}
   mamadialogueManager: {fileID: 0}
@@ -32583,7 +32584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1484865474}
-  Force: 3
+  Force: 4
   animator: {fileID: 1484865477}
   rightMove: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
@@ -44761,7 +44762,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 41574092}
   - {fileID: 1234277936}
   - {fileID: 61130323}
   m_Father: {fileID: 82892507}
