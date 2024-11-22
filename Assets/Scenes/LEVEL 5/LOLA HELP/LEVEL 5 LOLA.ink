@@ -1,3 +1,5 @@
+-> main
+=== main ===
 Iho, it's you. Come here.
 +[What can I help?]
 ->Help
@@ -23,3 +25,4 @@ Thank you Lola.
 ==NEXT2==
 I don't think it's that. Try again.
 ->Help
+-> END

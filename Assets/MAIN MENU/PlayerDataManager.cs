@@ -12,9 +12,9 @@ namespace MyGameNamespace
         public Transform playerTransform;
         public Image saveAlertImage; // Reference to the Image element
         public float alertDuration = 2f; // Duration the image will be visible
-        public GameObject pauseMenu; // Reference to the Pause Menu GameObject
-        private bool isSaveAlertActive = false; // Track if the save alert is active
-        public List<string> collectedItems = new List<string>(); // Track collected items
+        public GameObject pauseMenu; 
+        private bool isSaveAlertActive = false;
+        public List<string> collectedItems = new List<string>(); 
 
         private void Start()
         {

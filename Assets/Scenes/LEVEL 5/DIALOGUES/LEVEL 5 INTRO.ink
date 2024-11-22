@@ -7,6 +7,7 @@ Please go straight home as soon as possible.
 ->WHY
 +[Okay.]
 ->OKAY
+->DONE
 
 ==WHY==
 

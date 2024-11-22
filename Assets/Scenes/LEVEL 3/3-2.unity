@@ -11497,6 +11497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2e0d53f1f139c4796ec45ae0c2991a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCoins: 0
   moneyText: {fileID: 967157492}
 --- !u!1 &576921486
 GameObject:
@@ -18424,7 +18425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bbbe7147f4080d47ad5ce80fd12f2b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c566d08be4f7494692264857b511d7d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class DataHandler : MonoBehaviour
 {
     public static DataHandler Instance { get; private set; } // Singleton instance
+    public int playerCoins = 0;
     public Text moneyText;
 
     private int money;
@@ -92,4 +93,13 @@ public class DataHandler : MonoBehaviour
     {
         moneyText.text = " " + money.ToString();
     }
+
+    public void AddMoney(int amount)
+    {
+        money += amount;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
+        Debug.Log($"Added {amount} money. Total: {money}");
+    }
+
 }
