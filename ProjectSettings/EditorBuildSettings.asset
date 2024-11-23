@@ -131,4 +131,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 5/Level 5 - 2 P2 panel.unity
     guid: 8d9ec6445958c454fbd9da031337924f
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 5/Level 5-2 C2 GOING TO SCHOOL.unity
+    guid: e7b4d4a5ce01b3d4187865b7c0450a66
   m_configObjects: {}
