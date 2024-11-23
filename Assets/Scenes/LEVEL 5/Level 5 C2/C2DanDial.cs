@@ -37,6 +37,10 @@ public class C2DanDial : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource snowBarkAudioSource;
+
+
     [Header("Player Movement")]
     public RightMove rightMove;
     public RightMovePlayer2 player2move;
@@ -184,6 +188,14 @@ public class C2DanDial : MonoBehaviour
                 SnowPic.gameObject.SetActive(true);
                 SnowName.gameObject.SetActive(true);
 
+            if (snowBarkAudioSource != null)
+            {
+                snowBarkAudioSource.Play();
+            }
+            else
+            {
+                Debug.LogError("No audio source assigned for Snow's bark sound!");
+            }
 
             }
             else if (storyText.Contains("...")){
