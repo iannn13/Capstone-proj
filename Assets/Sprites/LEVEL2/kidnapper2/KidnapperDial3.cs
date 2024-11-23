@@ -43,9 +43,8 @@ public class KidnapperDial3 : MonoBehaviour
     [SerializeField] private GameObject teddy1;
     [SerializeField] private GameObject kidnapper1;
 
-
-
-
+    [Header("Points")]
+    [SerializeField] private PointsManager PointsManager;
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
@@ -121,8 +120,8 @@ public class KidnapperDial3 : MonoBehaviour
             Debug.Log("Current Story Text: " + storyText);
             DisplayChoices();
 
-            if (storyText.Contains("Hey kids! Do you play computer games?") || storyText.Contains("I'm giving away free games passes worth 100 peesos!") || storyText.Contains("Yes, but you have to come with me to the game event near the woods!") || storyText.Contains("Don’t worry, kids! Almost everyone in this town are there!")
-                || storyText.Contains("Yes, this game pass works in every gaming platform!") || storyText.Contains("You’ll miss out with the free rewards that you can get, if you don’t attend to the game event.") || storyText.Contains("What do you say?"))
+            if (storyText.Contains("Hey kids! Do you play computer games?") || storyText.Contains("I'm giving away free games passes worth 100 peesos!") || storyText.Contains("Yes, but you have to come with me to the game event near the woods!") || storyText.Contains("Donï¿½t worry, kids! Almost everyone in this town are there!")
+                || storyText.Contains("Yes, this game pass works in every gaming platform!") || storyText.Contains("Youï¿½ll miss out with the free rewards that you can get, if you donï¿½t attend to the game event.") || storyText.Contains("What do you say?"))
             {
                 you.gameObject.SetActive(false);
                 youpic.gameObject.SetActive(false);
@@ -130,6 +129,20 @@ public class KidnapperDial3 : MonoBehaviour
                 teddypic.gameObject.SetActive(false);
                 kidnapper.gameObject.SetActive(true);
                 kidnapperpic.gameObject.SetActive(true);
+            }
+
+            if (storyText.Contains("You should go home now.")||storyText.Contains("You should go home now.")) 
+            {
+                Debug.Log("Adding Points");
+                if (PointsManager.Instance != null)
+                {
+                    PointsManager.Instance.AddPoints(10);
+                    Debug.Log("Added");
+                }
+                else
+                {
+                    Debug.LogError("PointsManager not assigned!");
+                }
             }
             else if (storyText.Contains("...."))
             {

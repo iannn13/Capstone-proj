@@ -42,6 +42,7 @@ We have to save them.
 ==letsgo==
 Let's go and save them!
 We're gonna be like superheroes!
+...
 ->END
 
 ==alright==
