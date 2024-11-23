@@ -122,4 +122,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 5/Level 5-2 new.unity
     guid: bb981f52e4fccd84390f0f52a314f935
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 5/Level 5-2 C2.unity
+    guid: b635861a260fb5149a6ae5d3fda56de6
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 5/Level 5-2 C2 P2.unity
+    guid: 42d76125401cdd1468c756cec9d9dbe3
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 5/Level 5 - 2 P2 panel.unity
+    guid: 8d9ec6445958c454fbd9da031337924f
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 4/TOYSTORE/TOY STORE.unity
+    guid: e491b18f55aad2d48a138053bb372d96
+    path: Assets/Scenes/LEVEL 5/Level 5-2 C2 GOING TO SCHOOL.unity
+    guid: e7b4d4a5ce01b3d4187865b7c0450a66
   m_configObjects: {}

@@ -147,6 +147,7 @@ public class LolaDial : MonoBehaviour
             kid.gameObject.SetActive(true);
             panel.gameObject.SetActive(false);
             lolaID.gameObject.SetActive(false);
+            lola.gameObject.SetActive(true);
         }
     }
     private IEnumerator TypeText(string text)

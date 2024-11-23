@@ -90,7 +90,7 @@ public class MamaLevel5 : MonoBehaviour
             DisplayChoices();
 
             // Check for specific text to toggle images
-            if (storyText.Contains("It's Friday, your bestfriend is still missing.") || storyText.Contains("Good morning, son.")
+            if (storyText.Contains("Good morning, son.")
             || storyText.Contains("Please go straight home as soon as possible.") || 
             storyText.Contains("Because someone needs to look after junior.") ||
             storyText.Contains("I'll be getting the new car that Papa left for us.") ||
@@ -111,6 +111,13 @@ public class MamaLevel5 : MonoBehaviour
                 mamapic.gameObject.SetActive(false);
                 mamaname.gameObject.SetActive(false);
                 youname.gameObject.SetActive(true);
+            }
+            else if (storyText.Contains("It's Friday, your bestfriend is still missing."))
+            {
+                youpic.gameObject.SetActive(false);
+                mamapic.gameObject.SetActive(false);
+                mamaname.gameObject.SetActive(false);
+                youname.gameObject.SetActive(false);
             }
            
         }   

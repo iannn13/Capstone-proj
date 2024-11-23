@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576ebec7e35e5384fb5279b275b8ab66, type: 3}
+  m_Name: bball
+  m_EditorClassIdentifier: 
+  itemName: basketball
+  itemImage: {fileID: 21300000, guid: 5b70f8fb561c81e49a180b7fcc671bca, type: 3}
+  scoreRequirement: 0
+  cashRequirement: 20
+  itemPrefab: {fileID: 3432440368696863506, guid: 6d2ea602afbf255448b975752c2115e0, type: 3}

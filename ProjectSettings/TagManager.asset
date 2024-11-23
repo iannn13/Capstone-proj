@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StopTrigger
   - Coin
+  - PlayerRoom
   layers:
   - Default
   - TransparentFX

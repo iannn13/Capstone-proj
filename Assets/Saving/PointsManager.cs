@@ -35,6 +35,7 @@ public class PointsManager : MonoBehaviour
             Debug.LogError("AchievementDisplay not found");
         }
     }
+    public int GetScore() => achievementPoints;
 
 
     public void SaveAchievementPoints()

@@ -110,7 +110,7 @@ public class teddydial5 : MonoBehaviour
             || storyText.Contains("We have to go back to the woods.") || storyText.Contains("I can't! Not yet!")
             || storyText.Contains("Because... There were other kids in the woods too.")
             || storyText.Contains("We have to save them.") ||
-            storyText.Contains("Okay!") 
+            storyText.Contains("Okay.") 
             )
 
             {
@@ -130,7 +130,7 @@ public class teddydial5 : MonoBehaviour
             ||storyText.Contains("I'm taking you to the police.") 
             ||storyText.Contains("You pulled Teddy's hand but let go.") 
             ||storyText.Contains("What's wrong with you?") 
-            ||storyText.Contains("Okay.") 
+            ||storyText.Contains("Okay!") 
             )         
             {
                 kidpic.gameObject.SetActive(true);
@@ -142,6 +142,19 @@ public class teddydial5 : MonoBehaviour
             }
             else if (storyText.Contains("...")){
                 gameOverPanel.gameObject.SetActive(true);
+            }
+
+            else if(storyText.Contains("..")
+            ){
+            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+            if (transitionManager != null)
+            {
+                transitionManager.FadeToScene(37);
+            }
+            else
+            {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
+            }
             }
         }   
         else
