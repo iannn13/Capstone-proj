@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class StoreManager : MonoBehaviour
 {
@@ -11,7 +13,8 @@ public class StoreManager : MonoBehaviour
     public TMP_Text costText;      
     public TMP_Text playerStatsText; 
     public Button claimButton;    
-    public Transform playerRoom;  
+    public Transform playerRoom;
+    private RoomManager roomManager;
 
     private int currentIndex = 0; 
     private int playerScore;       
@@ -19,24 +22,36 @@ public class StoreManager : MonoBehaviour
 
     void Start()
     {
-        if (playerRoom == null)
-        {
-            GameObject foundRoom = GameObject.FindGameObjectWithTag("PlayerRoom"); 
-            if (foundRoom != null)
-            {
-                playerRoom = foundRoom.transform;
-            }
-            else
-            {
-                Debug.LogError("Player Room not found! Make sure the GameObject exists in the scene.");
-            }
-        }
+        roomManager = FindObjectOfType<RoomManager>();
+        SceneManager.LoadScene("ROOM", LoadSceneMode.Additive);
+        StartCoroutine(InitializePlayerRoom());
 
         playerScore = PointsManager.Instance != null ? PointsManager.Instance.achievementPoints : 0;
         playerCash = DataHandler.Instance != null ? DataHandler.Instance.GetMoney() : 0;
 
         // Update UI to reflect current data
         UpdateUI();
+    }
+    IEnumerator InitializePlayerRoom()
+    {
+        yield return new WaitForSeconds(0.1f); // Allow PlayerRoom to load completely
+
+        GameObject foundRoom = GameObject.FindGameObjectWithTag("PlayerRoom");
+        if (foundRoom != null)
+        {
+            playerRoom = foundRoom.transform;
+
+            // Hide the PlayerRoom visuals
+            PlayerRoomManager roomManager = playerRoom.GetComponent<PlayerRoomManager>();
+            if (roomManager != null)
+            {
+                roomManager.HideRoom();
+            }
+        }
+        else
+        {
+            Debug.LogError("Player Room not found! Make sure it is tagged and set up correctly.");
+        }
     }
 
     public void NextItem()
@@ -55,37 +70,33 @@ public class StoreManager : MonoBehaviour
 
     public void ClaimItem()
     {
-        StoreItem currentItem = storeItems[currentIndex];
-
-        if (playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement)
+        Debug.Log("ClaimItem method triggered");
+        // Ensure the roomManager exists before calling SaveRoomState
+        if (roomManager != null)
         {
+            StoreItem currentItem = storeItems[currentIndex];
 
-            playerScore -= currentItem.scoreRequirement;
-            playerCash -= currentItem.cashRequirement;
-
-            // Update PointsManager and DataHandler
-            if (PointsManager.Instance != null)
-                PointsManager.Instance.achievementPoints = playerScore;
-
-            if (DataHandler.Instance != null)
-                DataHandler.Instance.AddMoney(-currentItem.cashRequirement);
-
-            // Instantiate the item in the Player Room
-            if (playerRoom != null)
+            if (playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement)
             {
-                Instantiate(currentItem.itemPrefab, playerRoom);
-            }
-            else
-            {
-                Debug.LogError("Player Room is not assigned! Cannot instantiate item.");
-            }
+                playerScore -= currentItem.scoreRequirement;
+                playerCash -= currentItem.cashRequirement;
 
-            // Update the UI
-            UpdateUI();
+                if (PointsManager.Instance != null)
+                    PointsManager.Instance.achievementPoints = playerScore;
+
+                if (DataHandler.Instance != null)
+                    DataHandler.Instance.AddMoney(-currentItem.cashRequirement);
+
+                GameObject newItem = Instantiate(currentItem.itemPrefab, playerRoom);
+
+                roomManager.roomItems.Add(newItem); // Add to the list in RoomManager
+                roomManager.SaveRoomState(); // Save the room state
+            }
         }
     }
 
-    private void UpdateUI()
+
+        private void UpdateUI()
     {
         // Get the current item
         StoreItem currentItem = storeItems[currentIndex];
