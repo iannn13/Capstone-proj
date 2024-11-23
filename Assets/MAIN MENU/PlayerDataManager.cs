@@ -166,5 +166,28 @@ namespace MyGameNamespace
                 Debug.LogError("Player GameObject with tag 'Player' not found in the loaded scene.");
             }
         }
+
+
+        public void StartNewGame()
+        {
+         // Set the new game flag
+        DataHandler.isNewGame = true;
+
+        // Reset collected items and player position if necessary
+        collectedItems.Clear();
+        if (playerTransform != null)
+        {
+            playerTransform.position = Vector3.zero; // Or some default starting position
+        }
+
+        // Retain the current achievement points; do not reset
+        PointsManager.Instance.LoadAchievementPoints(); 
+
+        // Save game state for consistency
+        SaveGame();
+        }
     }
+
+
+    
 }

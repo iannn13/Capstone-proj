@@ -27372,6 +27372,7 @@ MonoBehaviour:
   kidnapperpic: {fileID: 1133869481}
   teddy1: {fileID: 1698659555}
   kidnapper1: {fileID: 926461290}
+  PointsManager: {fileID: 2107921097}
   typingSpeed: 0.05
 --- !u!1 &1447555853
 GameObject:
@@ -27579,6 +27580,7 @@ MonoBehaviour:
   kidnapper1: {fileID: 1059903842}
   you: {fileID: 77608702}
   typingSpeed: 0.05
+  PointsManager: {fileID: 0}
 --- !u!1 &1460453631
 GameObject:
   m_ObjectHideFlags: 0

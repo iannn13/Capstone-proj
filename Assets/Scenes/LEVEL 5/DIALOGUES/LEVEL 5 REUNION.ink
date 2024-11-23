@@ -42,11 +42,13 @@ We have to save them.
 ==letsgo==
 Let's go and save them!
 We're gonna be like superheroes!
+...
 ->END
 
 ==alright==
 Alright, but we have to ask help to an adult.
 Okay.
+..
 ->END
 
 ==police2==

@@ -5801,6 +5801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinValue: 5
   coinID: 7
+  pickupSound: {fileID: 0}
 --- !u!58 &1328636474
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6045,6 +6046,7 @@ MonoBehaviour:
   Kidnapperpic: {fileID: 1659062572}
   youpic: {fileID: 118535840}
   typingSpeed: 0.05
+  PointsManager: {fileID: 748192088}
 --- !u!1 &1375504255
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,6 +36,10 @@ public class KidnapperDialogue : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
+    [Header("Points")]
+    [SerializeField] private PointsManager PointsManager;
+
+
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
@@ -111,6 +115,23 @@ public class KidnapperDialogue : MonoBehaviour
                 Debug.Log("Game over detected");
                 ShowGameOver();
             }
+
+
+            if (storyText.Contains("The man gave up but still stays there.")||storyText.Contains("No, sorry.")|| storyText.Contains("..")) 
+            {
+                Debug.Log("Adding Points");
+                if (PointsManager.Instance != null)
+                {
+                    PointsManager.Instance.AddPoints(10);
+                    Debug.Log("Added");
+                }
+                else
+                {
+                    Debug.LogError("PointsManager not assigned!");
+                }
+            }
+
+
             else if (storyText.Contains("It's only few blocks away to that corner sir."))
             {
                 Kidnapper.gameObject.SetActive(false);
@@ -140,8 +161,6 @@ public class KidnapperDialogue : MonoBehaviour
             }
 
         }
-
-
     }
 
     private IEnumerator TypeText(string text)

@@ -15336,6 +15336,7 @@ MonoBehaviour:
   kidnapper1: {fileID: 1083005955}
   you: {fileID: 440307214}
   typingSpeed: 0.05
+  PointsManager: {fileID: 1058919146}
 --- !u!1 &928860202
 GameObject:
   m_ObjectHideFlags: 0

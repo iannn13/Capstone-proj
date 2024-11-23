@@ -5201,6 +5201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinValue: 10
   coinID: 2
+  pickupSound: {fileID: 8300000, guid: 575948b7b0d08bd468f1edc674235780, type: 3}
 --- !u!58 &866981469
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5411,6 +5412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinValue: 10
   coinID: 1
+  pickupSound: {fileID: 8300000, guid: 575948b7b0d08bd468f1edc674235780, type: 3}
 --- !u!58 &877940564
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -16,12 +16,14 @@ Allow me to introduce myself, I'm Dan and this is my dog name Snow.
 ==hello==
 Hello, Snow. I think we are neighbors!
 We just live in the suburbs here, I'm taking her to a walk right now.
-Woof! //Snow (Dog)
+Woof!
+..//Snow (Dog)
 ->END
 ==know==
 I know her! She's always outside guarding.
 Yes, because she always waits for me outside when I'm away.
-Woof! //Snow (Dog)
+Woof!
+..
 ->END
 
 // NEXT SCENE: Dan talked to Teddy's mom and said that they are coming...
