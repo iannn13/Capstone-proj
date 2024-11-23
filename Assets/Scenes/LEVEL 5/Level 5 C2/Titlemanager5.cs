@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Titlemanager3 : MonoBehaviour
+public class Titlemanager5 : MonoBehaviour
 {
     public Animator fadeAnimator;  // Reference to the Animator component handling fade
     public float delayBeforeFade = 3f;  // Delay before fade starts

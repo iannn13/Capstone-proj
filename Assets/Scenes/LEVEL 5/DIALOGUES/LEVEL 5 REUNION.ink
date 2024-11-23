@@ -48,6 +48,7 @@ We're gonna be like superheroes!
 ==alright==
 Alright, but we have to ask help to an adult.
 Okay.
+..
 ->END
 
 ==police2==

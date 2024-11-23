@@ -1,8 +1,6 @@
 ->MAIN
 ==MAIN==
 
-The police officers and his mother arrived...
-
 Thank goodness, Anak!
 I missed you so much Mama.
 Young man, I think you should go to school now. We will handle this.

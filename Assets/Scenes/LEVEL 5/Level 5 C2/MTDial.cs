@@ -8,7 +8,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 using Unity.Burst.Intrinsics;
 using UnityEngine.SceneManagement;
 
-public class teddydial5 : MonoBehaviour
+public class MTDial : MonoBehaviour
 {
     public delegate void DialogueCompleteHandler();
     public event DialogueCompleteHandler OnDialogueComplete;
@@ -37,21 +37,21 @@ public class teddydial5 : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
-    public FadeManager fadeManager;
-
     [Header("Dialogue UI")]
+
     [SerializeField] private GameObject kid;
-    [SerializeField] private GameObject kidpic;
-    [SerializeField] private GameObject teddy;
     [SerializeField] private GameObject teddypic;
-    [SerializeField] private GameObject youname;
+    [SerializeField] private GameObject policepic;
+    [SerializeField] private GameObject mamatedpic;
+    [SerializeField] private GameObject mamatedname;
+    [SerializeField] private GameObject policename;
     [SerializeField] private GameObject teddyname;
 
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
-    private static teddydial5 instance;
+    private static MTDial instance;
 
     private void Awake()
     {
@@ -62,7 +62,7 @@ public class teddydial5 : MonoBehaviour
         instance = this;
     }
 
-    public static teddydial5 GetInstance()
+    public static MTDial GetInstance()
     {
         return instance;
     }
@@ -106,39 +106,43 @@ public class teddydial5 : MonoBehaviour
             DisplayChoices();
 
             // Check for specific text to toggle images
-            if (storyText.Contains("Aris! Psst! Over here!")||storyText.Contains("It's me, Teddy. You have to come with me!")
-            || storyText.Contains("We have to go back to the woods.") || storyText.Contains("I can't! Not yet!")
-            || storyText.Contains("Because... There were other kids in the woods too.")
-            || storyText.Contains("We have to save them.") ||
-            storyText.Contains("Okay.") 
+            if (storyText.Contains("Thank goodness, Anak!") 
             )
-
             {
-                kidpic.gameObject.SetActive(false);
-                teddy.gameObject.SetActive(true);
-                teddypic.gameObject.SetActive(true);
-                teddyname.gameObject.SetActive(true);
-                youname.gameObject.SetActive(false);
-            }
-
-            else if (storyText.Contains("Why? What are we gonna do?")||
-            storyText.Contains("No! Why do you want to go back there?") ||
-            storyText.Contains("Let's go and save them!") ||
-            storyText.Contains("We're gonna be like superheroes!") || 
-            storyText.Contains("Alright, but we have to ask help to an adult.")
-            ||storyText.Contains("We have to ask help to the police.") 
-            ||storyText.Contains("I'm taking you to the police.") 
-            ||storyText.Contains("You pulled Teddy's hand but let go.") 
-            ||storyText.Contains("What's wrong with you?") 
-            ||storyText.Contains("Okay!") 
-            )         
-            {
-                kidpic.gameObject.SetActive(true);
-                teddy.gameObject.SetActive(true);
+                mamatedname.gameObject.SetActive(true);
+                mamatedpic.gameObject.SetActive(true);
+                policename.gameObject.SetActive(false);
+                policepic.gameObject.SetActive(false);
+                kid.gameObject.SetActive(true);
                 teddypic.gameObject.SetActive(false);
                 teddyname.gameObject.SetActive(false);
-                youname.gameObject.SetActive(true);
-                
+
+            }
+
+            else if (storyText.Contains("I missed you so much Mama.") 
+            )
+            {
+                mamatedname.gameObject.SetActive(false);
+                mamatedpic.gameObject.SetActive(false);
+                policename.gameObject.SetActive(false);
+                policepic.gameObject.SetActive(false);
+                kid.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(true);
+                teddyname.gameObject.SetActive(true);
+
+            }
+             else if (storyText.Contains("Young man, I think you should go to school now. We will handle this.") 
+             || storyText.Contains("Do you want us to take you there?")
+            )
+            {
+                mamatedname.gameObject.SetActive(false);
+                mamatedpic.gameObject.SetActive(false);
+                policename.gameObject.SetActive(true);
+                policepic.gameObject.SetActive(true);
+                kid.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(false);
+                teddyname.gameObject.SetActive(false);
+
             }
             else if (storyText.Contains("...")){
                 gameOverPanel.gameObject.SetActive(true);
@@ -160,9 +164,8 @@ public class teddydial5 : MonoBehaviour
         else
         {
             ExitDialogueMode();
-            kid.gameObject.SetActive(true);
             panel.gameObject.SetActive(false);
-            
+            kid.gameObject.SetActive(true);
         }
     }
     private void ExitDialogueMode()

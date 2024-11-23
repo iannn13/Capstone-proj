@@ -8,7 +8,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 using Unity.Burst.Intrinsics;
 using UnityEngine.SceneManagement;
 
-public class teddydial5 : MonoBehaviour
+public class C2DanDial : MonoBehaviour
 {
     public delegate void DialogueCompleteHandler();
     public event DialogueCompleteHandler OnDialogueComplete;
@@ -37,21 +37,30 @@ public class teddydial5 : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
+    [Header("Player Movement")]
+    public RightMove rightMove;
+    public RightMovePlayer2 player2move;
+    public GameObject Player;
+    public GameObject Player2;
+
     public FadeManager fadeManager;
 
-    [Header("Dialogue UI")]
-    [SerializeField] private GameObject kid;
+      [Header("Dialogue UI")]
     [SerializeField] private GameObject kidpic;
-    [SerializeField] private GameObject teddy;
+    [SerializeField] private GameObject danpic;
     [SerializeField] private GameObject teddypic;
-    [SerializeField] private GameObject youname;
     [SerializeField] private GameObject teddyname;
+    [SerializeField] private GameObject youname;
+    [SerializeField] private GameObject danname;
+    [SerializeField] private GameObject SnowPic;
+    [SerializeField] private GameObject SnowName
+    ;
 
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
-    private static teddydial5 instance;
+    private static C2DanDial instance;
 
     private void Awake()
     {
@@ -62,7 +71,7 @@ public class teddydial5 : MonoBehaviour
         instance = this;
     }
 
-    public static teddydial5 GetInstance()
+    public static C2DanDial GetInstance()
     {
         return instance;
     }
@@ -73,7 +82,6 @@ public class teddydial5 : MonoBehaviour
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
         continueButton.onClick.AddListener(ContinueStory);
-        panel.gameObject.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -92,79 +100,9 @@ public class teddydial5 : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
-
         ContinueStory();
     }
-        private void ContinueStory()
-    {
-        if (currentStory.canContinue)
-        {
-            string storyText = currentStory.Continue();
-            StopAllCoroutines();
-            StartCoroutine(TypeText(storyText));
-            Debug.Log("Current Story Text: " + storyText); // Log the current story text
-            DisplayChoices();
 
-            // Check for specific text to toggle images
-            if (storyText.Contains("Aris! Psst! Over here!")||storyText.Contains("It's me, Teddy. You have to come with me!")
-            || storyText.Contains("We have to go back to the woods.") || storyText.Contains("I can't! Not yet!")
-            || storyText.Contains("Because... There were other kids in the woods too.")
-            || storyText.Contains("We have to save them.") ||
-            storyText.Contains("Okay.") 
-            )
-
-            {
-                kidpic.gameObject.SetActive(false);
-                teddy.gameObject.SetActive(true);
-                teddypic.gameObject.SetActive(true);
-                teddyname.gameObject.SetActive(true);
-                youname.gameObject.SetActive(false);
-            }
-
-            else if (storyText.Contains("Why? What are we gonna do?")||
-            storyText.Contains("No! Why do you want to go back there?") ||
-            storyText.Contains("Let's go and save them!") ||
-            storyText.Contains("We're gonna be like superheroes!") || 
-            storyText.Contains("Alright, but we have to ask help to an adult.")
-            ||storyText.Contains("We have to ask help to the police.") 
-            ||storyText.Contains("I'm taking you to the police.") 
-            ||storyText.Contains("You pulled Teddy's hand but let go.") 
-            ||storyText.Contains("What's wrong with you?") 
-            ||storyText.Contains("Okay!") 
-            )         
-            {
-                kidpic.gameObject.SetActive(true);
-                teddy.gameObject.SetActive(true);
-                teddypic.gameObject.SetActive(false);
-                teddyname.gameObject.SetActive(false);
-                youname.gameObject.SetActive(true);
-                
-            }
-            else if (storyText.Contains("...")){
-                gameOverPanel.gameObject.SetActive(true);
-            }
-
-            else if(storyText.Contains("..")
-            ){
-            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
-            if (transitionManager != null)
-            {
-                transitionManager.FadeToScene(37);
-            }
-            else
-            {
-                Debug.LogError("SceneTransitionManager not found in the scene!");
-            }
-            }
-        }   
-        else
-        {
-            ExitDialogueMode();
-            kid.gameObject.SetActive(true);
-            panel.gameObject.SetActive(false);
-            
-        }
-    }
     private void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
@@ -175,7 +113,104 @@ public class teddydial5 : MonoBehaviour
         OnDialogueComplete?.Invoke();
     }
 
-    
+       private void ContinueStory()
+    {
+        if (currentStory.canContinue)
+        {
+            string storyText = currentStory.Continue();
+            StopAllCoroutines();
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); // Log the current story text
+            DisplayChoices();
+
+            // Check for specific text to toggle images
+            if (storyText.Contains("Miss, please help us.")
+            || storyText.Contains("I know her! She's always outside guarding.")|| storyText.Contains("Hello, Snow. I think we are neighbors!")
+            )          
+            {
+                kidpic.gameObject.SetActive(true);
+                danpic.gameObject.SetActive(false);
+                danname.gameObject.SetActive(false);
+                youname.gameObject.SetActive(true);
+                teddypic.gameObject.SetActive(false);
+                teddyname.gameObject.SetActive(false);
+                SnowPic.gameObject.SetActive(false);
+                SnowName.gameObject.SetActive(false);
+                
+            }
+
+            else if (storyText.Contains("What can I help?")||storyText.Contains("Wait, you're the missing kid! Are you okay?")
+            || storyText.Contains("Okay, I know I have your flyer here,")
+            || storyText.Contains("Please stay here with me while we wait for them.")
+            || storyText.Contains("The lady took her phone out and dial Teddy's mom's phone number.")
+            || storyText.Contains("Allow me to introduce myself, I'm Dan and this is my dog name Snow.")
+            || storyText.Contains("We just live in the suburbs here, I'm taking her to a walk right now.")
+            || storyText.Contains("Yes, because she always waits for me outside when I'm away.")
+            )
+            {
+                kidpic.gameObject.SetActive(false);
+                danpic.gameObject.SetActive(true);
+                danname.gameObject.SetActive(true);
+                youname.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(false);
+                teddyname.gameObject.SetActive(false);
+                SnowPic.gameObject.SetActive(false);
+                SnowName.gameObject.SetActive(false);
+            }
+
+            else if (storyText.Contains("I'm okay! I want to see my Mama, can you please call her?")
+            )
+            {
+                kidpic.gameObject.SetActive(false);
+                danpic.gameObject.SetActive(false);
+                danname.gameObject.SetActive(false);
+                youname.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(true);
+                teddyname.gameObject.SetActive(true);
+                SnowPic.gameObject.SetActive(false);
+                SnowName.gameObject.SetActive(false);
+
+            }
+
+            else if (storyText.Contains("Woof!")
+            )
+            {
+                kidpic.gameObject.SetActive(false);
+                danpic.gameObject.SetActive(false);
+                danname.gameObject.SetActive(false);
+                youname.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(false);
+                teddyname.gameObject.SetActive(false);
+                SnowPic.gameObject.SetActive(true);
+                SnowName.gameObject.SetActive(true);
+
+
+            }
+            else if (storyText.Contains("...")){
+                gameOverPanel.gameObject.SetActive(true);
+            }
+
+            else if(storyText.Contains("..")
+            ){
+            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+            if (transitionManager != null)
+            {
+                transitionManager.FadeToScene(39);
+            }
+            else
+            {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
+            }
+            }
+        }   
+        else
+        {
+            ExitDialogueMode();
+            panel.gameObject.SetActive(false);
+            
+        }
+    }
+
     private IEnumerator FadeOut()
     {
         float elapsedTime = 0f;
@@ -272,7 +307,7 @@ public class teddydial5 : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(36);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMainMenu()
