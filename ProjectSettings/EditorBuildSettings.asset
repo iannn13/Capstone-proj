@@ -134,4 +134,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 4/TOYSTORE/TOY STORE.unity
     guid: e491b18f55aad2d48a138053bb372d96
+    path: Assets/Scenes/LEVEL 5/Level 5-2 C2 GOING TO SCHOOL.unity
+    guid: e7b4d4a5ce01b3d4187865b7c0450a66
   m_configObjects: {}

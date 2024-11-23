@@ -8,7 +8,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 using Unity.Burst.Intrinsics;
 using UnityEngine.SceneManagement;
 
-public class MTDial : MonoBehaviour
+public class policedial : MonoBehaviour
 {
     public delegate void DialogueCompleteHandler();
     public event DialogueCompleteHandler OnDialogueComplete;
@@ -22,11 +22,6 @@ public class MTDial : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    [Header("Game Over UI")]
-    [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private Button restartButton;
-    [SerializeField] private Button mainMenuButton;
-
     [Header("Fade Settings")]
     [SerializeField] private Image fadeImage; 
     [SerializeField] private float fadeDuration = 1f;
@@ -37,21 +32,22 @@ public class MTDial : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
-    [Header("Dialogue UI")]
+    public FadeManager fadeManager;
 
+      [Header("Dialogue UI")]
     [SerializeField] private GameObject kid;
-    [SerializeField] private GameObject teddypic;
+    [SerializeField] private GameObject kidpic;
     [SerializeField] private GameObject policepic;
-    [SerializeField] private GameObject mamatedpic;
-    [SerializeField] private GameObject mamatedname;
+    [SerializeField] private GameObject police;
+    [SerializeField] private GameObject youname;
     [SerializeField] private GameObject policename;
-    [SerializeField] private GameObject teddyname;
+    
 
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
-    private static MTDial instance;
+    private static policedial instance;
 
     private void Awake()
     {
@@ -62,7 +58,7 @@ public class MTDial : MonoBehaviour
         instance = this;
     }
 
-    public static MTDial GetInstance()
+    public static policedial GetInstance()
     {
         return instance;
     }
@@ -73,7 +69,6 @@ public class MTDial : MonoBehaviour
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
         continueButton.onClick.AddListener(ContinueStory);
-        panel.gameObject.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -92,86 +87,9 @@ public class MTDial : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
-
         ContinueStory();
     }
-        private void ContinueStory()
-    {
-        if (currentStory.canContinue)
-        {
-            string storyText = currentStory.Continue();
-            StopAllCoroutines();
-            StartCoroutine(TypeText(storyText));
-            Debug.Log("Current Story Text: " + storyText); // Log the current story text
-            DisplayChoices();
 
-            // Check for specific text to toggle images
-            if (storyText.Contains("Thank goodness, Anak!") 
-            )
-            {
-                mamatedname.gameObject.SetActive(true);
-                mamatedpic.gameObject.SetActive(true);
-                policename.gameObject.SetActive(false);
-                policepic.gameObject.SetActive(false);
-                kid.gameObject.SetActive(true);
-                teddypic.gameObject.SetActive(false);
-                teddyname.gameObject.SetActive(false);
-
-            }
-
-            else if (storyText.Contains("I missed you so much Mama.") 
-            )
-            {
-                mamatedname.gameObject.SetActive(false);
-                mamatedpic.gameObject.SetActive(false);
-                policename.gameObject.SetActive(false);
-                policepic.gameObject.SetActive(false);
-                kid.gameObject.SetActive(false);
-                teddypic.gameObject.SetActive(true);
-                teddyname.gameObject.SetActive(true);
-
-            }
-             else if (storyText.Contains("Young man, I think you should go to school now. We will handle this.") 
-             || storyText.Contains("Do you want us to take you there?")
-            )
-            {
-                mamatedname.gameObject.SetActive(false);
-                mamatedpic.gameObject.SetActive(false);
-                policename.gameObject.SetActive(true);
-                policepic.gameObject.SetActive(true);
-                kid.gameObject.SetActive(false);
-                teddypic.gameObject.SetActive(false);
-                teddyname.gameObject.SetActive(false);
-
-            }
-            else if (storyText.Contains("...")){
-                {
-            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
-            if (transitionManager != null)
-            {
-                transitionManager.FadeToScene(40);
-            }
-            else
-            {
-                Debug.LogError("SceneTransitionManager not found in the scene!");
-            }
-            }
-            }
-
-            else if(storyText.Contains("..")
-            ){
-            ExitDialogueMode();
-            kid.gameObject.SetActive(true);
-            panel.gameObject.SetActive(false);
-            }
-        }   
-        else
-        {
-            ExitDialogueMode();
-            panel.gameObject.SetActive(false);
-            kid.gameObject.SetActive(true);
-        }
-    }
     private void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
@@ -182,7 +100,46 @@ public class MTDial : MonoBehaviour
         OnDialogueComplete?.Invoke();
     }
 
-    
+       private void ContinueStory()
+    {
+        if (currentStory.canContinue)
+        {
+            string storyText = currentStory.Continue();
+            StopAllCoroutines();
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); // Log the current story text
+
+            // Check for specific text to toggle images
+            if (storyText.Contains("Thank you, Officer!")
+            )          
+            {
+                kidpic.gameObject.SetActive(true);
+                youname.gameObject.SetActive(true);
+                policepic.gameObject.SetActive(false);
+                policename.gameObject.SetActive(false);
+
+
+            }
+
+            else if (storyText.Contains("No problem young man.") || storyText.Contains("Have fun at school")
+            )
+            {
+                kidpic.gameObject.SetActive(false);
+                youname.gameObject.SetActive(false);
+                policepic.gameObject.SetActive(true);
+                policename.gameObject.SetActive(true);
+
+            }
+        }   
+        else
+        {
+            ExitDialogueMode();
+            panel.gameObject.SetActive(false);
+            police.gameObject.SetActive(false);
+            
+        }
+    }
+
     private IEnumerator FadeOut()
     {
         float elapsedTime = 0f;
@@ -240,50 +197,10 @@ public class MTDial : MonoBehaviour
         }
     }
 
-    private void DisplayChoices()
-    {
-        List<Choice> currentChoices = currentStory.currentChoices;
-
-        if (currentChoices.Count > choices.Length)
-        {
-            Debug.LogError("More choices were given than UI can support. Number of choices given: " + currentChoices.Count);
-        }
-
-        int index = 0;
-        foreach (Choice choice in currentChoices)
-        {
-            choices[index].gameObject.SetActive(true);
-            choicesText[index].text = choice.text;
-            index++;
-        }
-
-        for (int i = index; i < choices.Length; i++)
-        {
-            choices[i].gameObject.SetActive(false);
-        }
-
-        continueButton.gameObject.SetActive(currentChoices.Count == 0);
-    }
 
     private void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
-    }
-    private void ShowGameOver()
-    {
-        Debug.Log("Restarting game");
-        dialoguePanel.SetActive(false);
-        gameOverPanel.SetActive(true);
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(36);
-    }
-
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene(0);
     }
 }
