@@ -149,4 +149,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 3/Computer Shop.unity
     guid: 0cd65a7e189d1da46ac29ebcd7418472
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 5/Level 5-2 GOING HOME.unity
+    guid: d07d3ab3cbd196c42829807deb45bc59
   m_configObjects: {}
