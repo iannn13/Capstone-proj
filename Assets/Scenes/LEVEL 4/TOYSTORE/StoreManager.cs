@@ -2,56 +2,59 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEditorInternal.Profiling.Memory.Experimental;
-
+using System.Collections.Generic;
 
 public class StoreManager : MonoBehaviour
 {
-    public StoreItem[] storeItems;  // Array of store items
-    public Image itemDisplay;  // UI Image to display item image
-    public TMP_Text itemNameText;  // UI Text to display item name
-    public TMP_Text costText;  // UI Text to display item cost (score & cash)
-    public TMP_Text playerStatsText;  // UI Text to display player's score and cash
-    public Button claimButton;  // Button to claim the item
+    public List<StoreItem> storeItems;  // Change to List to dynamically modify it
+    public Image itemDisplay;
+    public TMP_Text itemNameText;
+    public TMP_Text costText;
+    public TMP_Text playerStatsText;
+    public Button claimButton;
+    public GameObject startButton;
 
-    private int currentIndex = 0;  // Index to track the current store item
-    private int playerScore;  // Player's current score
-    private int playerCash;  // Player's current cash
+    public GameObject[] itemsInScene; // Items that are activated after claim
+
+    private int currentIndex = 0;
+    private int playerScore;
+    private int playerCash;
 
     void Start()
     {
-        // Initialize player stats
+        startButton.gameObject.SetActive(true);
         playerScore = PointsManager.Instance != null ? PointsManager.Instance.achievementPoints : 0;
         playerCash = DataHandler.Instance != null ? DataHandler.Instance.GetMoney() : 0;
 
-        // Update UI to reflect current data
         UpdateUI();
     }
 
-    // Navigate to the next item in the store
     public void NextItem()
     {
-        currentIndex = (currentIndex + 1) % storeItems.Length;  // Loop back to first item after last
+        currentIndex = (currentIndex + 1) % storeItems.Count; // Change to storeItems.Count since it's a List
         UpdateUI();
         UpdatePlayerStats();
     }
 
-    // Navigate to the previous item in the store
+    public void Startbutton()
+    {
+        startButton.gameObject.SetActive(false);
+        UpdateUI();
+        UpdatePlayerStats();
+    }
+
     public void PreviousItem()
     {
-        currentIndex = (currentIndex - 1 + storeItems.Length) % storeItems.Length;  // Loop back to last item if at first
+        currentIndex = (currentIndex - 1 + storeItems.Count) % storeItems.Count; // Change to storeItems.Count
         UpdateUI();
         UpdatePlayerStats();
     }
 
-    public GameObject[] itemsInScene;
-    // Claim the current item if requirements are met
     public void ClaimItem()
     {
         StoreItem currentItem = storeItems[currentIndex];
 
-        // Check if the player meets the requirements
-        if (playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement)
+        if (playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement && !currentItem.isClaimed)
         {
             // Deduct player score and cash
             playerScore -= currentItem.scoreRequirement;
@@ -65,33 +68,41 @@ public class StoreManager : MonoBehaviour
             {
                 if (item.name == currentItem.itemToActivateName)
                 {
-                    item.SetActive(true); // Activate the item
-
-                    // Add the activated item to GameManager's claimedItems list
+                    item.SetActive(true);
                     GameManager.Instance.claimedItems.Add(item);
-
-                    // Save the list of claimed items
                     GameManager.Instance.SaveClaimedItems();
-
-                    break; // Exit the loop once the item is found and activated
+                    break;
                 }
             }
 
-            // Update the UI after the transaction is complete
+            // Mark the item as claimed
+            currentItem.isClaimed = true;
+
+            // Remove the claimed item from the store list
+            storeItems.RemoveAt(currentIndex);
+
+            // Update the UI after removing the item
             UpdateUI();
         }
         else
         {
-            Debug.LogWarning("Player does not meet the requirements to claim this item.");
+            Debug.LogWarning("Player does not meet the requirements to claim this item, or the item is already claimed.");
         }
     }
 
-
-
-    // Update the UI with the current item's data and player stats
     private void UpdateUI()
     {
         // Get the current item
+        if (storeItems.Count == 0)
+        {
+            itemDisplay.sprite = null;
+            itemNameText.text = "No more items";
+            costText.text = "N/A";
+            playerStatsText.text = $"Score: {playerScore} | Cash: {playerCash}";
+            claimButton.gameObject.SetActive(false); // Hide the claim button if no items are left
+            return;
+        }
+
         StoreItem currentItem = storeItems[currentIndex];
 
         // Update item display and stats
@@ -100,11 +111,10 @@ public class StoreManager : MonoBehaviour
         costText.text = $"Score: {currentItem.scoreRequirement} | Cash: {currentItem.cashRequirement}";
         playerStatsText.text = $"Score: {playerScore} | Cash: {playerCash}";
 
-        // Enable or disable the claim button based on requirements
-        claimButton.interactable = playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement;
+        // Enable or disable the claim button based on requirements and claimed status
+        claimButton.interactable = playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement && !currentItem.isClaimed;
     }
 
-    // Update player stats dynamically from PointsManager and DataHandler
     public void UpdatePlayerStats()
     {
         playerScore = PointsManager.Instance != null ? PointsManager.Instance.achievementPoints : 0;
@@ -114,11 +124,9 @@ public class StoreManager : MonoBehaviour
         UpdateUI();
     }
 
-    // Method for handling the main menu button press
     public void OnMainMenuButtonPressed()
     {
         GameManager.Instance.SaveClaimedItems();
-
         SceneManager.LoadScene("Main Menu"); // Load the main menu scene
     }
 }
