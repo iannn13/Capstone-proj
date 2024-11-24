@@ -57,7 +57,7 @@ public class StoreManager : MonoBehaviour
         if (playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement && !currentItem.isClaimed)
         {
             // Deduct player score and cash
-            playerScore -= currentItem.scoreRequirement;
+           /* playerScore -= currentItem.scoreRequirement;*/
             playerCash -= currentItem.cashRequirement;
 
             PointsManager.Instance.achievementPoints = playerScore;
@@ -75,13 +75,10 @@ public class StoreManager : MonoBehaviour
                 }
             }
 
-            // Mark the item as claimed
             currentItem.isClaimed = true;
 
-            // Remove the claimed item from the store list
             storeItems.RemoveAt(currentIndex);
 
-            // Update the UI after removing the item
             UpdateUI();
         }
         else
