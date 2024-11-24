@@ -27,7 +27,7 @@ public class schooltrigger5 : MonoBehaviour
     {
         isFading = true;
         yield return StartCoroutine(Fade(1f));
-        SceneManager.LoadScene(39); //nect na scene classroom
+        SceneManager.LoadScene(41); //nect na scene classroom
     }
 
     private IEnumerator Fade(float targetAlpha)

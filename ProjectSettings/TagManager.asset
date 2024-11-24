@@ -7,6 +7,9 @@ TagManager:
   - StopTrigger
   - Coin
   - PlayerRoom
+  - basketball
+  - gameboy
+  - teddybear
   layers:
   - Default
   - TransparentFX
