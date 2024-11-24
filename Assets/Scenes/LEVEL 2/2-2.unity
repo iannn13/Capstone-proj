@@ -5536,7 +5536,7 @@ Transform:
   m_GameObject: {fileID: 364899385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 225.2345, y: -200.09781, z: -26.54}
+  m_LocalPosition: {x: 284.99, y: -200.09781, z: -26.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18849,7 +18849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1083005956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22543,7 +22543,7 @@ Transform:
   m_GameObject: {fileID: 1346617234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 218.6745, y: -201.2978, z: -16.54}
+  m_LocalPosition: {x: 278.43, y: -201.2978, z: -16.54}
   m_LocalScale: {x: 0.6063223, y: 0.58022654, z: 0.81916773}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22917,7 +22917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1362124150
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28998,7 +28998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   dialogueOpenClip: {fileID: 0}
-  dialogueLoopClip: {fileID: 8300000, guid: 6923bc02c894b644393afdc210a115f5, type: 3}
+  dialogueLoopClip: {fileID: 0}
   dialogueEndClip: {fileID: 0}
 --- !u!114 &1690071902
 MonoBehaviour:
@@ -29728,7 +29728,7 @@ Transform:
   m_GameObject: {fileID: 1724401020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 226.18613, y: -199.11768, z: -26.54}
+  m_LocalPosition: {x: 284.99042, y: -199.15643, z: -26.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

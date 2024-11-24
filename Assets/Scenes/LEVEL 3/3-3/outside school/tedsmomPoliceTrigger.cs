@@ -22,7 +22,7 @@ public class tedsmomPoliceTrigger : MonoBehaviour
         dialogueStarted = false;
         playerInRange = false;
 
-        neneDial2.GetInstance().OnDialogueComplete += OnCatDialogueComplete;
+        tedsmomPoliceDial.GetInstance().OnDialogueComplete += OntedsmomPoliceDialComplete;
 
     }
 
@@ -41,7 +41,7 @@ public class tedsmomPoliceTrigger : MonoBehaviour
         {
             dialogueStarted = true;
             yield return new WaitForSeconds(dialogueStartDelay);
-            neneDial2.GetInstance().EnterDialogueMode(inkJSON);
+            tedsmomPoliceDial.GetInstance().EnterDialogueMode(inkJSON);
         }
     }
 
@@ -61,7 +61,7 @@ public class tedsmomPoliceTrigger : MonoBehaviour
         }
     }
 
-    private void OnCatDialogueComplete()
+    private void OntedsmomPoliceDialComplete()
     {
         Debug.Log("Dialogue finished and will not be repeated.");
     }
