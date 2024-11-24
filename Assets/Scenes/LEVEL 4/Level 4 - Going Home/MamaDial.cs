@@ -19,6 +19,10 @@ public class MamaDial : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject kid;
     [SerializeField] private GameObject kidpic;
@@ -77,7 +81,7 @@ public class MamaDial : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
-
+        panel.gameObject.SetActive(true);
         ContinueStory();
     }
 
@@ -146,6 +150,7 @@ public class MamaDial : MonoBehaviour
         else
         {       
             ExitDialogueMode();  
+            panel.gameObject.SetActive(false);
         }
     }
 

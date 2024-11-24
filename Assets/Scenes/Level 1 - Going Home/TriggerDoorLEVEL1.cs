@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class doortrigger : MonoBehaviour
+public class TriggerDoorLEVEL1 : MonoBehaviour
 {
     [Header("Button")]
     [SerializeField] private Button doorButton;

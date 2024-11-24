@@ -17,6 +17,7 @@ public class MamaTrigger : MonoBehaviour
     {
         dialogueStarted = false;
         playerInRange = false;
+        
 
     }
 

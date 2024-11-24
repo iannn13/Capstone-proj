@@ -120,14 +120,6 @@ public class MamaDialogue2 : MonoBehaviour
                 number.gameObject.SetActive(false);
                 bg.gameObject.SetActive(false);
             }
-            else if (storyText.Contains("Here have the house telephone number if you needed me, call mama okay?"))
-            {
-                mama.gameObject.SetActive(true);
-                mamapic.gameObject.SetActive(true);
-                number.gameObject.SetActive(true);
-                bg.gameObject.SetActive(true);
-                PhoneNumber.gameObject.SetActive(true);
-            }
             else
             {
                 you.gameObject.SetActive(false);
