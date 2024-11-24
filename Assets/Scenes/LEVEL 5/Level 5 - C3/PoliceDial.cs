@@ -8,7 +8,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 using Unity.Burst.Intrinsics;
 using UnityEngine.SceneManagement;
 
-public class teddydial5 : MonoBehaviour
+public class PoliceDial : MonoBehaviour
 {
     public delegate void DialogueCompleteHandler();
     public event DialogueCompleteHandler OnDialogueComplete;
@@ -22,11 +22,6 @@ public class teddydial5 : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    [Header("Game Over UI")]
-    [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private Button restartButton;
-    [SerializeField] private Button mainMenuButton;
-
     [Header("Fade Settings")]
     [SerializeField] private Image fadeImage; 
     [SerializeField] private float fadeDuration = 1f;
@@ -39,19 +34,24 @@ public class teddydial5 : MonoBehaviour
 
     public FadeManager fadeManager;
 
-    [Header("Dialogue UI")]
     [SerializeField] private GameObject kid;
-    [SerializeField] private GameObject kidpic;
+    [SerializeField] private GameObject police;
     [SerializeField] private GameObject teddy;
+    [SerializeField] private GameObject policewoman;
+
+      [Header("Dialogue UI")]
+    [SerializeField] private GameObject kidpic;
+    [SerializeField] private GameObject policepic;
     [SerializeField] private GameObject teddypic;
-    [SerializeField] private GameObject youname;
     [SerializeField] private GameObject teddyname;
+    [SerializeField] private GameObject youname;
+    [SerializeField] private GameObject policename;
 
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
-    private static teddydial5 instance;
+    private static PoliceDial instance;
 
     private void Awake()
     {
@@ -62,7 +62,7 @@ public class teddydial5 : MonoBehaviour
         instance = this;
     }
 
-    public static teddydial5 GetInstance()
+    public static PoliceDial GetInstance()
     {
         return instance;
     }
@@ -73,7 +73,6 @@ public class teddydial5 : MonoBehaviour
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
         continueButton.onClick.AddListener(ContinueStory);
-        panel.gameObject.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -92,99 +91,9 @@ public class teddydial5 : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
-
         ContinueStory();
     }
-        private void ContinueStory()
-    {
-        if (currentStory.canContinue)
-        {
-            string storyText = currentStory.Continue();
-            StopAllCoroutines();
-            StartCoroutine(TypeText(storyText));
-            Debug.Log("Current Story Text: " + storyText); // Log the current story text
-            DisplayChoices();
 
-            // Check for specific text to toggle images
-            if (storyText.Contains("Aris! Psst! Over here!")||storyText.Contains("It's me, Teddy. You have to come with me!")
-            || storyText.Contains("We have to go back to the woods.") || storyText.Contains("I can't! Not yet!")
-            || storyText.Contains("Because... There were other kids in the woods too.")
-            || storyText.Contains("We have to save them.") ||
-            storyText.Contains("Okay.") 
-            )
-
-            {
-                kidpic.gameObject.SetActive(false);
-                teddy.gameObject.SetActive(true);
-                teddypic.gameObject.SetActive(true);
-                teddyname.gameObject.SetActive(true);
-                youname.gameObject.SetActive(false);
-            }
-            else if (storyText.Contains("You pulled Teddy's hand but let go.")||storyText.Contains("You pulled Teddy's hand but let go.")  )
-            {
-                kidpic.gameObject.SetActive(false);
-                teddy.gameObject.SetActive(false);
-                teddypic.gameObject.SetActive(false);
-                teddyname.gameObject.SetActive(false);
-                youname.gameObject.SetActive(false);
-                
-            }
-            else if (storyText.Contains("Why? What are we gonna do?")||
-            storyText.Contains("No! Why do you want to go back there?") ||
-            storyText.Contains("Let's go and save them!") ||
-            storyText.Contains("We're gonna be like superheroes!") || 
-            storyText.Contains("Alright, but we have to ask help to an adult.")
-            ||storyText.Contains("We have to ask help to the police.") 
-            ||storyText.Contains("I'm taking you to the police.") 
-            
-            ||storyText.Contains("What's wrong with you?") 
-            )         
-            {
-                kidpic.gameObject.SetActive(true);
-                teddy.gameObject.SetActive(true);
-                teddypic.gameObject.SetActive(false);
-                teddyname.gameObject.SetActive(false);
-                youname.gameObject.SetActive(true);
-                
-            }
-
-            else if (storyText.Contains("...")){
-                gameOverPanel.gameObject.SetActive(true);
-            }
-
-            else if(storyText.Contains("Okay!")
-            ){
-            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
-            if (transitionManager != null)
-            {
-                transitionManager.FadeToScene(43);
-            }
-            else
-            {
-                Debug.LogError("SceneTransitionManager not found in the scene!");
-            }
-            }
-            else if(storyText.Contains("..")
-            ){
-            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
-            if (transitionManager != null)
-            {
-                transitionManager.FadeToScene(37);
-            }
-            else
-            {
-                Debug.LogError("SceneTransitionManager not found in the scene!");
-            }
-            }
-        }   
-        else
-        {
-            ExitDialogueMode();
-            kid.gameObject.SetActive(true);
-            panel.gameObject.SetActive(false);
-            
-        }
-    }
     private void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
@@ -195,7 +104,105 @@ public class teddydial5 : MonoBehaviour
         OnDialogueComplete?.Invoke();
     }
 
-    
+       private void ContinueStory()
+    {
+        if (currentStory.canContinue)
+        {
+            string storyText = currentStory.Continue();
+            StopAllCoroutines();
+            StartCoroutine(TypeText(storyText));
+            Debug.Log("Current Story Text: " + storyText); // Log the current story text
+            DisplayChoices();
+
+            if (storyText.Contains("You and Teddy went to the police station...") 
+            )
+            {
+                youname.gameObject.SetActive(false);
+                policename.gameObject.SetActive(false);
+                teddyname.gameObject.SetActive(false);
+                policepic.gameObject.SetActive(false);
+                kidpic.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(false);
+            }
+            //police
+            else if (storyText.Contains("Other kids?") || storyText.Contains("What are you two doing here?")
+            || storyText.Contains("Alright but we have to call your mother first.")
+            || storyText.Contains("Let's wait inside.")
+            || storyText.Contains("You, young man. You have to go home.")
+            || storyText.Contains("Oh yeah, you do want me to take you there?")
+            || storyText.Contains("Alright, It was just near here anyway.")
+            )
+            {
+                youname.gameObject.SetActive(false);
+                policename.gameObject.SetActive(true);
+                teddyname.gameObject.SetActive(false);
+                policepic.gameObject.SetActive(true);
+                kidpic.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(false);
+            }
+            //teddy
+            else if (storyText.Contains("Please, Help! There were other kids in the woods!") 
+            || storyText.Contains("I'll see you around, Aris.")
+            )
+            {
+                youname.gameObject.SetActive(false);
+                policename.gameObject.SetActive(false);
+                teddyname.gameObject.SetActive(true);
+                policepic.gameObject.SetActive(false);
+                kidpic.gameObject.SetActive(false);
+                teddypic.gameObject.SetActive(true);
+            }
+            //you
+            else if (storyText.Contains("Officer, that's Teddy Junzales!") 
+            || storyText.Contains("I can't go home, I have school.") 
+            )
+            {
+                youname.gameObject.SetActive(true);
+                policename.gameObject.SetActive(false);
+                teddyname.gameObject.SetActive(false);
+                policepic.gameObject.SetActive(false);
+                kidpic.gameObject.SetActive(true);
+                teddypic.gameObject.SetActive(false);
+            }
+
+
+            else if (storyText.Contains("...")){
+                {
+            SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+            if (transitionManager != null)
+            {
+                transitionManager.FadeToScene(42);
+            }
+            else
+            {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
+            }
+            }
+            }
+             else if(storyText.Contains("..")
+            ){
+            ExitDialogueMode();
+            kid.gameObject.SetActive(true);
+            panel.gameObject.SetActive(false);
+            police.gameObject.SetActive(false);
+            teddy.gameObject.SetActive(false);
+            policewoman .gameObject.SetActive(false);
+
+            }
+            
+
+        }   
+        else
+        {
+            ExitDialogueMode();
+            kid.gameObject.SetActive(true);
+            panel.gameObject.SetActive(false);
+            police.gameObject.SetActive(false);
+            teddy.gameObject.SetActive(false);
+            policewoman .gameObject.SetActive(false);
+        }
+    }
+
     private IEnumerator FadeOut()
     {
         float elapsedTime = 0f;
@@ -282,21 +289,5 @@ public class teddydial5 : MonoBehaviour
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
-    }
-    private void ShowGameOver()
-    {
-        Debug.Log("Restarting game");
-        dialoguePanel.SetActive(false);
-        gameOverPanel.SetActive(true);
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(36);
-    }
-
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene(0);
     }
 }

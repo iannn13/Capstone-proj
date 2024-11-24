@@ -140,4 +140,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 5/Level 5-2 C2 GOING TO SCHOOL.unity
     guid: e7b4d4a5ce01b3d4187865b7c0450a66
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 5/Level 5-2 C3.unity
+    guid: a24e004123bb8c04ab24ce3e10b8852e
   m_configObjects: {}

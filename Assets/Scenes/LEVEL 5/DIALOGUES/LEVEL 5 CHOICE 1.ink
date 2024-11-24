@@ -23,10 +23,12 @@ Oh yeah, you do want me to take you there?
 
 ==okay==
 I'll see you around, Aris.
+...
 ->END
 
 ==no==
 Alright, It was just near here anyway.
+..
 ->END
 
 ==cant==
