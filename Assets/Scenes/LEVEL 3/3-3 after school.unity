@@ -6615,7 +6615,7 @@ Transform:
   m_GameObject: {fileID: 328265351}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 411.42838, y: -199.59, z: -26.54}
+  m_LocalPosition: {x: 411.0984, y: -199.59, z: -26.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19042,7 +19042,7 @@ Transform:
   m_GameObject: {fileID: 924238083}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 411.4282, y: -199.14978, z: -26.54}
+  m_LocalPosition: {x: 411.0982, y: -199.14993, z: -26.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24201,7 +24201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1154061365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26063,7 +26063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1246107567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31036,7 +31036,7 @@ Transform:
   m_GameObject: {fileID: 1484865474}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 412.71, y: -200.79, z: -16.54}
+  m_LocalPosition: {x: 412.38, y: -200.79, z: -16.54}
   m_LocalScale: {x: 0.73212475, y: 0.7006146, z: 0.9891323}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42912,11 +42912,9 @@ MonoBehaviour:
   title: {fileID: 883975619}
   title1: {fileID: 1873151238}
   title2: {fileID: 360294884}
-  title3: {fileID: 1109448313}
   message: {fileID: 848115713}
   message1: {fileID: 670809030}
   message2: {fileID: 1825007920}
-  message3: {fileID: 1383068033}
   choices:
   - {fileID: 1448259193}
   - {fileID: 1004896870}

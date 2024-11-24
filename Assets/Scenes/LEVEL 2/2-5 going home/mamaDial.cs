@@ -96,21 +96,25 @@ public class mamaDial : MonoBehaviour
                 DisplayChoices();
 
                 // Check for specific text to toggle images
-                if (storyText.Contains("Aris!") || storyText.Contains("You had me worried all day why you did'nt wake me up?") || storyText.Contains("You have to wake me up, Aris. I could�ve cook you breakfast.")
-                    || storyText.Contains("It�s okay, son. Let�s go inside and eat.") || storyText.Contains("You have to wake me up, Aris. No matter what. I need to know when do you left, okay?"))
+                if (storyText.Contains("Aris!") || storyText.Contains("You had me worried all day why you did'nt wake me up?") || storyText.Contains("You have to wake me up, Aris. I could’ve cook you breakfast.")
+                    || storyText.Contains("It’s okay, son. Let’s go inside and eat.") || storyText.Contains("You have to wake me up, Aris. No matter what. I need to know when do you left, okay?"))
                 {
                     you.gameObject.SetActive(false);
                     youname.gameObject.SetActive(false);
                     mama.gameObject.SetActive(true);
                     mamaname.gameObject.SetActive(true);
                 }
-                else
+                else if (storyText.Contains("I don’t want to wake you up mama, because you are tired taking care of baby all night long.")
+                || storyText.Contains("I’m sorry, Mama. I won’t do it again.")
+                || storyText.Contains("I was hungry, mama. I don’t want to disturb you and I went to go get something to eat.")
+                || storyText.Contains("I’m sorry, Mama. I won’t do it again.") 
+                || storyText.Contains("I’m sorry, Mama."))
                 {
                     you.gameObject.SetActive(true);
                     youname.gameObject.SetActive(true);
                     mama.gameObject.SetActive(false);
                     mamaname.gameObject.SetActive(false);
-                }          
+                }         
         }
         else
         {

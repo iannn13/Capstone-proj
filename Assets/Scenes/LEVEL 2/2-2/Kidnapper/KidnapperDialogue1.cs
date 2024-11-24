@@ -130,7 +130,18 @@ public class KidnapperDialogue1 : MonoBehaviour
             DisplayChoices();
 
             // Check for specific text to toggle images
-            if (storyText.Contains("No, I haven't seen that kind of dog.") || storyText.Contains("Sorry. I can't.") || storyText.Contains("Sorry. I can't.") || storyText.Contains("I'm going to school sir.")
+            if (storyText.Contains("Hey kid! Have you seen a small fluffy dog around?") || storyText.Contains("Can you help me look for it?") || 
+            storyText.Contains("But why? I thought you saw it. You will be a big help for me to find my pet.") ||
+            storyText.Contains ("If you don't help me, something bad might happen to my dog.") ||
+            storyText.Contains ("Ok, at least help me with other kids. Come, let's ask them together")
+            )
+            {
+                kidnapper.gameObject.SetActive(true);
+                kidnapper1.gameObject.SetActive(true);
+                you.gameObject.SetActive(false);
+                kid.gameObject.SetActive(false);
+            }
+            else if (storyText.Contains("No, I haven't seen that kind of dog.") || storyText.Contains("Sorry. I can't.") || storyText.Contains("Sorry. I can't.") || storyText.Contains("I'm going to school sir.")
                 || storyText.Contains("I'm going to school sir.") || storyText.Contains("Sorry, I'm gonna be late.") || storyText.Contains("I can't help you sir. I told you so."))
             {
                 kidnapper.gameObject.SetActive(false);
@@ -171,14 +182,6 @@ public class KidnapperDialogue1 : MonoBehaviour
             {
                 kidnapper.gameObject.SetActive(false);
                 kidnapper1.gameObject.SetActive(false);
-                you.gameObject.SetActive(false);
-                kid.gameObject.SetActive(false);
-            }
-
-            else
-            {
-                kidnapper.gameObject.SetActive(true);
-                kidnapper1.gameObject.SetActive(true);
                 you.gameObject.SetActive(false);
                 kid.gameObject.SetActive(false);
             }

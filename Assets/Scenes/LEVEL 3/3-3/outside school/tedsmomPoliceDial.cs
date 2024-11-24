@@ -103,19 +103,29 @@ public class tedsmomPoliceDial : MonoBehaviour
             DisplayChoices();
 
 
-            if (storyText.Contains("Ma�am, we send off officers to look around town to find your son."))
+            if (storyText.Contains("Ma’am, we send off officers to look around town to find your son."))
             {
                 policename.gameObject.SetActive(true);
                 policepic.gameObject.SetActive(true);
                 mompic.gameObject.SetActive(false);
                 momname.gameObject.SetActive(false);
             }
-            else
+            else if (storyText.Contains("Thank you very much, mister.")
+            || storyText.Contains("Thank you very much, mister.")
+            || storyText.Contains("I really wish he comes home now, he is my only son.")
+            )
             {
                 policename.gameObject.SetActive(false);
                 policepic.gameObject.SetActive(false);
                 mompic.gameObject.SetActive(true);
                 momname.gameObject.SetActive(true);
+            }
+        if (storyText.Contains("She sobs as she calls her child’s name."))
+            {
+                policename.gameObject.SetActive(false);
+                policepic.gameObject.SetActive(false);
+                mompic.gameObject.SetActive(false);
+                momname.gameObject.SetActive(false);
             }
         }
         else
