@@ -4,9 +4,11 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
+using UnityEngine.Experimental.GlobalIllumination;
+using Unity.Burst.Intrinsics;
 using UnityEngine.SceneManagement;
 
-public class KidnapperDialogue1 : MonoBehaviour
+public class tambaydial : MonoBehaviour
 {
     public delegate void DialogueCompleteHandler();
     public event DialogueCompleteHandler OnDialogueComplete;
@@ -16,10 +18,15 @@ public class KidnapperDialogue1 : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Button continueButton;
 
+    [Header("Choices UI")]
+    [SerializeField] private GameObject[] choices;
+    private TextMeshProUGUI[] choicesText;
+
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private Button restartButton;
     [SerializeField] private Button mainMenuButton;
+
     [SerializeField] private GameObject title;
     [SerializeField] private GameObject title1;
     [SerializeField] private GameObject title2;
@@ -28,34 +35,31 @@ public class KidnapperDialogue1 : MonoBehaviour
     [SerializeField] private GameObject message2;
 
 
-    [Header("Choices UI")]
-    [SerializeField] private GameObject[] choices;
-    private TextMeshProUGUI[] choicesText;
+    [Header("Fade Settings")]
+    [SerializeField] private Image fadeImage; 
+    [SerializeField] private float fadeDuration = 1f;
 
-    [Header("Move Button")]
-    [SerializeField] private GameObject movebutton;
-
-    [Header("Picture")]
-    [SerializeField] private GameObject kidnapper;
-    [SerializeField] private GameObject kid;
-
-    [Header("Name")]
-    [SerializeField] private GameObject kidnapper1;
-    [SerializeField] private GameObject you;
-
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
 
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
+    public FadeManager fadeManager;
 
-    [Header("Points")]
-    [SerializeField] private PointsManager PointsManager;
+    [Header("Dialogue UI")]
+    [SerializeField] private GameObject kid;
+    [SerializeField] private GameObject kidpic;
+    [SerializeField] private GameObject tambay;
+    [SerializeField] private GameObject tambaypic;
+    [SerializeField] private GameObject youname;
+    [SerializeField] private GameObject tambayname;
 
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
-    private static KidnapperDialogue1 instance;
+    private static tambaydial instance;
 
     private void Awake()
     {
@@ -66,7 +70,7 @@ public class KidnapperDialogue1 : MonoBehaviour
         instance = this;
     }
 
-    public static KidnapperDialogue1 GetInstance()
+    public static tambaydial GetInstance()
     {
         return instance;
     }
@@ -76,12 +80,8 @@ public class KidnapperDialogue1 : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
-        kidnapper.gameObject.SetActive(false);
-        kid.gameObject.SetActive(false);
-        kidnapper1.gameObject.SetActive(false);
-        you.gameObject.SetActive(false);
-
         continueButton.onClick.AddListener(ContinueStory);
+        panel.gameObject.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -96,6 +96,7 @@ public class KidnapperDialogue1 : MonoBehaviour
         gameOverPanel.SetActive(false);
         restartButton.onClick.AddListener(RestartGame);
         mainMenuButton.onClick.AddListener(GoToMainMenu);
+    
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
@@ -106,20 +107,8 @@ public class KidnapperDialogue1 : MonoBehaviour
         continueButton.gameObject.SetActive(true);
 
         ContinueStory();
-    }
-
-    private void ExitDialogueMode()
-    {
-        dialogueIsPlaying = false;
-        dialoguePanel.SetActive(false);
-        dialogueText.text = "";
-        continueButton.gameObject.SetActive(false);
-        movebutton.gameObject.SetActive(true);
-
-        OnDialogueComplete?.Invoke();
-    }
-
-    private void ContinueStory()
+    }   
+        private void ContinueStory()
     {
         if (currentStory.canContinue)
         {
@@ -129,63 +118,112 @@ public class KidnapperDialogue1 : MonoBehaviour
             Debug.Log("Current Story Text: " + storyText); // Log the current story text
             DisplayChoices();
 
-            // Check for specific text to toggle images
-            if (storyText.Contains("No, I haven't seen that kind of dog.") || storyText.Contains("Sorry. I can't.") || storyText.Contains("Sorry. I can't.") || storyText.Contains("I'm going to school sir.")
-                || storyText.Contains("I'm going to school sir.") || storyText.Contains("Sorry, I'm gonna be late.") || storyText.Contains("I can't help you sir. I told you so."))
+            // tambay
+            if (storyText.Contains("Hey, Aris! I saw your mom left earlier.")
+            || storyText.Contains("She went on a birthday party with your baby sibling, too bad she didn't wait for you.")
+            || storyText.Contains("She went on a birthday party, she asked me to pick you up.")
+            || storyText.Contains("I'm not kidding she left 30 minutes ago.")
+            || storyText.Contains("She asked me to pick you up.")
+            )   
             {
-                kidnapper.gameObject.SetActive(false);
-                kidnapper1.gameObject.SetActive(false);
-                you.gameObject.SetActive(true);
-                kid.gameObject.SetActive(true);
+                tambaypic.gameObject.SetActive(true);
+                tambayname.gameObject.SetActive(true);
+                kidpic.gameObject.SetActive(false);
+                youname.gameObject.SetActive(false);
             }
-
-            if (storyText.Contains("The shady man sighed and gave up on you.")||storyText.Contains("I can't help you sir. I told you so.")) 
+            // you
+            else if (storyText.Contains("Okay, I'm going home now.")
+            || storyText.Contains("It's alright, you are just messing with me.")
+            || storyText.Contains("I don't believe you, my Mama says she's waiting for me at home.")
+            || storyText.Contains("You are lying! She's home and I know it!")
+            )
             {
-                Debug.Log("Adding Points");
-                if (PointsManager.Instance != null)
-                {
-                    PointsManager.Instance.AddPoints(10);
-                    Debug.Log("Added");
-                }
-                else
-                {
-                    Debug.LogError("PointsManager not assigned!");
-                }
+                tambaypic.gameObject.SetActive(false);
+                tambayname.gameObject.SetActive(false);
+                kidpic.gameObject.SetActive(true);
+                youname.gameObject.SetActive(true);
             }
             else if (storyText.Contains("...."))
             {
-                Debug.Log("Game over detected (4 dots)");
-                ShowGameOver2();
+            Debug.Log("Game over detected (4 dots)");
+                ShowGameOver();
             }
             else if (storyText.Contains("..."))
             {
-                Debug.Log("Game over detected (3 dots)");
-                ShowGameOver1();
+            Debug.Log("Game over detected (3 dots)");
+            ShowGameOver1();
             }
             else if (storyText.Contains(".."))
             {
-                Debug.Log("Game over detected (2 dots)");
-                ShowGameOver();
-            }
-            else if (storyText.Contains("The shady man sighed and gave up on you."))
-            {
-                kidnapper.gameObject.SetActive(false);
-                kidnapper1.gameObject.SetActive(false);
-                you.gameObject.SetActive(false);
-                kid.gameObject.SetActive(false);
+            Debug.Log("Game over detected (2 dots)");
+            ShowGameOver2();
             }
 
-            else
-            {
-                kidnapper.gameObject.SetActive(true);
-                kidnapper1.gameObject.SetActive(true);
-                you.gameObject.SetActive(false);
-                kid.gameObject.SetActive(false);
-            }
-        }
+        }   
         else
         {
             ExitDialogueMode();
+            kid.gameObject.SetActive(true);
+            panel.gameObject.SetActive(false);
+            
+        }
+    }
+    private void ExitDialogueMode()
+    {
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        dialogueText.text = "";
+        continueButton.gameObject.SetActive(false);
+        gameOverPanel.gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
+        OnDialogueComplete?.Invoke();
+    }
+
+    
+    private IEnumerator FadeOut()
+    {
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+        color.a = 0f; // Start fully transparent
+        fadeImage.color = color;
+        fadeImage.gameObject.SetActive(true); // Ensure the fadeImage is active
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(elapsedTime / fadeDuration);
+            fadeImage.color = color;
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeIn()
+    {
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+        color.a = 1f; // Start fully opaque
+        fadeImage.color = color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(1 - (elapsedTime / fadeDuration));
+            fadeImage.color = color;
+            yield return null;
+        }
+
+        fadeImage.gameObject.SetActive(false); // Hide the fadeImage after fading in
+    }
+
+    private IEnumerator FadeAndLoadScene()
+    {
+        if (FadeManager.Instance != null)
+        {
+            yield return FadeManager.Instance.FadeOut(() => SceneManager.LoadSceneAsync(20));
+        }
+        else
+        {
+            Debug.LogError("FadeManager instance is null!");
         }
     }
 
@@ -230,7 +268,7 @@ public class KidnapperDialogue1 : MonoBehaviour
         ContinueStory();
     }
 
-    private void ShowGameOver()
+     private void ShowGameOver()
     {
         Debug.Log("Restarting game");
         dialoguePanel.SetActive(false);
@@ -270,12 +308,12 @@ public class KidnapperDialogue1 : MonoBehaviour
         message1.gameObject.SetActive(false);  
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void GoToMainMenu()
+    public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);
     }

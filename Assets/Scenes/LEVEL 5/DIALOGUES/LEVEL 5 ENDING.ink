@@ -1,4 +1,6 @@
-Bystander: Hey, kid. How is school?
+-> main
+===main===
+Hey, kid. How is school?
 +[It's fun!]
 ->FUN
 +[Why?]
