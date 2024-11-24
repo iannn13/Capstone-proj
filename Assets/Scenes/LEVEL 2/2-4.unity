@@ -21679,7 +21679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 7f46bbc8776773846a6a9c6235ce9a5b, type: 3}
-  dialogueStartDelay: 3
+  dialogueStartDelay: 2
 --- !u!61 &1157269257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39967,7 +39967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2139545241
 MonoBehaviour:
   m_ObjectHideFlags: 0

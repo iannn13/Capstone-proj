@@ -131,19 +131,7 @@ public class KidnapperDial3 : MonoBehaviour
                 kidnapperpic.gameObject.SetActive(true);
             }
 
-            if (storyText.Contains("You should go home now.")||storyText.Contains("You should go home now.")) 
-            {
-                Debug.Log("Adding Points");
-                if (PointsManager.Instance != null)
-                {
-                    PointsManager.Instance.AddPoints(10);
-                    Debug.Log("Added");
-                }
-                else
-                {
-                    Debug.LogError("PointsManager not assigned!");
-                }
-            }
+           
             else if (storyText.Contains("...."))
             {
                 ShowGameOver2();
@@ -186,6 +174,20 @@ public class KidnapperDial3 : MonoBehaviour
                 teddypic.gameObject.SetActive(true);
                 kidnapper.gameObject.SetActive(false);
                 kidnapperpic.gameObject.SetActive(false);
+            }
+
+             if (storyText.Contains("You should go home now.")) 
+            {
+                Debug.Log("Adding Points");
+                if (PointsManager.Instance != null)
+                {
+                    PointsManager.Instance.AddPoints(10);
+                    Debug.Log("Added");
+                }
+                else
+                {
+                    Debug.LogError("PointsManager not assigned!");
+                }
             }
         }
         else
