@@ -17,3 +17,4 @@ MonoBehaviour:
   scoreRequirement: 0
   cashRequirement: 2
   itemToActivateName: ps5
+  isClaimed: 0

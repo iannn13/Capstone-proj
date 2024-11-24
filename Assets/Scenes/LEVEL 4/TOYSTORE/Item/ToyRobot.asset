@@ -17,3 +17,4 @@ MonoBehaviour:
   scoreRequirement: 0
   cashRequirement: 20
   itemToActivateName: ToyRobot
+  isClaimed: 0
