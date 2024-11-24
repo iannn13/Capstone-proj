@@ -2,101 +2,94 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
+
 
 public class StoreManager : MonoBehaviour
 {
-    public StoreItem[] storeItems; 
-    public Image itemDisplay;      
-    public TMP_Text itemNameText;  
-    public TMP_Text costText;      
-    public TMP_Text playerStatsText; 
-    public Button claimButton;    
-    public Transform playerRoom;
-    private RoomManager roomManager;
+    public StoreItem[] storeItems;  // Array of store items
+    public Image itemDisplay;  // UI Image to display item image
+    public TMP_Text itemNameText;  // UI Text to display item name
+    public TMP_Text costText;  // UI Text to display item cost (score & cash)
+    public TMP_Text playerStatsText;  // UI Text to display player's score and cash
+    public Button claimButton;  // Button to claim the item
 
-    private int currentIndex = 0; 
-    private int playerScore;       
-    private int playerCash;       
+    private int currentIndex = 0;  // Index to track the current store item
+    private int playerScore;  // Player's current score
+    private int playerCash;  // Player's current cash
 
     void Start()
     {
-        roomManager = FindObjectOfType<RoomManager>();
-        SceneManager.LoadScene("ROOM", LoadSceneMode.Additive);
-        StartCoroutine(InitializePlayerRoom());
-
+        // Initialize player stats
         playerScore = PointsManager.Instance != null ? PointsManager.Instance.achievementPoints : 0;
         playerCash = DataHandler.Instance != null ? DataHandler.Instance.GetMoney() : 0;
 
         // Update UI to reflect current data
         UpdateUI();
     }
-    IEnumerator InitializePlayerRoom()
+
+    // Navigate to the next item in the store
+    public void NextItem()
     {
-        yield return new WaitForSeconds(0.1f); // Allow PlayerRoom to load completely
+        currentIndex = (currentIndex + 1) % storeItems.Length;  // Loop back to first item after last
+        UpdateUI();
+        UpdatePlayerStats();
+    }
 
-        GameObject foundRoom = GameObject.FindGameObjectWithTag("PlayerRoom");
-        if (foundRoom != null)
+    // Navigate to the previous item in the store
+    public void PreviousItem()
+    {
+        currentIndex = (currentIndex - 1 + storeItems.Length) % storeItems.Length;  // Loop back to last item if at first
+        UpdateUI();
+        UpdatePlayerStats();
+    }
+
+    public GameObject[] itemsInScene;
+    // Claim the current item if requirements are met
+    public void ClaimItem()
+    {
+        StoreItem currentItem = storeItems[currentIndex];
+
+        // Check if the player meets the requirements
+        if (playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement)
         {
-            playerRoom = foundRoom.transform;
+            // Deduct player score and cash
+            playerScore -= currentItem.scoreRequirement;
+            playerCash -= currentItem.cashRequirement;
 
-            // Hide the PlayerRoom visuals
-            PlayerRoomManager roomManager = playerRoom.GetComponent<PlayerRoomManager>();
-            if (roomManager != null)
+            PointsManager.Instance.achievementPoints = playerScore;
+            DataHandler.Instance.AddMoney(-currentItem.cashRequirement);
+
+            // Find and activate the item in the scene
+            foreach (var item in itemsInScene)
             {
-                roomManager.HideRoom();
+                if (item.name == currentItem.itemToActivateName)
+                {
+                    item.SetActive(true); // Activate the item
+
+                    // Add the activated item to GameManager's claimedItems list
+                    GameManager.Instance.claimedItems.Add(item);
+
+                    // Save the list of claimed items
+                    GameManager.Instance.SaveClaimedItems();
+
+                    break; // Exit the loop once the item is found and activated
+                }
             }
+
+            // Update the UI after the transaction is complete
+            UpdateUI();
         }
         else
         {
-            Debug.LogError("Player Room not found! Make sure it is tagged and set up correctly.");
-        }
-    }
-
-    public void NextItem()
-    {
-        currentIndex = (currentIndex + 1) % storeItems.Length;
-        UpdateUI();
-        UpdatePlayerStats();
-    }
-
-    public void PreviousItem()
-    {
-        currentIndex = (currentIndex - 1 + storeItems.Length) % storeItems.Length;
-        UpdateUI();
-        UpdatePlayerStats();
-    }
-
-    public void ClaimItem()
-    {
-        Debug.Log("ClaimItem method triggered");
-        // Ensure the roomManager exists before calling SaveRoomState
-        if (roomManager != null)
-        {
-            StoreItem currentItem = storeItems[currentIndex];
-
-            if (playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement)
-            {
-                playerScore -= currentItem.scoreRequirement;
-                playerCash -= currentItem.cashRequirement;
-
-                if (PointsManager.Instance != null)
-                    PointsManager.Instance.achievementPoints = playerScore;
-
-                if (DataHandler.Instance != null)
-                    DataHandler.Instance.AddMoney(-currentItem.cashRequirement);
-
-                GameObject newItem = Instantiate(currentItem.itemPrefab, playerRoom);
-
-                roomManager.roomItems.Add(newItem); // Add to the list in RoomManager
-                roomManager.SaveRoomState(); // Save the room state
-            }
+            Debug.LogWarning("Player does not meet the requirements to claim this item.");
         }
     }
 
 
-        private void UpdateUI()
+
+    // Update the UI with the current item's data and player stats
+    private void UpdateUI()
     {
         // Get the current item
         StoreItem currentItem = storeItems[currentIndex];
@@ -111,13 +104,21 @@ public class StoreManager : MonoBehaviour
         claimButton.interactable = playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement;
     }
 
+    // Update player stats dynamically from PointsManager and DataHandler
     public void UpdatePlayerStats()
     {
-        // Dynamically reload player stats from PointsManager and DataHandler
         playerScore = PointsManager.Instance != null ? PointsManager.Instance.achievementPoints : 0;
         playerCash = DataHandler.Instance != null ? DataHandler.Instance.GetMoney() : 0;
 
-        // Refresh the UI
+        // Refresh the UI to reflect the updated stats
         UpdateUI();
+    }
+
+    // Method for handling the main menu button press
+    public void OnMainMenuButtonPressed()
+    {
+        GameManager.Instance.SaveClaimedItems();
+
+        SceneManager.LoadScene("Main Menu"); // Load the main menu scene
     }
 }

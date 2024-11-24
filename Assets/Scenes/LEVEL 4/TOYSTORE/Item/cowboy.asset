@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 576ebec7e35e5384fb5279b275b8ab66, type: 3}
-  m_Name: gameboy
+  m_Name: cowboy
   m_EditorClassIdentifier: 
-  itemName: Gameboy
-  itemImage: {fileID: 21300000, guid: 666dca1df98dab14087607e0dcab6136, type: 3}
+  itemName: cowboy
+  itemImage: {fileID: 21300000, guid: 492d51601ce53ba4b95b59ba8150b64d, type: 3}
   scoreRequirement: 0
-  cashRequirement: 20
-  itemToActivateName: Gameboy
+  cashRequirement: 2
+  itemToActivateName: cowboy

@@ -3,9 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewStoreItem", menuName = "Store/StoreItem")]
 public class StoreItem : ScriptableObject
 {
-    public string itemName;
-    public Sprite itemImage;
-    public int scoreRequirement;
-    public int cashRequirement;
-    public GameObject itemPrefab; // The item to place in the player's room
+    public string itemName;              // Name of the item
+    public Sprite itemImage;             // Image for the item
+    public int scoreRequirement;         // Score requirement for the item
+    public int cashRequirement;          // Cash requirement for the item
+    public string itemToActivateName;   // Name of the item to activate in the scene
 }

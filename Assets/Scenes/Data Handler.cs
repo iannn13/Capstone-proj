@@ -70,7 +70,7 @@ public class DataHandler : MonoBehaviour
 
     public void AddCash()
     {
-        money += 10;
+        money += 1000;
         UpdateMoneyText();
         PlayerPrefs.SetInt("PlayerMoney", money);
     }
