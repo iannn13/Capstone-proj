@@ -177,6 +177,15 @@ public class tambaydial : MonoBehaviour
         gameOverPanel.gameObject.SetActive(false);
         panel.gameObject.SetActive(false);
         OnDialogueComplete?.Invoke();
+        SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+            if (transitionManager != null)
+            {
+                transitionManager.FadeToScene(47);
+            }
+            else
+            {
+                Debug.LogError("SceneTransitionManager not found in the scene!");
+            }
     }
 
     

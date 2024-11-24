@@ -199,7 +199,7 @@ public class PoliceDial : MonoBehaviour
             panel.gameObject.SetActive(false);
             police.gameObject.SetActive(false);
             teddy.gameObject.SetActive(false);
-            policewoman .gameObject.SetActive(false);
+            policewoman.gameObject.SetActive(false);
         }
     }
 
