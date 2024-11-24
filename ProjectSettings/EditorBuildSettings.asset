@@ -143,4 +143,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LEVEL 5/Level 5-2 C3.unity
     guid: a24e004123bb8c04ab24ce3e10b8852e
+  - enabled: 1
+    path: Assets/MAIN MENU/Credits/Credits.unity
+    guid: a448a8bf262a4a242854d4bd9705a734
+  - enabled: 1
+    path: Assets/Scenes/LEVEL 3/Computer Shop.unity
+    guid: 0cd65a7e189d1da46ac29ebcd7418472
   m_configObjects: {}

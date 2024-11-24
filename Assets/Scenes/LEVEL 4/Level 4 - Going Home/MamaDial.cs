@@ -81,7 +81,7 @@ public class MamaDial : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
-        panel.gameObject.SetActive(true);
+        panel.gameObject.SetActive(true);   
         ContinueStory();
     }
 

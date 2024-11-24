@@ -54,7 +54,7 @@ public class TriggerDoorLEVEL1 : MonoBehaviour
         else
         {
             Debug.LogError("FadeManager instance is null!");
-        }
+        }   
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
