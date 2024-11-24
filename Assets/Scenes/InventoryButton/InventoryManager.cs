@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,15 @@ public class InventoryManager : MonoBehaviour
     public Button leftButton;
     public Button rightButton;
 
+    public float boostMultiplier = 2f; 
+    public float boostDuration = 5f; 
+    private float originalRightForce; 
+    private float originalLeftForce;  
+    public RightMove rightMove;       
+    public LeftMove leftMove;
+
+    public Slider speedBoostTimerSlider; // Reference to the Slider UI element
+    private bool isBoostActive = false;
 
     public int ItemsCount => items.Count;
 
@@ -258,6 +268,7 @@ public class InventoryManager : MonoBehaviour
         {
             items.Remove(itemName);
             Debug.Log("Ate item: " + itemName);
+            ActivateSpeedBoost();
 
             RefreshInventoryUI();
 
@@ -268,6 +279,87 @@ public class InventoryManager : MonoBehaviour
         else
         {
             Debug.LogError("No item selected for eating!");
+        }
+    }
+    private void ActivateSpeedBoost()
+    {
+        if (isBoostActive) return; // Prevent multiple boosts at the same time
+
+        isBoostActive = true;
+
+        // Apply boost to RightMove
+        if (rightMove != null)
+        {
+            originalRightForce = rightMove.Force;
+            rightMove.Force *= boostMultiplier;
+        }
+        else
+        {
+            Debug.LogError("RightMove script is not assigned!");
+        }
+
+        // Apply boost to LeftMove
+        if (leftMove != null)
+        {
+            originalLeftForce = leftMove.Force;
+            leftMove.Force *= boostMultiplier;
+        }
+        else
+        {
+            Debug.LogError("LeftMove script is not assigned!");
+        }
+
+        // Initialize and activate slider
+        if (speedBoostTimerSlider != null)
+        {
+            speedBoostTimerSlider.maxValue = boostDuration;
+            speedBoostTimerSlider.value = boostDuration;
+            speedBoostTimerSlider.gameObject.SetActive(true);
+        }
+
+        // Start timer and reset coroutine
+        StartCoroutine(SpeedBoostTimer());
+    }
+
+    private IEnumerator SpeedBoostTimer()
+    {
+        float remainingTime = boostDuration;
+
+        while (remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
+
+            // Update the slider value
+            if (speedBoostTimerSlider != null)
+            {
+                speedBoostTimerSlider.value = remainingTime;
+            }
+
+            yield return null;
+        }
+
+        // Hide the slider and reset speed
+        if (speedBoostTimerSlider != null)
+        {
+            speedBoostTimerSlider.gameObject.SetActive(false);
+        }
+
+        ResetSpeed();
+        isBoostActive = false;
+    }
+
+    private void ResetSpeed()
+    {
+        // Reset RightMove speed
+        if (rightMove != null)
+        {
+            rightMove.Force = originalRightForce;
+        }
+
+        // Reset LeftMove speed
+        if (leftMove != null)
+        {
+            leftMove.Force = originalLeftForce;
         }
     }
 
