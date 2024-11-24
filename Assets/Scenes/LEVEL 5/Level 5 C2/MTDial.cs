@@ -149,7 +149,7 @@ public class MTDial : MonoBehaviour
             SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
             if (transitionManager != null)
             {
-                transitionManager.FadeToScene(40);
+                transitionManager.FadeToScene(42);
             }
             else
             {
