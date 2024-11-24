@@ -20554,7 +20554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed6bfe83066bd24c9c1788b591418cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSON: {fileID: 4900000, guid: 0815bf63583437b4a9202258406ca371, type: 3}
+  inkJSON: {fileID: 4900000, guid: 4f6f3b3c49b4dd64b956786fce1208b0, type: 3}
   dialogueStartDelay: 1
   panel: {fileID: 1259493701}
 --- !u!1 &895517199

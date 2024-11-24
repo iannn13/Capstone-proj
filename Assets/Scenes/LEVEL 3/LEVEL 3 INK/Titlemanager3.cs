@@ -26,6 +26,6 @@ public class Titlemanager3 : MonoBehaviour
         yield return new WaitForSeconds(fadeDuration);
 
         // Load the next scene
-        SceneManager.LoadScene(38);
+        SceneManager.LoadScene(22);
     }
 }
