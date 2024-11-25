@@ -38,7 +38,7 @@ I'm sorry, I didn't mean it.
 +[A. Pasensya na, Di ko sinasadya.]
  Correct
 -> END
-+[A. Pasensya na, Sadya ko yun.]
++[B. Pasensya na, Sadya ko yun.]
  Wrong. The answer is A. Pasensya na, Di ko sinasadya.
 -> END
 +[C. Sori na.]

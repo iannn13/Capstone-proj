@@ -9,6 +9,9 @@ public class NeneTrigger1 : MonoBehaviour
     [Header("Dialogue Delay")]
     [SerializeField] private float dialogueStartDelay = 1f;
 
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
+
 
     private bool dialogueStarted;
     private bool playerInRange;
@@ -17,6 +20,7 @@ public class NeneTrigger1 : MonoBehaviour
     {
         dialogueStarted = false;
         playerInRange = false;
+        panel.gameObject.SetActive(false);
 
         // Subscribe to TeddyDialogue's OnDialogueComplete event
         NeneDialogue1.GetInstance().OnDialogueComplete += OnCatDialogueComplete;
@@ -29,6 +33,8 @@ public class NeneTrigger1 : MonoBehaviour
         if (playerInRange && !dialogueStarted)
         {
             StartCoroutine(StartDialogueAfterDelay());
+
+            panel.gameObject.SetActive(true);
         }
     }
 

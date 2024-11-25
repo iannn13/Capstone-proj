@@ -22,6 +22,9 @@ public class juperDialogue1 : MonoBehaviour
     [Header("Move Button")]
     [SerializeField] private GameObject movebutton;
 
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
+
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
@@ -134,6 +137,7 @@ public class juperDialogue1 : MonoBehaviour
         else
         {
             ExitDialogueMode();
+            panel.gameObject.SetActive(false);
             SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
             if (transitionManager != null)
             {
@@ -143,6 +147,7 @@ public class juperDialogue1 : MonoBehaviour
             {
                 Debug.LogError("SceneTransitionManager not found in the scene!");
             }
+
         }
     }
 
