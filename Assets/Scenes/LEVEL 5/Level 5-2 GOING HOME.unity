@@ -5144,7 +5144,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 6e98c181c720e1d41a325b63fbf51b67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45cb05b8a4a8e3c40afa433d97820918, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5164,8 +5164,8 @@ Transform:
   m_GameObject: {fileID: 265474062}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 235.53, y: -189.67, z: -0.09256914}
-  m_LocalScale: {x: 0.31667, y: 0.28421998, z: 1.26634}
+  m_LocalPosition: {x: 235.514, y: -190.389, z: -0.09256914}
+  m_LocalScale: {x: 1.354986, y: 1.484339, z: 1.26634}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 751774240}
@@ -8123,6 +8123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 50ba075ca4c23d84886c1c37fdaa0b3e, type: 3}
   dialogueStartDelay: 0
+  panel: {fileID: 0}
 --- !u!61 &413105498
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8381,7 +8382,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 6e98c181c720e1d41a325b63fbf51b67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45cb05b8a4a8e3c40afa433d97820918, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8402,7 +8403,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 97.47, y: -0.72, z: 26.52976}
-  m_LocalScale: {x: 0.31667, y: 0.28421998, z: 1.26634}
+  m_LocalScale: {x: 1.354986, y: 1.484339, z: 1.26634}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1365864309}
@@ -25333,6 +25334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 3b475e097b06dc9489274fd91ff2f475, type: 3}
   dialogueStartDelay: 0
+  panel: {fileID: 0}
 --- !u!61 &1122345277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25952,6 +25954,7 @@ MonoBehaviour:
   choices:
   - {fileID: 779367331}
   movebutton: {fileID: 0}
+  panel: {fileID: 0}
   typingSpeed: 0.05
   you: {fileID: 724396543}
   youname: {fileID: 844014377}
@@ -26664,7 +26667,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 6e98c181c720e1d41a325b63fbf51b67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45cb05b8a4a8e3c40afa433d97820918, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26685,7 +26688,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 51.2, y: 1.17, z: 26.52976}
-  m_LocalScale: {x: 0.31667, y: 0.28421998, z: 1.26634}
+  m_LocalScale: {x: 1.354986, y: 1.484339, z: 1.26634}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2081671398}
@@ -29205,6 +29208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 25dae69599784004eb2cb7979d6acdff, type: 3}
   dialogueStartDelay: 0
+  panel: {fileID: 0}
 --- !u!61 &1280644340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47076,6 +47080,7 @@ MonoBehaviour:
   - {fileID: 52349822}
   movebutton: {fileID: 0}
   typingSpeed: 0.05
+  panel: {fileID: 0}
   you: {fileID: 0}
   youname: {fileID: 0}
   teddy: {fileID: 0}
@@ -47307,6 +47312,7 @@ MonoBehaviour:
   - {fileID: 988041832}
   - {fileID: 391649741}
   movebutton: {fileID: 0}
+  panel: {fileID: 0}
   typingSpeed: 0.05
   you: {fileID: 336390277}
   youname: {fileID: 552830833}

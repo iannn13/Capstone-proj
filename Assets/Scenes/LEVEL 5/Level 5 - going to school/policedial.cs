@@ -41,7 +41,7 @@ public class policedial : MonoBehaviour
     [SerializeField] private GameObject police;
     [SerializeField] private GameObject youname;
     [SerializeField] private GameObject policename;
-    
+    [SerializeField] private GameObject policecar;
 
 
     private Story currentStory;
@@ -128,7 +128,7 @@ public class policedial : MonoBehaviour
                 youname.gameObject.SetActive(false);
                 policepic.gameObject.SetActive(true);
                 policename.gameObject.SetActive(true);
-
+                
             }
         }   
         else
@@ -136,6 +136,7 @@ public class policedial : MonoBehaviour
             ExitDialogueMode();
             panel.gameObject.SetActive(false);
             police.gameObject.SetActive(false);
+            policecar.gameObject.SetActive(false);
             
         }
     }
