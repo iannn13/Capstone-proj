@@ -133,5 +133,4 @@ public class ClaimedItemData
     public string itemName;  // Name of the item (used as the unique identifier)
     public UnityEngine.Vector3 position; // The position where the item was placed
     public bool isActive;    // The active state of the item
-    public bool isClaimed;
 }
