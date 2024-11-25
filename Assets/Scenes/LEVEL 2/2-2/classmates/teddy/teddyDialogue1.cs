@@ -22,6 +22,9 @@ public class teddyDialogue1 : MonoBehaviour
     [Header("Move Button")]
     [SerializeField] private GameObject movebutton;
 
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
+
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
@@ -74,7 +77,6 @@ public class teddyDialogue1 : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         continueButton.gameObject.SetActive(true);
-
         ContinueStory();
     }
 
@@ -85,7 +87,7 @@ public class teddyDialogue1 : MonoBehaviour
         dialogueText.text = "";
         continueButton.gameObject.SetActive(false);
         movebutton.gameObject.SetActive(true);
-
+        panel.gameObject.SetActive(false);
         OnDialogueComplete?.Invoke();
     }
 
@@ -109,19 +111,24 @@ public class teddyDialogue1 : MonoBehaviour
                     teddy.gameObject.SetActive(false);
                     teddyname.gameObject.SetActive(false);
                 }
-
+                if (storyText.Contains("I know! Fishball down the street!") || storyText.Contains("Great Idea!") )
+                {
+                panel.gameObject.SetActive(false);
+                }
                 else
                 {
                     you.gameObject.SetActive(false);
                     youname.gameObject.SetActive(false);
                     teddy.gameObject.SetActive(true);
                     teddyname.gameObject.SetActive(true);
+                    
                 }
             }
         }
         else
         {
             ExitDialogueMode();
+            panel.gameObject.SetActive(false);
         }
     }
 

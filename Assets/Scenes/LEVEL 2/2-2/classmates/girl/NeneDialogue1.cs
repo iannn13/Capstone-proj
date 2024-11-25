@@ -25,6 +25,9 @@ public class NeneDialogue1 : MonoBehaviour
     [Header("Typing Effect")]
     [SerializeField] private float typingSpeed = 0.05f;
 
+    [Header("panel")]
+    [SerializeField] private GameObject panel;
+
     [Header("name and pic")]
     [SerializeField] private GameObject you;
     [SerializeField] private GameObject youname;
@@ -93,13 +96,32 @@ public class NeneDialogue1 : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            StopAllCoroutines();
-            StartCoroutine(TypeText(currentStory.Continue()));
-            DisplayChoices();
+            if (currentStory.canContinue)
+            {
+                string storyText = currentStory.Continue();
+                StopAllCoroutines();
+                StartCoroutine(TypeText(storyText));
+                Debug.Log("Current Story Text: " + storyText); // Log the current story text
+                DisplayChoices();
+
+                if (storyText.Contains("Don't try to pick on me!"))
+                {
+                panel.gameObject.SetActive(false);
+                }
+                else
+                {
+                    you.gameObject.SetActive(false);
+                    youname.gameObject.SetActive(false);
+                    teddy.gameObject.SetActive(true);
+                    teddyname.gameObject.SetActive(true);
+                    
+                }
+            }
         }
         else
         {
             ExitDialogueMode();
+            panel.gameObject.SetActive(false);
         }
     }
 
