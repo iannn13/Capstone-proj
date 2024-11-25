@@ -32,6 +32,9 @@ public class LolaDial : MonoBehaviour
     [SerializeField] private GameObject youname;
     [SerializeField] private GameObject lolaname;
 
+    [Header("Data Handler")]
+    [SerializeField] private DataHandler dataHandler;
+
 
     [Header("Move Button")]
     [SerializeField] private GameObject movebutton;
@@ -139,6 +142,18 @@ public class LolaDial : MonoBehaviour
                 lolapic.gameObject.SetActive(false);
                 youname.gameObject.SetActive(true);
                 lolaname.gameObject.SetActive(false);
+            }
+
+                if (storyText.Contains("Thank you Lola"))
+            {
+                Debug.Log("Calling AddMoneyLola()...");
+
+                DataHandler dataHandler = FindObjectOfType<DataHandler>();
+                if (dataHandler != null)
+                {
+                dataHandler.AddMoneyLola();
+                Debug.Log("AddMoneyLola called!");
+                }
             }
         }   
         else

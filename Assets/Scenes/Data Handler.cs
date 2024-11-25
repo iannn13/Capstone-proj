@@ -102,4 +102,32 @@ public class DataHandler : MonoBehaviour
         Debug.Log($"Added {amount} money. Total: {money}");
     }
 
+    public void SubtractMoney(int amount)
+{
+    if (money >= 25)
+    {
+        money -= 25;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
+        Debug.Log($"Subtracted {amount} money. Remaining: {money}");
+    }
+    else
+    {
+        Debug.Log("Not enough money to subtract.");
+    }
+}
+
+     public void AddMoneyLola()
+    {
+        money += 25;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
+    }
+    public void MinusMoneyRemmy()
+    {
+        money -= 10;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
+    }
+
 }
