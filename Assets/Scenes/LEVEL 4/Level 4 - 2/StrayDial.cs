@@ -19,6 +19,9 @@ public class StrayDial : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    [Header("Data Handler")]
+    [SerializeField] private DataHandler dataHandler;
+
     [Header("panel")]
     [SerializeField] private GameObject panel;
 
@@ -133,6 +136,18 @@ public class StrayDial : MonoBehaviour
                 straypic.gameObject.SetActive(false);
                 youname.gameObject.SetActive(true);
                 strayname.gameObject.SetActive(false);
+            }
+
+            if (storyText.Contains("Thanks, bro."))
+            {
+                Debug.Log("Calling MinusMoneyRemmy()...");
+
+                DataHandler dataHandler = FindObjectOfType<DataHandler>();
+                if (dataHandler != null)
+                {
+                dataHandler.MinusMoneyRemmy();
+                Debug.Log("MinusMoney called!");
+                }
             }
         }   
         else

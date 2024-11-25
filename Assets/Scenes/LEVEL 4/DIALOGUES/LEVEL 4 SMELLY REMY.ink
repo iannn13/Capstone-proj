@@ -38,9 +38,7 @@ It's fine, why don't you just do me a favor?
 ->FAVOR
 
 ==FAVOR==
-I'm hungry, Can you give me something to eat?
-+[Give him food (-1 any food)]
-->END
+I'm hungry, Can you give me money to buy food?
 +[Give 10 peesos]
 ->10peesos
 +[I don't have anything.]
