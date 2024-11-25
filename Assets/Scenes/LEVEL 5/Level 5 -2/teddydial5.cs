@@ -158,6 +158,17 @@ public class teddydial5 : MonoBehaviour
             if (transitionManager != null)
             {
                 transitionManager.FadeToScene(43);
+
+                Debug.Log("Adding Points");
+                if (PointsManager.Instance != null)
+                {
+                    PointsManager.Instance.AddPoints(10);
+                    Debug.Log("Added");
+                }
+                else
+                {
+                    Debug.LogError("PointsManager not assigned!");
+                }
             }
             else
             {
@@ -170,11 +181,23 @@ public class teddydial5 : MonoBehaviour
             if (transitionManager != null)
             {
                 transitionManager.FadeToScene(37);
+
+                Debug.Log("Adding Points");
+                if (PointsManager.Instance != null)
+                {
+                    PointsManager.Instance.AddPoints(10);
+                    Debug.Log("Added");
+                }
+                else
+                {
+                    Debug.LogError("PointsManager not assigned!");
+                }
             }
             else
             {
                 Debug.LogError("SceneTransitionManager not found in the scene!");
             }
+
             }
         }   
         else
