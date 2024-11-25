@@ -14,7 +14,7 @@ public class StoreManager : MonoBehaviour
     public Button claimButton;
     public GameObject startButton;
 
-    public GameObject[] itemsInScene; // Items that are activated after claim
+    public GameObject[] itemsInScene; 
 
     private int currentIndex = 0;
     private int playerScore;
@@ -31,7 +31,7 @@ public class StoreManager : MonoBehaviour
 
     public void NextItem()
     {
-        currentIndex = (currentIndex + 1) % storeItems.Count; // Change to storeItems.Count since it's a List
+        currentIndex = (currentIndex + 1) % storeItems.Count; 
         UpdateUI();
         UpdatePlayerStats();
     }
@@ -45,7 +45,7 @@ public class StoreManager : MonoBehaviour
 
     public void PreviousItem()
     {
-        currentIndex = (currentIndex - 1 + storeItems.Count) % storeItems.Count; // Change to storeItems.Count
+        currentIndex = (currentIndex - 1 + storeItems.Count) % storeItems.Count; 
         UpdateUI();
         UpdatePlayerStats();
     }
@@ -56,14 +56,11 @@ public class StoreManager : MonoBehaviour
 
         if (playerScore >= currentItem.scoreRequirement && playerCash >= currentItem.cashRequirement && !currentItem.isClaimed)
         {
-            // Deduct player score and cash
-           /* playerScore -= currentItem.scoreRequirement;*/
             playerCash -= currentItem.cashRequirement;
 
             PointsManager.Instance.achievementPoints = playerScore;
             DataHandler.Instance.AddMoney(-currentItem.cashRequirement);
 
-            // Find and activate the item in the scene
             foreach (var item in itemsInScene)
             {
                 if (item.name == currentItem.itemToActivateName)
@@ -117,13 +114,13 @@ public class StoreManager : MonoBehaviour
         playerScore = PointsManager.Instance != null ? PointsManager.Instance.achievementPoints : 0;
         playerCash = DataHandler.Instance != null ? DataHandler.Instance.GetMoney() : 0;
 
-        // Refresh the UI to reflect the updated stats
+
         UpdateUI();
     }
 
     public void OnMainMenuButtonPressed()
     {
         GameManager.Instance.SaveClaimedItems();
-        SceneManager.LoadScene("Main Menu"); // Load the main menu scene
+        SceneManager.LoadScene("Main Menu"); 
     }
 }

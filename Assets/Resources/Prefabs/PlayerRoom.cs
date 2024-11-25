@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
                         itemToActivate.SetActive(data.isActive); // Set active state based on saved data
                         if (!claimedItems.Contains(itemToActivate)) // Avoid adding duplicates
                         {
-                            claimedItems.Add(itemToActivate); // Add to the claimed items list
+                            claimedItems.Add(itemToActivate); 
                         }
                     }
                     else
