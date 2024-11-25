@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             {
                 itemName = item.name,
                 position = item.transform.position,
-                isActive = item.activeSelf // Save the activation state
+                isActive = item.activeSelf, // Save the activation state
             };
 
             itemDataList.Add(data);
@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(saveFilePath, json);
         Debug.Log("Claimed items saved.");
     }
+
+
 
     // Load the claimed items from the JSON file
     public void LoadClaimedItems()
@@ -131,4 +133,5 @@ public class ClaimedItemData
     public string itemName;  // Name of the item (used as the unique identifier)
     public UnityEngine.Vector3 position; // The position where the item was placed
     public bool isActive;    // The active state of the item
+    public bool isClaimed;
 }

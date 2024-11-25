@@ -9,5 +9,4 @@ public class StoreItem : ScriptableObject
     public int cashRequirement;          
     public string itemToActivateName;   
     public bool isClaimed; 
-
 }
