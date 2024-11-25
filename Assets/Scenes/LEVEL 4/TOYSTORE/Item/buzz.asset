@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Buzz
   itemImage: {fileID: 21300000, guid: f4b325ead04c2dc44bdc1a99ee5a2161, type: 3}
-  scoreRequirement: 1
-  cashRequirement: 2
+  scoreRequirement: 100
+  cashRequirement: 100
   itemToActivateName: buzz
-  isClaimed: 1
+  isClaimed: 0
