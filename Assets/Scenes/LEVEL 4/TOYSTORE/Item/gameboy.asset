@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Gameboy
   itemImage: {fileID: 21300000, guid: 666dca1df98dab14087607e0dcab6136, type: 3}
   scoreRequirement: 300
-  cashRequirement: 150
+  cashRequirement: 100
   itemToActivateName: Gameboy
   isClaimed: 0

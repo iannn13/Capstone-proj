@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: ps5
   itemImage: {fileID: 21300000, guid: 724f442c6ba02d0408869ddff786299a, type: 3}
   scoreRequirement: 300
-  cashRequirement: 120
+  cashRequirement: 150
   itemToActivateName: ps5
   isClaimed: 0
