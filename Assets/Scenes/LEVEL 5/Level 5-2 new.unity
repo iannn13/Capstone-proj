@@ -25973,6 +25973,7 @@ MonoBehaviour:
   lolapic: {fileID: 1100913341}
   youname: {fileID: 1176773199}
   lolaname: {fileID: 744271807}
+  dataHandler: {fileID: 575395551}
   movebutton: {fileID: 0}
   typingSpeed: 0.05
 --- !u!1 &1160738055

@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class DataHandler : MonoBehaviour
 {
-    public static DataHandler Instance { get; private set; } // Singleton instance
+    public static DataHandler Instance { get; private set; } 
     public int playerCoins = 0;
     public Text moneyText;
 
     private int money;
-    public static bool isNewGame; // Flag to check if starting a new game
+    public static bool isNewGame; 
 
     void Awake()
     {
@@ -32,7 +32,7 @@ public class DataHandler : MonoBehaviour
         }
         else
         {
-            money = PlayerPrefs.GetInt("PlayerMoney", 50); // Load saved money if not a new game
+            money = PlayerPrefs.GetInt("PlayerMoney", 50); 
         }
 
         UpdateMoneyText();
@@ -100,6 +100,34 @@ public class DataHandler : MonoBehaviour
         UpdateMoneyText();
         PlayerPrefs.SetInt("PlayerMoney", money);
         Debug.Log($"Added {amount} money. Total: {money}");
+    }
+
+    public void SubtractMoney(int amount)
+{
+    if (money >= 25)
+    {
+        money -= 25;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
+        Debug.Log($"Subtracted {amount} money. Remaining: {money}");
+    }
+    else
+    {
+        Debug.Log("Not enough money to subtract.");
+    }
+}
+
+     public void AddMoneyLola()
+    {
+        money += 25;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
+    }
+    public void MinusMoneyRemmy()
+    {
+        money -= 10;
+        UpdateMoneyText();
+        PlayerPrefs.SetInt("PlayerMoney", money);
     }
 
 }

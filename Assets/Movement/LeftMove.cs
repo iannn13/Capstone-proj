@@ -29,6 +29,7 @@ public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public AsniDialogue asnidialogueManager;
     public WarsakDial warsakdialogueManager;
     public mom2Dial mom2dialogueManager;
+    public BystanderDial bystanderdial;
 
 
     private void Start()
@@ -53,6 +54,8 @@ public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         asnidialogueManager = AsniDialogue.GetInstance();
         warsakdialogueManager = WarsakDial.GetInstance();
         mom2dialogueManager = mom2Dial.GetInstance();
+        bystanderdial = BystanderDial.GetInstance();
+
 
         if (Player == null)
         {
@@ -91,7 +94,8 @@ public class LeftMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
            (mama3dialogueManager != null && mama3dialogueManager.dialogueIsPlaying) ||
            (asnidialogueManager != null && asnidialogueManager.dialogueIsPlaying) ||
            (warsakdialogueManager != null && warsakdialogueManager.dialogueIsPlaying) ||
-           (mom2dialogueManager != null && mom2dialogueManager.dialogueIsPlaying))
+           (mom2dialogueManager != null && mom2dialogueManager.dialogueIsPlaying) ||
+           (bystanderdial != null && bystanderdial.dialogueIsPlaying))
         {
             if (animator != null)
             {
