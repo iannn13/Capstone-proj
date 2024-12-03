@@ -1219,7 +1219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9357fc9dd7f86bd46a714aed72f9148c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e0347ebdf7ba934f8f751baa7732cb8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8169,6 +8169,7 @@ MonoBehaviour:
   asnidialogueManager: {fileID: 0}
   warsakdialogueManager: {fileID: 0}
   mom2dialogueManager: {fileID: 0}
+  bystanderdial: {fileID: 0}
 --- !u!114 &1304395657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11012,6 +11013,7 @@ MonoBehaviour:
   asnidialogueManager: {fileID: 0}
   warsakdialogueManager: {fileID: 0}
   mom2dialogueManager: {fileID: 0}
+  bystanderdial: {fileID: 0}
 --- !u!114 &1875378117
 MonoBehaviour:
   m_ObjectHideFlags: 0
