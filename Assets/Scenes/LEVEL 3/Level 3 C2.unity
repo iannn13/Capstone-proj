@@ -12448,6 +12448,7 @@ MonoBehaviour:
   asnidialogueManager: {fileID: 0}
   warsakdialogueManager: {fileID: 0}
   mom2dialogueManager: {fileID: 0}
+  bystanderdial: {fileID: 0}
 --- !u!114 &666749145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32929,6 +32930,7 @@ MonoBehaviour:
   asnidialogueManager: {fileID: 0}
   warsakdialogueManager: {fileID: 0}
   mom2dialogueManager: {fileID: 0}
+  bystanderdial: {fileID: 0}
 --- !u!114 &1676017271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34555,7 +34557,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The man pushed you away and let go of her arm, He took her.
+  m_text: "Advice:\n\nIf you feel scared or unsure,\n\nfind a police officer, teacher,
+    \n\nor another trusted adult."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
   m_sharedMaterial: {fileID: 3313763901078786556, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
@@ -40528,7 +40531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WRONG MOVE...
+  m_text: GAME OVER...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
   m_sharedMaterial: {fileID: 3313763901078786556, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
@@ -40537,8 +40540,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4287138047
+  m_fontColor: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -42084,6 +42087,7 @@ MonoBehaviour:
   asnidialogueManager: {fileID: 0}
   warsakdialogueManager: {fileID: 0}
   mom2dialogueManager: {fileID: 0}
+  bystanderdial: {fileID: 0}
 --- !u!224 &2063969803
 RectTransform:
   m_ObjectHideFlags: 0

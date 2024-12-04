@@ -1973,7 +1973,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do you have to be nice all the time?
+  m_text: 'ADVICE:
+
+
+    You don''t have to be nice all the time.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
   m_sharedMaterial: {fileID: 3313763901078786556, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
@@ -5018,6 +5021,7 @@ MonoBehaviour:
   asnidialogueManager: {fileID: 0}
   warsakdialogueManager: {fileID: 0}
   mom2dialogueManager: {fileID: 0}
+  bystanderdial: {fileID: 0}
 --- !u!114 &1027611571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5195,7 +5199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1115107086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5633,7 +5637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DECEIVED...
+  m_text: GAME OVER...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
   m_sharedMaterial: {fileID: 3313763901078786556, guid: 8db69ccc54d26b3409f74954bc2b31d1, type: 2}
@@ -6332,6 +6336,7 @@ MonoBehaviour:
   asnidialogueManager: {fileID: 0}
   warsakdialogueManager: {fileID: 0}
   mom2dialogueManager: {fileID: 0}
+  bystanderdial: {fileID: 0}
 --- !u!114 &1376422947
 MonoBehaviour:
   m_ObjectHideFlags: 0
